@@ -1,0 +1,34 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gibson-caretaker-services",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Serve the website from the /public folder
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+
+  // Lets the Worker send mail to Mariah's verified address — FREE, no email service needed.
+  "send_email": [
+    {
+      "name": "MAIL",
+      "destination_address": "gibsoncaretakerservices@gmail.com"
+    }
+  ]
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // LEAD BACKUP (D1) — created via the Cloudflare API and migrated
+  // (migrations/0001_init.sql). The database_id below is a public identifier,
+  // not a secret. To recreate: npx wrangler d1 create gibson-leads.
+  // ───────────────────────────────────────────────────────────────────────────
+  ,"d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "gibson-leads",
+      "database_id": "31695289-8e23-4a75-8b13-c094816a2d6b"
+    }
+  ]
+}
