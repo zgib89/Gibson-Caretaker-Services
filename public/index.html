@@ -6,14 +6,14 @@
   is covered, germinates, and grows into its letterform — resolving into a
   living wordmark (a rose bloom for the i-dot, leaves that sway). Replays on
   every load / refresh / back-forward. Reduced-motion shows the final logo.
-  Phone (608) 555-5555 baked in. Form posts to /api/contact. Seasons unchanged.
+  Phone (608) 341-7826 baked in. Form posts to /api/contact. Seasons unchanged.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Gibson Caretaker Services — gentle yard, garden &amp; home help in Darlington, WI</title>
-<meta name="description" content="Gentle, dependable help with your yard, garden, flowers — and just about anything you need — for older and busy neighbors around Darlington, Wisconsin, every season. Call or text (608) 555-5555." />
+<meta name="description" content="Gentle, dependable help with your yard, garden, flowers — and just about anything you need — for older and busy neighbors around Darlington, Wisconsin, every season. Call or text (608) 341-7826." />
 <meta name="theme-color" content="#26301d" />
 <meta name="color-scheme" content="light" />
 <meta name="robots" content="index,follow" />
@@ -21,12 +21,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Gibson Caretaker Services" />
 <meta property="og:title" content="Gibson Caretaker Services — gentle yard, garden &amp; home help in Darlington, WI" />
-<meta property="og:description" content="Gentle, dependable help with your yard, garden, and just about anything you need — every season. Call or text (608) 555-5555." />
+<meta property="og:description" content="Gentle, dependable help with your yard, garden, and just about anything you need — every season. Call or text (608) 341-7826." />
 <meta property="og:url" content="https://gibsoncaretakerservices.com/" />
 <meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Gibson Caretaker Services — Darlington, WI" />
-<meta name="twitter:description" content="Gentle, dependable yard, garden &amp; home help, every season. Call or text (608) 555-5555." />
+<meta name="twitter:description" content="Gentle, dependable yard, garden &amp; home help, every season. Call or text (608) 341-7826." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ffffff'/%3E%3Cpath d='M32 52V30' stroke='%235c9243' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M32 40c-8 0-12-5-12-11 7 0 12 5 12 11Z' fill='%236fae50'/%3E%3Cpath d='M32 40c8 0 12-5 12-11-7 0-12 5-12 11Z' fill='%239cd07a'/%3E%3Ccircle cx='24' cy='20' r='6.5' fill='%23ff5fa2'/%3E%3Ccircle cx='40' cy='20' r='6.5' fill='%23ff5fa2'/%3E%3Ccircle cx='28' cy='13' r='6.5' fill='%23e6207e'/%3E%3Ccircle cx='36' cy='13' r='6.5' fill='%23e6207e'/%3E%3Ccircle cx='32' cy='24' r='6.5' fill='%23e6207e'/%3E%3Ccircle cx='32' cy='18' r='4.6' fill='%23f5b800'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,25 +51,43 @@
   --shadow:0 1px 2px rgba(31,42,24,.05),0 14px 40px rgba(31,42,24,.10); --maxw:1120px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--paper);color-scheme:light}
+html{scroll-behavior:smooth;background:#fbf4f3;color-scheme:light}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:transparent;color:var(--ink);font-family:var(--sans);font-size:1.13rem;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-/* ===== LIVING AURORA — a soft, drifting garden-light haze behind the light sections. Pure CSS, compositor-only transforms. Stays pale; a central clear-band keeps centered text legible. ===== */
-.aura{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--paper);pointer-events:none}
-.aura span{position:absolute;display:block;border-radius:50%;will-change:transform}
-.aura .a1{width:68vw;height:68vw;left:-16vw;top:-20vh;background:radial-gradient(circle,rgba(164,222,150,.95) 0%,rgba(164,222,150,0) 64%);animation:auraA 36s ease-in-out infinite}
-.aura .a2{width:62vw;height:62vw;right:-14vw;top:-16vh;background:radial-gradient(circle,rgba(160,201,246,.92) 0%,rgba(160,201,246,0) 64%);animation:auraB 43s ease-in-out infinite}
-.aura .a3{width:58vw;height:58vw;left:-24vw;bottom:-36vh;background:radial-gradient(circle,rgba(250,222,156,.44) 0%,rgba(250,222,156,0) 64%);animation:auraC 49s ease-in-out infinite}
-.aura .a4{width:56vw;height:56vw;right:-22vw;bottom:-26vh;background:radial-gradient(circle,rgba(255,196,170,.54) 0%,rgba(255,196,170,0) 64%);animation:auraD 40s ease-in-out infinite}
-.aura .a5{width:40vw;height:40vw;left:-8vw;bottom:-18vh;opacity:.32;background:radial-gradient(circle,rgba(220,192,238,.5) 0%,rgba(220,192,238,0) 70%);animation:auraE 54s ease-in-out infinite}
-.aura .a6{width:32vw;height:32vw;right:18vw;bottom:-14vh;opacity:.3;background:radial-gradient(circle,rgba(250,201,224,.5) 0%,rgba(250,201,224,0) 72%);animation:auraF 46s ease-in-out infinite}
-.aura .lift{inset:0;width:auto;height:auto;border-radius:0;background:linear-gradient(90deg,transparent 0%,rgba(247,244,234,.85) 22%,rgba(247,244,234,.89) 50%,rgba(247,244,234,.85) 78%,transparent 100%)}
+/* ===== LIVING ROSE-BLUSH AURORA + drifting rose petals + film grain. Pure CSS, compositor-only transforms. Stays light; a central clear-band keeps centered text legible. ===== */
+.aura{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#fbf4f3;pointer-events:none}
+.aura .b{position:absolute;display:block;border-radius:50%;will-change:transform}
+.aura .a1{width:70vw;height:70vw;left:-20vw;top:-24vh;background:radial-gradient(circle,rgba(255,176,205,.94) 0%,rgba(255,176,205,0) 62%);animation:auraA 38s ease-in-out infinite}
+.aura .a2{width:62vw;height:62vw;right:-14vw;top:-16vh;background:radial-gradient(circle,rgba(255,221,200,.82) 0%,rgba(255,221,200,0) 64%);animation:auraB 45s ease-in-out infinite}
+.aura .a3{width:60vw;height:60vw;left:-20vw;bottom:-32vh;background:radial-gradient(circle,rgba(255,210,230,.60) 0%,rgba(255,210,230,0) 64%);animation:auraC 51s ease-in-out infinite}
+.aura .a4{width:58vw;height:58vw;right:-20vw;bottom:-24vh;background:radial-gradient(circle,rgba(238,138,182,.80) 0%,rgba(238,138,182,0) 62%);animation:auraD 42s ease-in-out infinite}
+.aura .a5{width:42vw;height:42vw;left:22vw;top:30vh;opacity:.45;background:radial-gradient(circle,rgba(255,242,248,.85) 0%,rgba(255,242,248,0) 70%);animation:auraE 58s ease-in-out infinite}
+.aura .a6{width:34vw;height:34vw;right:14vw;bottom:-12vh;opacity:.3;background:radial-gradient(circle,rgba(212,236,208,.55) 0%,rgba(212,236,208,0) 72%);animation:auraF 50s ease-in-out infinite}
+.aura .lift{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,249,250,.84) 22%,rgba(255,249,250,.88) 50%,rgba(255,249,250,.84) 78%,transparent 100%)}
+.aura .grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='ng'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ng)'/%3E%3C/svg%3E");background-size:150px 150px}
+.aura .petal{position:absolute;top:-12vh;will-change:transform;filter:drop-shadow(0 4px 7px rgba(190,70,115,.12))}
+.aura .p1{left:8%;width:42px;opacity:.82;animation:fall1 28s linear infinite}
+.aura .p2{left:22%;width:26px;opacity:.72;animation:fall2 36s linear infinite;animation-delay:-8s}
+.aura .p3{left:28%;width:58px;opacity:.5;animation:fall3 44s linear infinite;animation-delay:-22s;filter:blur(.6px) drop-shadow(0 5px 9px rgba(190,70,115,.1))}
+.aura .p4{left:76%;width:34px;opacity:.72;animation:fall1 31s linear infinite;animation-delay:-14s}
+.aura .p5{left:84%;width:48px;opacity:.56;animation:fall2 38s linear infinite;animation-delay:-5s}
+.aura .p6{left:12%;width:66px;opacity:.34;animation:fall3 54s linear infinite;animation-delay:-30s;filter:blur(1.3px)}
+.aura .p7{left:88%;width:24px;opacity:.74;animation:fall1 30s linear infinite;animation-delay:-19s}
+.aura .p8{left:92%;width:38px;opacity:.66;animation:fall2 34s linear infinite;animation-delay:-25s}
+.aura .p9{left:22%;width:30px;opacity:.7;animation:fall1 33s linear infinite;animation-delay:-11s}
+.aura .p10{left:70%;width:54px;opacity:.44;animation:fall3 46s linear infinite;animation-delay:-38s;filter:blur(.8px)}
+.aura .p11{left:4%;width:22px;opacity:.7;animation:fall2 29s linear infinite;animation-delay:-16s}
+.aura .p12{left:80%;width:44px;opacity:.56;animation:fall1 41s linear infinite;animation-delay:-33s}
+@media (prefers-reduced-motion:reduce){.aura .petal{animation-duration:120s}}
 @keyframes auraA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,5vh) scale(1.1)}}
 @keyframes auraB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5vw,7vh) scale(1.08)}}
 @keyframes auraC{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5vw,-6vh) scale(1.12)}}
 @keyframes auraD{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6vw,-4vh) scale(1.08)}}
 @keyframes auraE{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,3vh) scale(1.16)}}
 @keyframes auraF{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-7vw,5vh) scale(1.12)}}
+@keyframes fall1{0%{transform:translate(0,-12vh) rotate(0deg)}100%{transform:translate(7vw,118vh) rotate(220deg)}}
+@keyframes fall2{0%{transform:translate(0,-12vh) rotate(0deg)}100%{transform:translate(-6vw,118vh) rotate(-260deg)}}
+@keyframes fall3{0%{transform:translate(0,-12vh) rotate(10deg)}100%{transform:translate(4vw,118vh) rotate(180deg)}}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.07;margin:0;letter-spacing:-.01em}
 p{margin:0}
 a{color:var(--pink-deep);text-underline-offset:3px}
@@ -212,6 +230,10 @@ footer .area{color:#9fac86;max-width:600px;margin:10px auto 0}
 footer .dots{display:flex;gap:8px;justify-content:center;margin:22px 0 8px}
 footer .dots i{width:11px;height:11px;border-radius:50%}
 footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
+.social{margin-top:18px}
+.fb-link{display:inline-flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:1rem;text-decoration:none;background:linear-gradient(135deg,#1877f2,#0a5fd0);padding:11px 20px;border-radius:999px;box-shadow:0 8px 22px rgba(24,119,242,.34);transition:transform .15s,box-shadow .15s}
+.fb-link:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(24,119,242,.46)}
+.fb-link svg{flex:0 0 auto}
 .callbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;gap:10px;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(247,244,234,.94);backdrop-filter:saturate(140%) blur(12px);border-top:1px solid var(--line);transition:transform .3s ease,opacity .3s ease}
 .callbar.hide{transform:translateY(140%);opacity:0;pointer-events:none}
 .callbar a{flex:1;min-height:52px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:1.04rem;text-decoration:none}
@@ -323,7 +345,8 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 </style>
 </head>
 <body data-season="summer">
-<div class="aura" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span><span class="a4"></span><span class="a5"></span><span class="a6"></span><span class="lift"></span></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="rg" x1="0.2" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#fff7fb"/><stop offset=".5" stop-color="#ffe4f0"/><stop offset="1" stop-color="#fcd2e2"/></linearGradient><symbol id="petal" viewBox="0 0 100 128"><path d="M50 3 C72 14 96 40 90 78 C85 108 65 124 50 125 C35 124 15 108 10 78 C4 40 28 14 50 3 Z" fill="url(#rg)"/><path d="M50 16 C49 52 49 92 50 116" stroke="#fff" stroke-opacity=".32" stroke-width="2.6" fill="none" stroke-linecap="round"/><ellipse cx="37" cy="38" rx="13" ry="20" fill="#fff" opacity=".26"/></symbol></defs></svg>
+<div class="aura" aria-hidden="true"><span class="b a1"></span><span class="b a2"></span><span class="b a3"></span><span class="b a4"></span><span class="b a5"></span><span class="b a6"></span><span class="lift"></span><svg class="petal p1" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p2" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p3" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p4" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p5" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p6" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p7" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p8" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p9" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p10" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p11" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p12" viewBox="0 0 100 128"><use href="#petal"/></svg><span class="grain"></span></div>
 
 <a class="skip" href="#book">Skip to booking</a>
 
@@ -360,11 +383,11 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
     <h1>Caring for your yard &amp; garden, <em>every season.</em></h1>
     <p class="lead">For years I cared for elders at Sienna Crest. Now I help older and busy neighbors with the weeding, watering, planting, raking, and snow — and just about anything else around the place.</p>
     <div class="hero-cta">
-      <a class="btn btn-fill" href="tel:+16085555555"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> Call Mariah</a>
-      <a class="btn btn-fill" href="sms:+16085555555?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text Mariah</a>
+      <a class="btn btn-fill" href="tel:+16083417826"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> Call Mariah</a>
+      <a class="btn btn-fill" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text Mariah</a>
       <a class="btn btn-line" href="#book">Request a visit</a>
     </div>
-    <p class="hero-tip">A real neighbor, not an app &mdash; call or text <a href="tel:+16085555555">(608)&nbsp;555-5555</a>.</p>
+    <p class="hero-tip">A real neighbor, not an app &mdash; call or text <a href="tel:+16083417826">(608)&nbsp;341-7826</a>.</p>
   </div>
 </section>
 
@@ -490,8 +513,8 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
         <span class="pill">References available</span>
       </div>
       <div class="about-cta">
-        <a class="btn btn-fill" href="sms:+16085555555?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text Mariah</a>
-        <a class="btn btn-line" href="tel:+16085555555">Call (608) 555-5555</a>
+        <a class="btn btn-fill" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text Mariah</a>
+        <a class="btn btn-line" href="tel:+16083417826">Call (608) 341-7826</a>
       </div>
     </div>
   </div>
@@ -554,7 +577,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
       </div>
       <div id="ts-slot" class="ts-slot"></div>
       <button class="btn btn-fill" type="submit" id="send" style="width:100%">Send my request</button>
-      <p class="book-foot">Prefer to talk? <a href="tel:+16085555555">Call</a> or <a href="sms:+16085555555?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">text</a> (608)&nbsp;555-5555 anytime.</p>
+      <p class="book-foot">Prefer to talk? <a href="tel:+16083417826">Call</a> or <a href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">text</a> (608)&nbsp;341-7826 anytime.</p>
       <div class="status" id="status" role="status" aria-live="polite"></div>
     </form>
   </div>
@@ -574,7 +597,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
       <details><summary>Do I need to be home while you work?</summary><div class="fa">Whatever’s most comfortable for you. Some folks like to be there and chat, others leave a note and a key. We’ll figure out what works best together.</div></details>
       <details><summary>How do I get started?</summary><div class="fa">Call or text me, or send a quick request from this page. I’ll get back to you to confirm a day and a fair price — and that’s it. No apps, no accounts, no fuss.</div></details>
     </div>
-    <p class="faq-cta">Still wondering something? <a href="tel:+16085555555">Call</a> or <a href="sms:+16085555555?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">text Mariah</a> — she’s happy to help.</p>
+    <p class="faq-cta">Still wondering something? <a href="tel:+16083417826">Call</a> or <a href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">text Mariah</a> — she’s happy to help.</p>
   </div>
 </section>
 
@@ -583,19 +606,20 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
     <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#ffffff"/><path d="M32 52V30" stroke="#5c9243" stroke-width="3.5" stroke-linecap="round"/><path d="M32 40c-8 0-12-5-12-11 7 0 12 5 12 11Z" fill="#6fae50"/><path d="M32 40c8 0 12-5 12-11-7 0-12 5-12 11Z" fill="#9cd07a"/><circle cx="24" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="40" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="28" cy="13" r="6.5" fill="#e6207e"/><circle cx="36" cy="13" r="6.5" fill="#e6207e"/><circle cx="32" cy="24" r="6.5" fill="#e6207e"/><circle cx="32" cy="18" r="4.6" fill="#f5b800"/></svg>
     <span style="color:#fff">Gibson <b>Caretaker Services</b></span>
   </div>
-  <div>Gentle care for your yard, garden &amp; home, every season &middot; <a href="tel:+16085555555">(608) 555-5555</a> &middot; <a href="mailto:mariah@gibsoncaretakerservices.com">mariah@gibsoncaretakerservices.com</a></div>
+  <div>Gentle care for your yard, garden &amp; home, every season &middot; <a href="tel:+16083417826">(608) 341-7826</a> &middot; <a href="mailto:gibsoncaretakerservices@gmail.com">gibsoncaretakerservices@gmail.com</a></div>
+  <div class="social"><a class="fb-link" href="https://www.facebook.com/share/1BK9yQCd9E/" target="_blank" rel="noopener noreferrer" aria-label="Find Gibson Caretaker Services on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg> Find us on Facebook</a></div>
   <p class="area">Serving Darlington, Gratiot, Wiota, Argyle, Calamine, Belmont, Shullsburg &amp; nearby.</p>
   <div class="dots" aria-hidden="true"><i style="background:#e6207e"></i><i style="background:#2f6fd6"></i><i style="background:#f5b800"></i><i style="background:#4d9a3f"></i></div>
   <p class="fine">© 2026 Gibson Caretaker Services · Darlington, Wisconsin</p>
 </footer>
 
 <nav class="callbar" id="callbar" aria-label="Contact Mariah">
-  <a class="c-call" href="tel:+16085555555"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> Call</a>
-  <a class="c-text" href="sms:+16085555555?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text</a>
+  <a class="c-call" href="tel:+16083417826"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> Call</a>
+  <a class="c-text" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text</a>
 </nav>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gibson Caretaker Services","description":"Gentle, dependable yard, garden, flower, and home care for older and busy neighbors around Darlington, Wisconsin, every season.","telephone":"+1-608-555-5555","email":"mariah@gibsoncaretakerservices.com","url":"https://gibsoncaretakerservices.com","priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Darlington","addressRegion":"WI","addressCountry":"US"},"areaServed":["Darlington, WI","Gratiot, WI","Wiota, WI","Argyle, WI","Calamine, WI","Belmont, WI","Shullsburg, WI"],"founder":{"@type":"Person","name":"Mariah Gibson"}}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gibson Caretaker Services","description":"Gentle, dependable yard, garden, flower, and home care for older and busy neighbors around Darlington, Wisconsin, every season.","telephone":"+1-608-341-7826","email":"gibsoncaretakerservices@gmail.com","url":"https://gibsoncaretakerservices.com","sameAs":["https://www.facebook.com/share/1BK9yQCd9E/"],"priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Darlington","addressRegion":"WI","addressCountry":"US"},"areaServed":["Darlington, WI","Gratiot, WI","Wiota, WI","Argyle, WI","Calamine, WI","Belmont, WI","Shullsburg, WI"],"founder":{"@type":"Person","name":"Mariah Gibson"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I arrange help for my mom, dad, or someone else?","acceptedAnswer":{"@type":"Answer","text":"Of course — a lot of my calls come from sons and daughters arranging help for a parent. Just reach out with their name and what they need, and I’ll keep you in the loop every step of the way."}},{"@type":"Question","name":"How much does it cost?","acceptedAnswer":{"@type":"Answer","text":"Every yard and task is a little different, so I’ll always give you a clear price before any work begins. Asking is completely free, and there’s never any obligation."}},{"@type":"Question","name":"Which towns do you serve?","acceptedAnswer":{"@type":"Answer","text":"Darlington and the nearby towns — Gratiot, Wiota, Argyle, Calamine, Belmont, Shullsburg and around. Not sure if you’re in range? Just ask, and if I can’t help I’ll try to point you to someone who can."}},{"@type":"Question","name":"What kinds of things can you help with?","acceptedAnswer":{"@type":"Answer","text":"Weeding, watering, planting, mowing, raking, snow, and plenty of small tasks around the home. If what you need isn’t on the list, ask anyway — I’ll always be honest about what I can and can’t do."}},{"@type":"Question","name":"Do I need to be home while you work?","acceptedAnswer":{"@type":"Answer","text":"Whatever’s most comfortable for you. Some folks like to be there and chat, others leave a note and a key. We’ll figure out what works best together."}},{"@type":"Question","name":"How do I get started?","acceptedAnswer":{"@type":"Answer","text":"Call or text me, or send a quick request from this page. I’ll get back to you to confirm a day and a fair price — and that’s it. No apps, no accounts, no fuss."}}]}
@@ -730,7 +754,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
     fetch('/api/contact',{method:'POST',body:fd})
       .then(function(r){return r.json().then(function(d){return {ok:r.ok&&d.ok};},function(){return {ok:r.ok};});})
       .then(function(res){if(res.ok){stt.textContent='Thank you \u2014 your request is on its way to Mariah. She\u2019ll reach out soon to confirm. \uD83C\uDF31';stt.className='status ok';form.reset();$all('.chip,.tchip').forEach(function(c){c.setAttribute('aria-pressed','false');});}else throw new Error();})
-      .catch(function(){stt.innerHTML='Sorry, that didn\u2019t send \u2014 but don\u2019t worry. <a href="tel:+16085555555">Call</a> or <a href=\"sms:+16085555555?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20\">text Mariah</a> and she\u2019ll take care of you.';stt.className='status err';})
+      .catch(function(){stt.innerHTML='Sorry, that didn\u2019t send \u2014 but don\u2019t worry. <a href="tel:+16083417826">Call</a> or <a href=\"sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20\">text Mariah</a> and she\u2019ll take care of you.';stt.className='status err';})
       .then(function(){send.disabled=false;send.textContent='Send my request';});
   });
 })();
