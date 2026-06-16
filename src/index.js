@@ -293,7 +293,7 @@ function addHours(date, time, hours) {
 function buildIcs({ title, start, end, location, details }) {
   const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
   const uid = crypto.randomUUID() + "@gibsoncaretakerservices";
-  const e = (s) => (s || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+  const e = (s) => (s || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n");
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
