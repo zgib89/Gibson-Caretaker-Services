@@ -1,0 +1,8 @@
+# Gibson Caretaker Services — gibsoncaretakerservices.com
+# Welcome, search engines. Please index the site so neighbors can find us.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://gibsoncaretakerservices.com/sitemap.xml

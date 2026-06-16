@@ -4,11 +4,13 @@
   "main": "src/index.js",
   "compatibility_date": "2025-09-01",
   "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
 
   // Serve the website from the /public folder
   "assets": {
     "directory": "./public",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
   },
 
   // Lets the Worker send mail to Mariah's verified address — FREE, no email service needed.

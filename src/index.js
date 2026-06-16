@@ -29,7 +29,9 @@ export default {
       return handleLeads(request, env);
     }
 
-    // everything else: serve the static site
+    // everything else: serve the static site.
+    // (Security + cache headers for assets are set in public/_headers — Workers
+    //  Static Assets serve ahead of the Worker, so wrapping this fetch is a no-op.)
     return env.ASSETS.fetch(request);
   },
 };
@@ -73,7 +75,7 @@ async function handleContact(request, env) {
   try {
     leadId = await saveLead(env, lead, request);
   } catch (e) {
-    // swallow — never let the backup block the notification
+    console.error("lead backup (D1) failed", e); // never let the backup block the notification
   }
 
   // Notify Mariah by email (free; goes only to her verified inbox).
@@ -84,6 +86,7 @@ async function handleContact(request, env) {
     }
     return json({ ok: true });
   } catch (err) {
+    console.error("notification email failed (lead " + leadId + ")", err);
     // The lead is already safe in D1 (if bound). Route the customer to the direct line.
     return json({ ok: false, error: "Could not send. Please call or text instead." }, 500);
   }
@@ -111,8 +114,7 @@ async function verifyTurnstile(env, token, request) {
 // ───────────────────────── Lead backup (Cloudflare D1) ─────────────────────────
 async function saveLead(env, lead, request) {
   if (!env.DB) return null;            // not bound yet → skip silently
-  const ip = request.headers.get("CF-Connecting-IP") || "";
-  const ua = request.headers.get("User-Agent") || "";
+  // We deliberately do NOT store the visitor's IP / User-Agent — no stated purpose, needless PII.
   const res = await env.DB
     .prepare(
       `INSERT INTO leads (name, phone, email, town, needs, pref_date, pref_time, ip, user_agent)
@@ -126,8 +128,8 @@ async function saveLead(env, lead, request) {
       lead.needs || null,
       lead.date || null,
       lead.time || null,
-      ip,
-      ua
+      "",
+      ""
     )
     .run();
   return res && res.meta ? res.meta.last_row_id : null;
@@ -263,8 +265,10 @@ ${email ? "Email: " + email + "\n" : ""}${town ? "Town:  " + town + "\n" : ""}${
   const msg = createMimeMessage();
   msg.setSender({ name: "Gibson Caretaker Services website", addr: FROM });
   msg.setRecipient(TO);
-  if (email) msg.setHeader("Reply-To", email); // reply goes straight to the customer
-  msg.setSubject(`New request — ${name}${town ? " (" + town + ")" : ""}`);
+  // reply goes straight to the customer — only if it's a plausible address
+  if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) msg.setHeader("Reply-To", email);
+  const oneLine = (s) => (s || "").replace(/[\r\n]+/g, " "); // strip CRLF (header-injection safety)
+  msg.setSubject("New request — " + oneLine(name) + (town ? " (" + oneLine(town) + ")" : ""));
   msg.addMessage({ contentType: "text/plain", data: text });
   msg.addMessage({ contentType: "text/html", data: html });
   if (icsB64) {
@@ -307,7 +311,13 @@ function buildIcs({ title, start, end, location, details }) {
 }
 
 function esc(s) {
-  return (s || "").toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return (s || "")
+    .toString()
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function json(obj, status = 200) {
