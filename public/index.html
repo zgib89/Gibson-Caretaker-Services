@@ -106,10 +106,22 @@ section[id]{scroll-margin-top:78px}
 h1,h2,h3{text-wrap:balance}
 .lead,.a-lede,.price-lead,.bio{text-wrap:pretty}
 html{accent-color:var(--pink)}
+/* ===== POP — premium micro-interactions (reduced-motion safe, layout unchanged) ===== */
+.btn-fill,.callbar .c-call{position:relative;overflow:hidden}
+.btn-fill::after,.callbar .c-call::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.42) 50%,transparent 70%);transform:translateX(-145%);transition:transform .65s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+.btn-fill:hover::after,.callbar .c-call:hover::after{transform:translateX(145%)}
+.assure-item{transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.assure-item:hover{transform:translateY(-4px)}
+.assure-item .ai-ic{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.assure-item:hover .ai-ic{transform:scale(1.08) rotate(-3deg);box-shadow:0 10px 22px color-mix(in srgb,var(--c) 38%,transparent)}
+.pill{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(31,42,24,.1)}
+.hero-copy h1 em{background:linear-gradient(120deg,var(--pink),var(--pink-deep));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media (prefers-reduced-motion:reduce){.assure-item,.assure-item .ai-ic,.pill{transition:none}.btn-fill::after,.callbar .c-call::after{display:none}}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase}
 .eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--pink),var(--coral) 55%,var(--gold));opacity:1}
 .eyebrow .sp{font-style:italic;font-family:var(--serif);font-weight:500;font-size:1rem;letter-spacing:.02em;text-transform:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:56px;padding:0 26px;border-radius:14px;font-family:var(--sans);font-weight:800;font-size:1.06rem;letter-spacing:-.01em;text-decoration:none;cursor:pointer;border:2px solid transparent;will-change:transform;transition:transform .22s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .22s,border-color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:56px;padding:0 26px;border-radius:14px;font-family:var(--sans);font-weight:800;font-size:1.06rem;letter-spacing:-.01em;white-space:nowrap;text-decoration:none;cursor:pointer;border:2px solid transparent;will-change:transform;transition:transform .22s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .22s,border-color .2s}
 .btn:active{transform:translateY(0) scale(.975);transition-duration:.06s}
 .btn .ico{width:19px;height:19px;flex:0 0 auto}
 .btn-fill{background:linear-gradient(135deg,var(--pink-bright),var(--pink) 52%,var(--pink-deep));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 8px 18px rgba(230,32,126,.32),0 2px 6px rgba(191,21,104,.22)}
@@ -123,8 +135,10 @@ html{accent-color:var(--pink)}
 .top-in{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--maxw);margin:0 auto;padding:11px 22px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-size:clamp(1rem,3vw,1.25rem);font-weight:600;white-space:nowrap}
 .brand b{font-weight:600;color:var(--pink-deep)}.brand svg{flex:0 0 auto;filter:drop-shadow(0 1px 2px rgba(120,8,60,.22))}
-.top .btn{min-height:44px;padding:0 18px;font-size:.98rem}
-@media(max-width:430px){.brand{font-size:.92rem;gap:7px}.top .btn{padding:0 14px;font-size:.9rem}}
+.top .btn{min-height:44px;padding:0 18px;font-size:.98rem;flex:0 0 auto}
+.top .brand{min-width:0}.top .brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:480px){.top-in{padding:10px 14px;gap:9px}.brand{font-size:.86rem;gap:7px}.top .btn{padding:0 14px;font-size:.88rem}}
+@media(max-width:360px){.brand{font-size:.8rem}.top .btn{padding:0 12px;font-size:.84rem}}
 .logostage{position:relative;height:clamp(150px,22vh,238px);background:radial-gradient(125% 150% at 50% 12%,#fff4fa 0%,#fdeef5 42%,var(--paper) 80%);overflow:hidden}
 #logo{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero{position:relative;background:transparent}
