@@ -64,15 +64,15 @@ html{scroll-behavior:smooth;background:#fbf4f3;color-scheme:light}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:transparent;color:var(--ink);font-family:var(--sans);font-size:1.13rem;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-optical-sizing:auto;text-rendering:optimizeLegibility}
 /* ===== LIVING ROSE-BLUSH AURORA + drifting rose petals + film grain. Pure CSS, compositor-only transforms. Stays light; a central clear-band keeps centered text legible. ===== */
-.aura{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#fbf4f3;pointer-events:none}
+.aura{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#fbf4f3;pointer-events:none;transform:translateZ(0);backface-visibility:hidden}
 .aura .b{position:absolute;display:block;border-radius:50%;will-change:transform}
-.aura .a1{width:70vw;height:70vw;left:-20vw;top:-24vh;background:radial-gradient(circle,rgba(255,176,205,.94) 0%,rgba(255,176,205,0) 62%);animation:auraA 38s ease-in-out infinite}
-.aura .a2{width:62vw;height:62vw;right:-14vw;top:-16vh;background:radial-gradient(circle,rgba(255,221,200,.82) 0%,rgba(255,221,200,0) 64%);animation:auraB 45s ease-in-out infinite}
-.aura .a3{width:60vw;height:60vw;left:-20vw;bottom:-32vh;background:radial-gradient(circle,rgba(255,210,230,.60) 0%,rgba(255,210,230,0) 64%);animation:auraC 51s ease-in-out infinite}
-.aura .a4{width:58vw;height:58vw;right:-20vw;bottom:-24vh;background:radial-gradient(circle,rgba(238,138,182,.80) 0%,rgba(238,138,182,0) 62%);animation:auraD 42s ease-in-out infinite}
+.aura .a1{width:70vw;height:70vw;left:-20vw;top:-24vh;background:radial-gradient(circle,rgba(255,158,196,1) 0%,rgba(255,158,196,0) 62%);animation:auraA 38s ease-in-out infinite}
+.aura .a2{width:62vw;height:62vw;right:-14vw;top:-16vh;background:radial-gradient(circle,rgba(255,204,176,.9) 0%,rgba(255,204,176,0) 64%);animation:auraB 45s ease-in-out infinite}
+.aura .a3{width:60vw;height:60vw;left:-20vw;bottom:-32vh;background:radial-gradient(circle,rgba(255,190,221,.74) 0%,rgba(255,190,221,0) 64%);animation:auraC 51s ease-in-out infinite}
+.aura .a4{width:58vw;height:58vw;right:-20vw;bottom:-24vh;background:radial-gradient(circle,rgba(235,116,168,.92) 0%,rgba(235,116,168,0) 62%);animation:auraD 42s ease-in-out infinite}
 .aura .a5{width:42vw;height:42vw;left:22vw;top:30vh;opacity:.45;background:radial-gradient(circle,rgba(255,242,248,.85) 0%,rgba(255,242,248,0) 70%);animation:auraE 58s ease-in-out infinite}
-.aura .a6{width:34vw;height:34vw;right:14vw;bottom:-12vh;opacity:.3;background:radial-gradient(circle,rgba(212,236,208,.55) 0%,rgba(212,236,208,0) 72%);animation:auraF 50s ease-in-out infinite}
-.aura .lift{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,249,250,.84) 22%,rgba(255,249,250,.88) 50%,rgba(255,249,250,.84) 78%,transparent 100%)}
+.aura .a6{width:34vw;height:34vw;right:14vw;bottom:-12vh;opacity:.34;background:radial-gradient(circle,rgba(196,226,192,.62) 0%,rgba(196,226,192,0) 72%);animation:auraF 50s ease-in-out infinite}
+.aura .lift{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,250,251,.88) 22%,rgba(255,250,251,.92) 50%,rgba(255,250,251,.88) 78%,transparent 100%)}
 .aura .grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='ng'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ng)'/%3E%3C/svg%3E");background-size:150px 150px}
 .aura .petal{position:absolute;top:-12vh;will-change:transform;filter:drop-shadow(0 4px 7px rgba(190,70,115,.12))}
 .aura .p1{left:8%;width:42px;opacity:.82;animation:fall1 28s linear infinite}
@@ -185,7 +185,7 @@ html{accent-color:var(--pink)}
 .act-dark h2,.act-dark h3{color:#fff}.act-dark .a-lede{color:#d6e0c8}
 .act-dark .item{border-color:rgba(246,242,230,.16);background:rgba(255,255,255,.04)}
 .act-dark .item b{color:#fff}.act-dark .item span{color:#c4d0b3}
-.seam{display:block;width:100%;height:60px;margin-bottom:-1px}
+.seam{display:block;width:100%;height:60px;margin-top:-1px;margin-bottom:-2px}
 .seam path{fill:var(--seam-fill,var(--blush))}
 .act-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:30px}
 .act-head .eyebrow{color:var(--act-accent,var(--green))}
@@ -295,6 +295,12 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 .faq .eyebrow{color:var(--pink-deep)}
 .faq h2{font-size:clamp(1.7rem,4vw,2.5rem);margin-top:12px}
 .faq-list{margin-top:28px;max-width:760px}
+.faq-grid{display:grid;grid-template-columns:1fr;gap:30px;margin-top:28px}
+.faq-grid .faq-list{margin-top:0;max-width:none}
+.faq-aside{text-align:center}
+.faq-mariah{width:100%;max-width:330px;height:auto;display:block;margin:0 auto 4px;filter:drop-shadow(0 16px 34px rgba(124,40,87,.20))}
+.faq-aside-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+@media(min-width:880px){.faq-grid{grid-template-columns:1.4fr .9fr;gap:46px;align-items:center}.faq-mariah{max-width:360px}}
 .faq details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;box-shadow:0 1px 2px rgba(31,42,24,.04)}
 .faq summary{cursor:pointer;list-style:none;padding:18px 54px 18px 20px;font-weight:800;font-size:1.07rem;color:var(--ink);position:relative}
 .faq summary::-webkit-details-marker{display:none}
@@ -389,7 +395,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 #gcs-loader{
   --pink:#C9276A;--pink-bright:#E83F8C;
   position:fixed;inset:0;z-index:99999;overflow:hidden;
-  background:#fbf4f3 radial-gradient(125% 108% at 50% 28%, #fff7fc 0%, #ffe7f2 36%, #fbe6ef 64%, #fbf4f3 100%);
+  background:#fbf4f3;
   opacity:1;transition:opacity .9s ease, filter .9s ease;
   font-family:Georgia,'Times New Roman',serif;-webkit-font-smoothing:antialiased;user-select:none;
 }
@@ -477,6 +483,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 </head>
 <body data-season="summer">
 <div id="gcs-loader" role="progressbar" aria-label="Loading Gibson Caretaker Services" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div class="aura" style="position:absolute;inset:0;z-index:0"><span class="b a1"></span><span class="b a2"></span><span class="b a3"></span><span class="b a4"></span><span class="b a5"></span><span class="b a6"></span><span class="lift"></span><span class="grain"></span></div>
   <div class="gcs-env">
     <div class="gcs-wash"></div>
 
@@ -625,7 +632,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 
       var start = Date.now();
       var MIN = 2600;                     // always let the moment breathe and the water fill
-      var MAX = 8000;
+      var MAX = 4800;
       var prog = 0, target = 8, done = false;
 
       html.classList.add('gcs-lock');
@@ -637,7 +644,9 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
       }
       document.addEventListener('readystatechange', onState); onState();
       window.addEventListener('load', function () { bump(100); });
-      // if this is injected after the page already finished loading, still finish cleanly
+      // The loader is a branded moment, not a true progress meter — guarantee it reaches full
+      // shortly after start so it never overstays on a heavy page. MIN still lets it breathe.
+      setTimeout(function () { bump(100); }, 1400);
       if (document.readyState === 'complete') bump(100);
 
       // ambient petals
@@ -709,8 +718,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
         prog += (Math.min(target, ceil) - prog) * 0.045;
         if (prog > 99.4 && target < 100) prog = 99.4;
         render();
-        var ready = target >= 100 && prog >= 99;
-        if ((ready && elapsed >= MIN) || elapsed >= MAX) { complete(); return; }
+        if ((target >= 100 && elapsed >= MIN) || elapsed >= MAX) { complete(); return; }
         raf = requestAnimationFrame(tick);
       }
 
@@ -735,7 +743,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
   };
 })();
 </script>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="rg" x1="0.2" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#fff7fb"/><stop offset=".5" stop-color="#ffe4f0"/><stop offset="1" stop-color="#fcd2e2"/></linearGradient><symbol id="petal" viewBox="0 0 100 128"><path d="M50 3 C72 14 96 40 90 78 C85 108 65 124 50 125 C35 124 15 108 10 78 C4 40 28 14 50 3 Z" fill="url(#rg)"/><path d="M50 16 C49 52 49 92 50 116" stroke="#fff" stroke-opacity=".32" stroke-width="2.6" fill="none" stroke-linecap="round"/><ellipse cx="37" cy="38" rx="13" ry="20" fill="#fff" opacity=".26"/></symbol><radialGradient id="ce" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff0c2"/><stop offset="1" stop-color="#efa718"/></radialGradient><symbol id="bloom" viewBox="-17 -17 34 34"><g fill="#e7a3bf" opacity=".55"><ellipse cy="-9" rx="6.6" ry="10.6"/><ellipse cy="-9" rx="6.6" ry="10.6" transform="rotate(60)"/><ellipse cy="-9" rx="6.6" ry="10.6" transform="rotate(120)"/><ellipse cy="-9" rx="6.6" ry="10.6" transform="rotate(180)"/><ellipse cy="-9" rx="6.6" ry="10.6" transform="rotate(240)"/><ellipse cy="-9" rx="6.6" ry="10.6" transform="rotate(300)"/></g><g fill="#dd7ba0"><ellipse cy="-6.6" rx="5.1" ry="8.2" transform="rotate(30)"/><ellipse cy="-6.6" rx="5.1" ry="8.2" transform="rotate(90)"/><ellipse cy="-6.6" rx="5.1" ry="8.2" transform="rotate(150)"/><ellipse cy="-6.6" rx="5.1" ry="8.2" transform="rotate(210)"/><ellipse cy="-6.6" rx="5.1" ry="8.2" transform="rotate(270)"/><ellipse cy="-6.6" rx="5.1" ry="8.2" transform="rotate(330)"/></g><circle r="4.6" fill="url(#ce)"/><circle cx="-1.4" cy="-1.4" r="1.5" fill="#fff" opacity=".7"/></symbol><symbol id="leaf" viewBox="0 0 40 24"><path d="M2 12 C12 0 30 0 38 12 C30 24 12 24 2 12Z" fill="#cfe3c2" stroke="#7ea567" stroke-width="1.5"/><path d="M6 12 H34" stroke="#7ea567" stroke-width="1.2" fill="none"/></symbol></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="rg" x1="0.2" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#fff7fb"/><stop offset=".5" stop-color="#ffe4f0"/><stop offset="1" stop-color="#fcd2e2"/></linearGradient><symbol id="petal" viewBox="0 0 100 128"><path d="M50 3 C72 14 96 40 90 78 C85 108 65 124 50 125 C35 124 15 108 10 78 C4 40 28 14 50 3 Z" fill="url(#rg)"/><path d="M50 16 C49 52 49 92 50 116" stroke="#fff" stroke-opacity=".32" stroke-width="2.6" fill="none" stroke-linecap="round"/><ellipse cx="37" cy="38" rx="13" ry="20" fill="#fff" opacity=".26"/></symbol><radialGradient id="ce" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff0c2"/><stop offset="1" stop-color="#efa718"/></radialGradient><radialGradient id="bp" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#ffdcea"/><stop offset=".5" stop-color="#f6a8c5"/><stop offset="1" stop-color="#e57aa6"/></radialGradient><symbol id="bloom" viewBox="-19 -19 38 38"><g fill="#f9bdd5"><ellipse cy="-9.6" rx="6.5" ry="10.9"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(60)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(120)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(180)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(240)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(300)"/></g><g fill="url(#bp)"><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(30)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(90)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(150)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(210)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(270)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(330)"/></g><circle r="5.4" fill="#d96e9c" opacity=".25"/><circle r="4.7" fill="url(#ce)"/><circle r="4.7" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width=".7"/><circle cx="-1.5" cy="-1.6" r="1.5" fill="#fff" opacity=".75"/></symbol><symbol id="leaf" viewBox="0 0 40 24"><path d="M2 12 C12 0 30 0 38 12 C30 24 12 24 2 12Z" fill="#cfe3c2" stroke="#7ea567" stroke-width="1.5"/><path d="M6 12 H34" stroke="#7ea567" stroke-width="1.2" fill="none"/></symbol></defs></svg>
 <div class="aura" aria-hidden="true"><span class="b a1"></span><span class="b a2"></span><span class="b a3"></span><span class="b a4"></span><span class="b a5"></span><span class="b a6"></span><span class="lift"></span><svg class="petal p1" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p2" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p3" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p4" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p5" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p6" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p7" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p8" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p9" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p10" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p11" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p12" viewBox="0 0 100 128"><use href="#petal"/></svg><span class="grain"></span></div>
 
 <a class="skip" href="#book">Skip to booking</a>
@@ -929,7 +937,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 
 <svg class="seam" viewBox="0 0 1440 60" preserveAspectRatio="none" style="--seam-fill:var(--green-night)" aria-hidden="true"><path d="M0,38 C240,8 420,8 720,36 C1020,62 1200,62 1440,28 L1440,60 L0,60 Z"/></svg>
 
-<section class="book" id="book" aria-labelledby="book-h"><svg class="book-rose tl" viewBox="0 0 120 175" aria-hidden="true"><path d="M60 172 C55 134 67 114 60 88" fill="none" stroke="#7ea567" stroke-width="2.4" stroke-linecap="round"/><use href="#leaf" x="16" y="120" width="44" height="26" transform="rotate(-20 38 133)"/><use href="#leaf" x="60" y="100" width="44" height="26" transform="rotate(164 82 113)"/><use href="#bloom" x="40" y="36" width="40" height="40"/></svg><svg class="book-rose br" viewBox="0 0 130 130" aria-hidden="true"><path d="M66 126 C62 100 68 84 64 66" fill="none" stroke="#7ea567" stroke-width="2.4" stroke-linecap="round"/><use href="#leaf" x="64" y="84" width="40" height="24" transform="rotate(155 84 96)"/><use href="#bloom" x="40" y="30" width="34" height="34"/><use href="#bloom" x="70" y="46" width="24" height="24"/><use href="#bloom" x="50" y="56" width="20" height="20"/></svg>
+<section class="book" id="book" aria-labelledby="book-h"><svg class="book-rose tl" viewBox="0 0 120 175" aria-hidden="true"><path d="M60 172 C55 134 66 100 60 68" fill="none" stroke="#7ea567" stroke-width="2.4" stroke-linecap="round"/><use href="#leaf" x="16" y="120" width="44" height="26" transform="rotate(-20 38 133)"/><use href="#leaf" x="60" y="100" width="44" height="26" transform="rotate(164 82 113)"/><use href="#bloom" x="40" y="36" width="40" height="40"/></svg><svg class="book-rose br" viewBox="0 0 130 130" aria-hidden="true"><path d="M66 126 C62 100 68 84 64 66" fill="none" stroke="#7ea567" stroke-width="2.4" stroke-linecap="round"/><use href="#leaf" x="64" y="84" width="40" height="24" transform="rotate(155 84 96)"/><use href="#bloom" x="40" y="30" width="34" height="34"/><use href="#bloom" x="70" y="46" width="24" height="24"/><use href="#bloom" x="50" y="56" width="20" height="20"/></svg>
   <div class="wrap">
     <div class="head">
       <span class="eyebrow">Request a visit</span>
@@ -981,15 +989,23 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
   <div class="wrap">
     <span class="eyebrow">Good to know</span>
     <h2 id="faq-h">Questions folks often ask</h2>
-    <div class="faq-list">
+    <div class="faq-grid">
+      <div class="faq-list">
       <details><summary>Can I arrange help for my mom, dad, or someone else?</summary><div class="fa">Of course — a lot of my calls come from sons and daughters arranging help for a parent. Just reach out with their name and what they need, and I’ll keep you in the loop every step of the way.</div></details>
       <details><summary>How much does it cost?</summary><div class="fa">Every yard and task is a little different, so I’ll always give you a clear price before any work begins. Asking is completely free, and there’s never any obligation.</div></details>
       <details><summary>Which towns do you serve?</summary><div class="fa">Darlington and the nearby towns — Gratiot, Wiota, Argyle, Calamine, Belmont, Shullsburg and around. Not sure if you’re in range? Just ask, and if I can’t help I’ll try to point you to someone who can.</div></details>
       <details><summary>What kinds of things can you help with?</summary><div class="fa">Weeding, watering, planting, mowing, raking, snow, and plenty of small tasks around the home. <em>If what you need isn’t on the list, ask anyway</em> — I’ll always be honest about what I can and can’t do.</div></details>
       <details><summary>Do I need to be home while you work?</summary><div class="fa">Whatever’s most comfortable for you. Some folks like to be there and chat, others leave a note and a key. I’ll figure out what works best with you. If you’d rather not be home, that’s fine — I never keep a key any longer than the visit.</div></details>
       <details><summary>How do I get started?</summary><div class="fa">Call or text me, or send a quick request from this page. I’ll get back to you to confirm a day and a fair price — and that’s it. No apps, no accounts, no fuss.</div></details>
+      </div>
+      <aside class="faq-aside">
+        <img class="faq-mariah" src="/mariah-text.webp" width="680" height="768" alt="Mariah, smiling with her arms crossed, beside a speech bubble that reads: if you have other questions, shoot me a text!" loading="lazy" decoding="async" />
+        <div class="faq-aside-cta">
+          <a class="btn btn-fill" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">Text Mariah</a>
+          <a class="btn btn-line" href="tel:+16083417826">Call (608)&nbsp;341-7826</a>
+        </div>
+      </aside>
     </div>
-    <p class="faq-cta">Still wondering something? <a href="tel:+16083417826">Call</a> or <a href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">text Mariah</a> — she’s happy to help.</p>
   </div>
 </section>
 
