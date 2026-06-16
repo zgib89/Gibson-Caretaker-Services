@@ -364,11 +364,9 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 
 .scene-fallback{background:linear-gradient(180deg,#bcdcef 0%,#e9f3df 68%,#cfe0d2 100%)!important}
 
-@media (prefers-reduced-motion:reduce){
-  .wordmark *{animation:none!important}
-  .soilband,.gl,.iflw,.lsprout,.wm-sub{opacity:1}
-  .mound,.stem,.seed,.flw,.petal,.sheen{opacity:0}
-}
+/* The "Gibson" wordmark intro + living motion play even under prefers-reduced-motion
+   (owner wants the opening animation on their desktop, consistent with the scenes/aura).
+   The base rules above still render the correct static logo if JS is ever disabled. */
 </style>
 </head>
 <body data-season="summer">
@@ -674,7 +672,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
   function nowSeason(){var m=new Date().getMonth();return (m<2||m===11)?'winter':m<5?'spring':m<8?'summer':'autumn';}
   function mixA(h,al){var c=hex(h);return 'rgba('+c[0]+','+c[1]+','+c[2]+','+al+')';}
   function setAccent(name){var a=S[name].accent,root=document.documentElement.style;root.setProperty('--season',a);root.setProperty('--season-soft',mixA(a,.16));root.setProperty('--season-ink',darkenHex(a,.46));document.body.setAttribute('data-season',name);}
-  function playIntro(){var wm=document.querySelector('.wordmark');if(!wm||RM)return;wm.classList.remove('intro');wm.getBoundingClientRect();wm.classList.add('intro');}
+  function playIntro(){var wm=document.querySelector('.wordmark');if(!wm)return;wm.classList.remove('intro');wm.getBoundingClientRect();wm.classList.add('intro');}
 
   function Scene(canvas, opts){
     var ctx=canvas.getContext('2d');
