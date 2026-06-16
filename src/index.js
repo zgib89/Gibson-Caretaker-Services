@@ -59,14 +59,17 @@ async function handleContact(request, env) {
     return json({ ok: false, error: "We couldn't confirm you're human. Please try again, or call/text Mariah." }, 403);
   }
 
+  const rawDate = get("date");
+  const rawTime = get("time");
   const lead = {
     name,
     phone,
     email: get("email"),
     town: get("town"),
     needs: get("needs"),
-    date: get("date"), // "YYYY-MM-DD"
-    time: get("time"), // "HH:MM"
+    // Validate format at intake so date/time are safe to drop into email HTML / .ics / calendar URLs.
+    date: /^\d{4}-\d{2}-\d{2}$/.test(rawDate) ? rawDate : "", // "YYYY-MM-DD" or none
+    time: /^([01]\d|2[0-3]):[0-5]\d$/.test(rawTime) ? rawTime : "", // "HH:MM" or none
   };
 
   // LEAD BACKUP — write to D1 first, so the request survives even if the email fails.
