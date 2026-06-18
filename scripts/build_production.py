@@ -14,8 +14,9 @@ PUB  = ROOT / "public" / "index.html"
 CONCEPT = pathlib.Path(r"C:\Users\zacgi\Downloads\gcs-concept.html")
 BACKUPS = ROOT / "backups"; BACKUPS.mkdir(exist_ok=True)
 
-live = LIVE.read_text(encoding="utf-8").split("\n")
-seo = "\n".join(live[14:42])                      # live lines 15-42: title -> SOFT-axis font link
+# SEO source = the original OLD-design backup (public/index.html is now the new design)
+seo_src = (BACKUPS / "index-pre-redesign-2026-06-17.html").read_text(encoding="utf-8").split("\n")
+seo = "\n".join(seo_src[14:42])                   # lines 15-42: title -> SOFT-axis font link
 assert "<title>" in seo and 'rel="stylesheet"' in seo and "og:image" in seo, "SEO block wrong"
 
 html = CONCEPT.read_text(encoding="utf-8")
@@ -50,8 +51,10 @@ for img in ["/mariah.webp", "/mariah-text.webp", "/gibson-hero.webp", "/gcs-afte
 if problems:
     print("SELF-CHECK FAILED:", problems); sys.exit(1)
 
-# ---- write (backup first) ----
-shutil.copy2(LIVE, BACKUPS / "index-pre-redesign-2026-06-17.html")
+# ---- write (back up the ORIGINAL old site once; never clobber it on re-runs) ----
+bak = BACKUPS / "index-pre-redesign-2026-06-17.html"
+if not bak.exists():
+    shutil.copy2(LIVE, bak)
 PUB.write_text(html, encoding="utf-8")
 
 # new asset

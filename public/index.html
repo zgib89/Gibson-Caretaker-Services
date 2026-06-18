@@ -445,6 +445,24 @@
     .callbar.show{transform:none}
     .callbar a{flex:0 0 auto;height:50px;min-height:50px;padding:0 22px;font-size:1rem}
   }
+
+  /* ===== mobile portrait: center every section uniformly ===== */
+  @media(max-width:900px){
+    section.beat .k, section.beat h2, section.beat .lead{text-align:center}
+    section.beat h2{margin-inline:auto}
+    .iphone{margin-inline:auto}
+    .promise .p{text-align:center}
+    .promise .p .ic{margin-inline:auto}
+    .step{text-align:center}
+    .step .n{margin-inline:auto}
+    .pledge{flex-direction:column;align-items:center;text-align:center}
+    .svc{text-align:center}
+    .svc .ic{margin-inline:auto}
+    .meet .bio{text-align:center}
+    .meet-chips{justify-content:center}
+    .seasons .topline{flex-direction:column;align-items:center;text-align:center}
+    .season-cap{left:50%;transform:translateX(-50%);text-align:center}
+  }
 </style>
 </head>
 <body data-season="summer">
