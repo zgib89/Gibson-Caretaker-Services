@@ -263,7 +263,7 @@
   .meet h2 .first{display:block}
   .meet p.bio{color:var(--ink-soft);font-size:1.12rem;margin-top:14px}
   .meet p.bio .dc{float:left;font-family:var(--serif);font-size:3.3rem;line-height:.82;font-weight:600;color:var(--signal);margin:6px 12px 0 0}
-  @media(max-width:880px){.meet p.bio .dc{float:none;display:inline;margin:0}}
+  @media(max-width:880px){.meet p.bio .dc{float:none;display:inline;font-family:inherit;font-size:inherit;line-height:inherit;font-weight:700;margin:0}}
   .disclaimer{margin-top:16px;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:var(--ink-soft);font-size:1rem}
   .meet-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
   @media(max-width:880px){.meet-chips{justify-content:center}}
@@ -462,6 +462,9 @@
     .meet-chips{justify-content:center}
     .seasons .topline{flex-direction:column;align-items:center;text-align:center}
     .season-cap{left:50%;transform:translateX(-50%);text-align:center}
+    .faq summary{justify-content:center;text-align:center;padding:20px 48px;position:relative}
+    .faq summary .pl{position:absolute;right:16px;top:18px}
+    .faq .ans{text-align:center}
   }
 </style>
 </head>
