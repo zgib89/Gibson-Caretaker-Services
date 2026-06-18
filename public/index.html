@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<!--
-  GIBSON CARETAKER SERVICES — gibsoncaretakerservices.com
-  One file. No libraries. CSS/HTML carry the page; JS only enhances.
-  Top-of-page logo: each letter of "Gibson" is a seed that drops into soil,
-  is covered, germinates, and grows into its letterform — resolving into a
-  living wordmark (a rose bloom for the i-dot, leaves that sway). Replays on
-  every load / refresh / back-forward. Reduced-motion shows the final logo.
-  Phone (608) 341-7826 baked in. Form posts to /api/contact. Seasons unchanged.
--->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -40,394 +31,47 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,SOFT,wght@0,9..144,0..100,400;0,9..144,0..100,500;0,9..144,0..100,600;1,9..144,0..100,400;1,9..144,0..100,500&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-<style>
-:root{
-  --paper:#f7f4ea; --paper-2:#f1ecdd; --ink:#232c1b; --ink-soft:#4c573c; --ink-faint:#566048;
-  --green:#3f7137; --green-deep:#2c5226; --green-night:#1f2a18; --line:rgba(35,44,27,.14); --light:#f6f2e6; --blush:#fbf4f3;
-  /* HERO — hot pink, the single constant brand color */
-  --pink:#e6207e; --pink-bright:#ff3da0; --pink-deep:#bf1568; --pink-lite:#ff7ab5;
-  --pink-soft:rgba(230,32,126,.13); --pink-ring:rgba(230,32,126,.22); --pink-wash:#fce6f1;
-  /* SUPPORTING BOUQUET — curated garden colors; BRIGHT=fills, DEEP=text on light */
-  --leaf:#3f9e4d; --leaf-deep:#2c7a38; --leaf-soft:#e3f1de;
-  --gold:#f2b431; --gold-deep:#9a6a0f; --gold-soft:#fbeecb;
-  --sky:#5b86e0; --sky-deep:#2f56b0; --sky-soft:#dbe6fa;
-  --coral:#ff7a59; --coral-deep:#c2492b; --coral-soft:#ffe1d7;
-  --lavender:#b074d6; --lavender-deep:#7d3fb0; --lavender-soft:#efe1f7;
-  /* decorative season accent (default summer = warm gold) */
-  --season:#f2b431;
-  --serif:"Fraunces",Georgia,serif; --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --shadow:0 1px 2px rgba(31,42,24,.05),0 14px 40px rgba(31,42,24,.10); --maxw:1120px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;background:#fbf4f3;color-scheme:light}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:transparent;color:var(--ink);font-family:var(--sans);font-size:1.13rem;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-optical-sizing:auto;text-rendering:optimizeLegibility}
-/* ===== LIVING ROSE-BLUSH AURORA + drifting rose petals + film grain. Pure CSS, compositor-only transforms. Stays light; a central clear-band keeps centered text legible. ===== */
-.aura{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#fbf4f3;pointer-events:none;transform:translateZ(0);backface-visibility:hidden}
-.aura .b{position:absolute;display:block;border-radius:50%;will-change:transform}
-.aura .a1{width:70vw;height:70vw;left:-20vw;top:-24vh;background:radial-gradient(circle,rgba(255,158,196,1) 0%,rgba(255,158,196,0) 62%);animation:auraA 38s ease-in-out infinite}
-.aura .a2{width:62vw;height:62vw;right:-14vw;top:-16vh;background:radial-gradient(circle,rgba(255,204,176,.9) 0%,rgba(255,204,176,0) 64%);animation:auraB 45s ease-in-out infinite}
-.aura .a3{width:60vw;height:60vw;left:-20vw;bottom:-32vh;background:radial-gradient(circle,rgba(255,190,221,.74) 0%,rgba(255,190,221,0) 64%);animation:auraC 51s ease-in-out infinite}
-.aura .a4{width:58vw;height:58vw;right:-20vw;bottom:-24vh;background:radial-gradient(circle,rgba(235,116,168,.92) 0%,rgba(235,116,168,0) 62%);animation:auraD 42s ease-in-out infinite}
-.aura .a5{width:42vw;height:42vw;left:22vw;top:30vh;opacity:.45;background:radial-gradient(circle,rgba(255,242,248,.85) 0%,rgba(255,242,248,0) 70%);animation:auraE 58s ease-in-out infinite}
-.aura .a6{width:34vw;height:34vw;right:14vw;bottom:-12vh;opacity:.34;background:radial-gradient(circle,rgba(196,226,192,.62) 0%,rgba(196,226,192,0) 72%);animation:auraF 50s ease-in-out infinite}
-.aura .lift{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,250,251,.88) 22%,rgba(255,250,251,.92) 50%,rgba(255,250,251,.88) 78%,transparent 100%)}
-.aura .grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='ng'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ng)'/%3E%3C/svg%3E");background-size:150px 150px}
-.aura .petal{position:absolute;top:-12vh;will-change:transform;filter:drop-shadow(0 4px 7px rgba(190,70,115,.12))}
-.aura .p1{left:8%;width:42px;opacity:.82;animation:fall1 28s linear infinite}
-.aura .p2{left:22%;width:26px;opacity:.72;animation:fall2 36s linear infinite;animation-delay:-8s}
-.aura .p3{left:28%;width:58px;opacity:.5;animation:fall3 44s linear infinite;animation-delay:-22s;filter:blur(.6px) drop-shadow(0 5px 9px rgba(190,70,115,.1))}
-.aura .p4{left:76%;width:34px;opacity:.72;animation:fall1 31s linear infinite;animation-delay:-14s}
-.aura .p5{left:84%;width:48px;opacity:.56;animation:fall2 38s linear infinite;animation-delay:-5s}
-.aura .p6{left:12%;width:66px;opacity:.34;animation:fall3 54s linear infinite;animation-delay:-30s;filter:blur(1.3px)}
-.aura .p7{left:88%;width:24px;opacity:.74;animation:fall1 30s linear infinite;animation-delay:-19s}
-.aura .p8{left:92%;width:38px;opacity:.66;animation:fall2 34s linear infinite;animation-delay:-25s}
-.aura .p9{left:22%;width:30px;opacity:.7;animation:fall1 33s linear infinite;animation-delay:-11s}
-.aura .p10{left:70%;width:54px;opacity:.44;animation:fall3 46s linear infinite;animation-delay:-38s;filter:blur(.8px)}
-.aura .p11{left:4%;width:22px;opacity:.7;animation:fall2 29s linear infinite;animation-delay:-16s}
-.aura .p12{left:80%;width:44px;opacity:.56;animation:fall1 41s linear infinite;animation-delay:-33s}
-@media (prefers-reduced-motion:reduce){.aura .petal{animation-duration:120s}}
-@media (max-width:560px){.aura .grain{display:none}}
-@keyframes auraA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,5vh) scale(1.1)}}
-@keyframes auraB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5vw,7vh) scale(1.08)}}
-@keyframes auraC{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5vw,-6vh) scale(1.12)}}
-@keyframes auraD{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6vw,-4vh) scale(1.08)}}
-@keyframes auraE{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,3vh) scale(1.16)}}
-@keyframes auraF{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-7vw,5vh) scale(1.12)}}
-@keyframes fall1{0%{transform:translate(0,-12vh) rotate(0deg)}100%{transform:translate(7vw,118vh) rotate(220deg)}}
-@keyframes fall2{0%{transform:translate(0,-12vh) rotate(0deg)}100%{transform:translate(-6vw,118vh) rotate(-260deg)}}
-@keyframes fall3{0%{transform:translate(0,-12vh) rotate(10deg)}100%{transform:translate(4vw,118vh) rotate(180deg)}}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.07;margin:0;letter-spacing:-.01em;font-variation-settings:"SOFT" 50}
-p{margin:0}
-a{color:var(--pink-deep);text-underline-offset:3px}
-a[href^="tel:"],a[href^="sms:"]{white-space:nowrap}
-@media (hover:none){.chip:hover,.tchip:hover,.item:hover,.pill:hover,.assure-item:hover,.faq summary:hover,.btn:hover,.fb-link:hover,.assure-item:hover .ai-ic{transform:none}}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-section[id]{scroll-margin-top:78px}
-.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
-.skip{position:absolute;left:-999px}
-.skip:focus{left:14px;top:14px;z-index:99;background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px}
-:focus-visible{outline:3px solid var(--pink-deep);outline-offset:3px;border-radius:6px}
-.top a:focus-visible,.top .btn:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px rgba(31,42,24,.85)}
-::selection{background:var(--pink-soft);color:var(--pink-deep)}
-h1,h2,h3{text-wrap:balance}
-.lead,.a-lede,.price-lead,.bio{text-wrap:pretty}
-html{accent-color:var(--pink)}
-/* ===== POP — premium micro-interactions (reduced-motion safe, layout unchanged) ===== */
-.btn-fill,.callbar .c-call{position:relative;overflow:hidden}
-.btn-fill::after,.callbar .c-call::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.42) 50%,transparent 70%);transform:translateX(-145%);transition:transform .65s cubic-bezier(.2,.7,.3,1);pointer-events:none}
-.btn-fill:hover::after,.callbar .c-call:hover::after{transform:translateX(145%)}
-.assure-item{transition:transform .22s cubic-bezier(.2,.8,.2,1)}
-.assure-item:hover{transform:translateY(-4px)}
-.assure-item .ai-ic{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
-.assure-item:hover .ai-ic{transform:scale(1.08) rotate(-3deg);box-shadow:0 10px 22px color-mix(in srgb,var(--c) 38%,transparent)}
-.pill{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
-.pill:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(31,42,24,.1)}
-.hero-copy h1 em{background:linear-gradient(120deg,var(--pink),var(--pink-deep));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-@media (prefers-reduced-motion:reduce){.assure-item,.assure-item .ai-ic,.pill{transition:none}.btn-fill::after,.callbar .c-call::after{display:none}}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase}
-.eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--pink),var(--coral) 55%,var(--gold));opacity:1}
-.eyebrow .sp{font-style:italic;font-family:var(--serif);font-weight:500;font-size:1rem;letter-spacing:.02em;text-transform:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:56px;padding:0 26px;border-radius:14px;font-family:var(--sans);font-weight:800;font-size:1.06rem;letter-spacing:-.01em;white-space:nowrap;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .22s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .22s,border-color .2s}
-.btn:active{transform:translateY(0) scale(.975);transition-duration:.06s}
-.btn .ico{width:19px;height:19px;flex:0 0 auto}
-.btn-fill{background:linear-gradient(135deg,var(--pink-bright),var(--pink) 52%,var(--pink-deep));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 8px 18px rgba(230,32,126,.32),0 2px 6px rgba(191,21,104,.22)}
-.btn-fill:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 16px 32px rgba(230,32,126,.4),0 5px 12px rgba(191,21,104,.26)}
-.btn-line{background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);color:var(--pink-deep);border-color:color-mix(in srgb,var(--pink) 24%,transparent)}
-.btn-line:hover{transform:translateY(-3px);border-color:var(--pink);box-shadow:0 12px 26px rgba(230,32,126,.16)}
-.top{position:sticky;top:0;z-index:40;background:linear-gradient(96deg,#b3135f 0%,#e6207e 56%,#ff6aae 100%);border-bottom:1px solid rgba(255,255,255,.22);box-shadow:0 6px 22px rgba(168,18,90,.30)}
-.top .brand{color:#fff;text-shadow:0 1px 2px rgba(120,8,60,.4)}.top .brand b{color:#fff}
-.top .btn-fill{background:#fff;color:var(--pink-deep);box-shadow:0 3px 12px rgba(120,8,60,.28)}
-.top .btn-fill:hover{background:#fff;color:var(--pink);transform:translateY(-1px);box-shadow:0 7px 18px rgba(120,8,60,.34)}
-.top-in{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--maxw);margin:0 auto;padding:11px 22px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-size:clamp(1rem,3vw,1.25rem);font-weight:600;white-space:nowrap}
-.brand b{font-weight:600;color:var(--pink-deep)}.brand svg{flex:0 0 auto;filter:drop-shadow(0 1px 2px rgba(120,8,60,.22))}
-.top .btn{min-height:44px;padding:0 18px;font-size:.98rem;flex:0 0 auto}
-.top .brand{min-width:0}.top .brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-@media(max-width:480px){.top-in{padding:10px 14px;gap:9px}.brand{font-size:.86rem;gap:7px}.top .btn{padding:0 14px;font-size:.88rem}}
-@media(max-width:360px){.brand{font-size:.8rem}.top .btn{padding:0 12px;font-size:.84rem}}
-.logostage{position:relative;height:clamp(150px,22vh,238px);background:radial-gradient(125% 150% at 50% 12%,#fff4fa 0%,#fdeef5 42%,var(--paper) 80%);overflow:hidden}
-#logo{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero{position:relative;background:transparent}
-.scene-wrap{position:relative;height:54vh;min-height:340px;max-height:600px;overflow:hidden;background:#cfe0ea}
-#scene{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;animation:sceneIn 1.1s ease both}
-@keyframes sceneIn{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){#scene{animation:none}}
-.scene-fade{position:absolute;left:0;right:0;bottom:-1px;height:56px;pointer-events:none;z-index:2;background:linear-gradient(to top,#fbf4f3,rgba(251,244,243,0))}
-@media (min-width:721px){.scene-wrap::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:overlay;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:130px 130px}}
-.seasons{position:absolute;z-index:3;left:50%;bottom:20px;transform:translateX(-50%);display:flex;gap:6px;padding:5px;border-radius:999px;background:rgba(20,27,15,.5);backdrop-filter:blur(8px);border:1px solid rgba(246,242,230,.3)}
-.seasons button{appearance:none;border:0;background:transparent;color:#f1f4ec;cursor:pointer;font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.03em;padding:8px 14px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;min-height:44px;transition:background .25s,color .25s}
-.seasons button[aria-pressed="true"]{background:var(--season);color:#1d2614}
-@media(max-width:430px){.seasons button{padding:8px 10px;font-size:.74rem}}
-.hero-copy{position:relative;z-index:2;text-align:center;max-width:760px;margin:0 auto;padding:26px 22px 4px}
-.hero-copy .eyebrow{justify-content:center;color:var(--pink-deep)}
-.hero-copy h1{font-size:clamp(2.3rem,7vw,3.9rem);margin:14px 0 0}
-.hero-copy h1 em{font-style:italic;color:var(--pink-deep)}
-.hero-copy .lead{max-width:56ch;margin:16px auto 0;color:var(--ink-soft);font-size:clamp(1.08rem,2.1vw,1.26rem)}
-.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-.hero-tip{margin:16px 0 0;color:var(--ink-faint);font-weight:600;font-size:.98rem}.hero-tip a{font-weight:800}
-@media(max-width:560px){.hero-cta{flex-direction:column}.hero-cta .btn{width:100%}}
-@media(max-width:720px){.scene-wrap{height:38svh;min-height:258px}}
-.how{padding:64px 0 18px;text-align:center;background:transparent}
-.how .eyebrow{color:var(--pink-deep);justify-content:center}
-.how h2{font-size:clamp(1.7rem,4vw,2.5rem);margin-top:12px}
-.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:34px 0 0;padding:0;text-align:left}
-.steps li{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 22px;box-shadow:var(--shadow);transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s}
-.steps li:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(31,42,24,.13)}
-.steps .n{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--pink-soft);color:var(--pink-deep);font-weight:800;font-family:var(--serif);font-size:1.3rem;margin-bottom:12px}
-.steps b{display:block;font-family:var(--serif);font-size:1.32rem;font-weight:600}
-.steps span{display:block;color:var(--ink-soft);font-size:1.02rem;margin-top:4px}
-@media(max-width:760px){.steps{grid-template-columns:1fr;gap:12px}.how{padding-top:52px}}
-.acts{position:relative;margin-top:34px}
-.act{position:relative;padding:84px 0 92px}
-.act .wrap{position:relative;z-index:2}
-.act-light{background:transparent}
-.act-dark{background:var(--green-night);color:var(--light)}
-.act-dark h2,.act-dark h3{color:#fff}.act-dark .a-lede{color:#d6e0c8}
-.act-dark .item{border-color:rgba(246,242,230,.16);background:rgba(255,255,255,.04)}
-.act-dark .item b{color:#fff}.act-dark .item span{color:#c4d0b3}
-.seam{display:block;width:100%;height:60px;margin-top:-1px;margin-bottom:-2px}
-.seam path{fill:var(--seam-fill,var(--blush))}
-.act-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:30px}
-.act-head .eyebrow{color:var(--act-accent,var(--green))}
-.act h2{font-size:clamp(1.9rem,4.2vw,3rem)}
-.act h2 em{font-style:italic;color:var(--act-accent,var(--green))}
-.a-lede{max-width:46ch;color:var(--ink-soft);font-size:1.1rem;margin-top:8px}
-.act-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center}
-@media(max-width:820px){.act-grid{grid-template-columns:1fr;gap:26px}}
-.items{display:grid;gap:13px}
-.item{display:flex;gap:14px;align-items:flex-start;padding:15px 17px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.5);transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s}
-.item:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.item .ic{flex:0 0 auto;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--act-ic,var(--act-accent,var(--green)));color:#fff}
-.item .ic svg{width:21px;height:21px}
-.item b{display:block;font-family:var(--serif);font-size:1.2rem;font-weight:600}
-.item span{display:block;color:var(--ink-soft);font-size:.99rem;margin-top:2px}
-.season-card{position:relative;border-radius:22px;overflow:hidden;min-height:320px;border:1px solid var(--line);box-shadow:var(--shadow);background:#dfe7cf;content-visibility:auto;contain-intrinsic-size:0 320px}
-.season-card canvas{position:absolute;inset:0;width:100%;height:100%}
-.season-card .tag{position:absolute;left:18px;bottom:15px;z-index:2;color:#fff;font-family:var(--serif);font-style:italic;font-size:1.45rem;text-shadow:0 2px 18px rgba(20,27,15,.65)}
-.season-card .mo{position:absolute;right:16px;top:14px;z-index:2;color:#fff;font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;opacity:.92;text-shadow:0 1px 10px rgba(20,27,15,.7)}
-.gardener{background:transparent}
-.gardener .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:46px;align-items:center;padding:84px 22px}
-@media(max-width:820px){.gardener .wrap{grid-template-columns:1fr;gap:30px;padding:64px 22px}}
-.portrait-stage{position:relative;max-width:360px;width:100%;justify-self:center;perspective:1000px}.pframe{position:absolute;inset:0;border-radius:28px;z-index:0}.pframe-a{transform:rotate(-3.5deg) translate(-11px,-9px);background:linear-gradient(150deg,var(--pink),var(--coral));box-shadow:0 16px 40px rgba(230,32,126,.22)}.pframe-b{transform:rotate(2.6deg) translate(12px,11px);background:linear-gradient(150deg,var(--sky),var(--lavender))}.portrait{position:relative;z-index:2;aspect-ratio:1;border-radius:24px;overflow:hidden;width:100%;border:6px solid #fff;box-shadow:0 18px 50px rgba(31,42,24,.20);transition:transform .13s cubic-bezier(.2,.8,.2,1)}.portrait::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:4;background:radial-gradient(420px 380px at var(--sx,50%) var(--sy,28%),rgba(255,255,255,.42),rgba(255,255,255,0) 55%);opacity:0;transition:opacity .3s}.portrait-stage:hover .portrait::after{opacity:1}.portrait-stage:hover .portrait{will-change:transform}.psprig{position:absolute;z-index:3;top:-20px;right:-12px;width:84px;height:84px;filter:drop-shadow(0 4px 8px rgba(31,42,24,.16))}.pills .pill:nth-child(1){background:var(--pink-wash);border-color:rgba(230,32,126,.28)}.pills .pill:nth-child(2){background:var(--leaf-soft);border-color:rgba(63,158,77,.34)}.pills .pill:nth-child(3){background:var(--gold-soft);border-color:rgba(242,180,49,.46)}.pills .pill:nth-child(4){background:var(--sky-soft);border-color:rgba(91,134,224,.34)}
-.portrait img{width:100%;height:100%;object-fit:cover;display:block}
-.portrait .pname{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 13px;color:#fff;font-family:var(--serif);font-style:italic;font-size:1.18rem;background:linear-gradient(to top,rgba(20,27,15,.62),rgba(20,27,15,0))}
-.gardener h2{font-size:clamp(1.9rem,4vw,2.8rem)}
-.gardener .bio{margin-top:14px;color:var(--ink-soft);font-size:1.12rem;max-width:52ch}
-.gardener .bio .dropcap{float:left;font-family:var(--serif);font-weight:600;font-size:3.8em;line-height:.72;margin:7px 14px -2px 0;background:linear-gradient(135deg,var(--pink-bright),var(--pink) 55%,var(--pink-deep));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--pink-deep);font-variation-settings:"SOFT" 50}
-.gardener .bio em{font-family:var(--serif);font-style:italic;color:var(--ink)}
-.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:600;font-size:.93rem}
-.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink)}
-.book{background:var(--green-night);color:var(--light);position:relative;overflow:hidden}
-.book>.wrap{position:relative;z-index:1}
-.book-rose{position:absolute;z-index:0;pointer-events:none;filter:drop-shadow(0 6px 16px rgba(0,0,0,.22))}
-.book-rose.tl{width:116px;top:18px;left:max(14px,calc(50% - 558px))}
-.book-rose.br{width:128px;bottom:16px;right:max(14px,calc(50% - 560px))}
-@media(max-width:980px){.book-rose.tl{width:88px}.book-rose.br{width:96px}}
-@media(max-width:700px){.book-rose{display:none}}
-.book .wrap{padding:84px 22px}
-.book .head{text-align:center;max-width:600px;margin:0 auto 36px}
-.book .eyebrow{color:var(--pink-lite);justify-content:center}.book .eyebrow::before{display:none}
-.book h2{color:#fff;font-size:clamp(2rem,4.4vw,3rem);margin-top:12px}
-.book .head p{color:#d6e0c8;margin-top:10px}
-.card{background:#fff;color:var(--ink);border-radius:24px;padding:28px 26px;max-width:760px;margin:0 auto;box-shadow:0 24px 64px rgba(31,42,24,.28)}
-.fl{font-weight:800;font-size:.77rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);display:block;margin:0 0 10px}
-.step{margin-bottom:24px}
-.daypick{display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;-webkit-mask-image:linear-gradient(to right,#000 86%,transparent);mask-image:linear-gradient(to right,#000 86%,transparent)}
-.chip{flex:0 0 auto;min-width:74px;text-align:center;padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--paper);cursor:pointer;font-family:var(--sans);transition:border-color .14s,background .14s,transform .14s}
-.chip:hover{transform:translateY(-2px);border-color:var(--pink-ring);box-shadow:var(--shadow)}
-.chip .d{font-weight:800;font-size:1.16rem;display:block;line-height:1.1}
-.chip .m{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
-.chip[aria-pressed="true"]{border-color:var(--pink);background:var(--pink-soft);box-shadow:inset 0 0 0 2px var(--pink)}
-.times{display:flex;gap:9px;flex-wrap:wrap}
-.tchip{padding:11px 17px;border-radius:12px;border:2px solid var(--line);background:var(--paper);cursor:pointer;font-weight:700;font-family:var(--sans);transition:border-color .14s,background .14s,transform .14s}
-.tchip:hover{transform:translateY(-2px);border-color:var(--pink-ring)}
-.tchip[aria-pressed="true"]{border-color:var(--pink);background:var(--pink-soft);box-shadow:inset 0 0 0 2px var(--pink)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-@media(max-width:560px){.two{grid-template-columns:1fr}}
-.f{margin-bottom:15px}
-.f label{display:block;font-weight:700;font-size:.95rem;margin-bottom:6px}
-.f .opt{color:var(--ink-faint);font-weight:600;font-size:.82rem}
-input,textarea{width:100%;font-family:inherit;font-size:1.05rem;color:var(--ink);padding:13px 14px;border:2px solid var(--line);border-radius:12px;background:var(--paper);transition:border-color .16s,box-shadow .16s,background .16s}
-input,textarea,.chip,.tchip{border-color:rgba(35,44,27,.34)}
-input:focus,textarea:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px var(--pink-ring),0 0 0 6px rgba(255,255,255,.6)}
-textarea{min-height:92px;resize:vertical}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.book-foot{text-align:center;color:var(--ink-faint);margin-top:4px}
-.book-foot a{font-weight:800;color:var(--pink-deep)}
-.ts-slot{display:flex;justify-content:center;margin:6px 0 2px}
-.ts-slot:empty{display:none}
-.status{display:none;margin-top:15px;padding:14px 16px;border-radius:12px;font-weight:700;text-align:center}
-.status.ok{display:block;background:var(--leaf-soft);color:var(--leaf-deep);border:1px solid rgba(63,158,77,.34)}
-.status.err{display:block;background:#fbe7da;color:#9a4b27;border:1px solid #e6b393}
-footer{background:var(--ink);color:#cdd6bd;padding:52px 22px 40px;text-align:center}
-footer .brand{justify-content:center;color:#fff;margin-bottom:12px}
-footer .brand b{color:var(--pink-lite)}
-footer a{color:#fff;font-weight:700}
-.foot-tag{margin:0}
-.foot-contact{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:3px 12px;margin:8px auto 2px;font-size:.98rem;line-height:1.45;max-width:100%}
-.foot-contact a{white-space:nowrap}
-.foot-contact .email{white-space:normal;overflow-wrap:anywhere}
-.foot-contact .dot{color:#7e8a68}
-@media(max-width:430px){.foot-contact .dot{display:none}.foot-contact{gap:2px}}
-footer .area{color:#9fac86;max-width:600px;margin:10px auto 0}
-footer .dots{display:flex;gap:8px;justify-content:center;margin:22px 0 8px}
-footer .dots i{width:11px;height:11px;border-radius:50%}
-footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
-.social{margin-top:18px}
-.fb-link{display:inline-flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:1rem;text-decoration:none;background:linear-gradient(135deg,#1877f2,#0a5fd0);padding:11px 20px;border-radius:999px;box-shadow:0 8px 22px rgba(24,119,242,.34);transition:transform .15s,box-shadow .15s}
-.fb-link:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(24,119,242,.46)}
-.fb-link svg{flex:0 0 auto}
-.callbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;gap:10px;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(247,244,234,.94);backdrop-filter:saturate(140%) blur(12px);border-top:1px solid var(--line);transition:transform .3s ease,opacity .3s ease}
-.callbar.hide{transform:translateY(140%);opacity:0;pointer-events:none}
-.callbar a{flex:1;min-height:52px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:1.04rem;text-decoration:none;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
-.callbar a:active{transform:scale(.97);transition-duration:.06s}
-.callbar .ico{width:19px;height:19px}
-.callbar .c-call{background:linear-gradient(135deg,var(--pink-bright),var(--pink-deep));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 4px 12px rgba(230,32,126,.3)}
-.callbar .c-text{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--pink-deep);border:2px solid var(--pink-ring)}
-@media(max-width:720px){.callbar{display:flex}body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}}
-.about-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-@media(max-width:560px){.about-cta{flex-direction:column}.about-cta .btn{width:100%}}
-.status a{color:inherit;font-weight:800;text-decoration:underline}
-.assure{background:transparent;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.assure-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:26px 22px}
-.assure-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
-.assure-item .ai-ic{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:var(--cs);color:var(--c)}
-.assure-item .ai-ic svg{width:25px;height:25px}
-.assure-item b{font-size:1.04rem;color:var(--ink)}
-.assure-item>span:last-child{font-size:.86rem;color:var(--ink-faint);line-height:1.35;max-width:22ch}
-@media(max-width:680px){.assure-row{grid-template-columns:1fr 1fr;gap:24px 14px;padding:24px 16px}}
-.faq{padding:74px 0;background:transparent}
-.faq .eyebrow{color:var(--pink-deep)}
-.faq h2{font-size:clamp(1.7rem,4vw,2.5rem);margin-top:12px}
-.faq-list{margin-top:28px;max-width:760px}
-.faq-grid{display:grid;grid-template-columns:1fr;gap:30px;margin-top:28px}
-.faq-grid .faq-list{margin-top:0;max-width:none}
-.faq-aside{text-align:center}
-.faq-mariah{width:100%;max-width:330px;height:auto;display:block;margin:0 auto 4px;filter:drop-shadow(0 16px 34px rgba(124,40,87,.20))}
-.faq-aside-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
-@media(min-width:880px){.faq-grid{grid-template-columns:1.4fr .9fr;gap:46px;align-items:start}.faq-mariah{max-width:360px}}
-.faq details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;box-shadow:0 1px 2px rgba(31,42,24,.04)}
-.faq summary{cursor:pointer;list-style:none;padding:18px 54px 18px 20px;font-weight:800;font-size:1.07rem;color:var(--ink);position:relative}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary:hover{color:var(--pink-deep)}
-.faq summary::after{content:"";position:absolute;right:22px;top:50%;width:10px;height:10px;border-right:2.5px solid var(--pink);border-bottom:2.5px solid var(--pink);transform:translateY(-70%) rotate(45deg);transition:transform .25s}
-.faq details[open] summary{color:var(--pink-deep)}
-.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
-.faq .fa{padding:2px 20px 18px;color:var(--ink-soft);font-size:1.04rem;line-height:1.62}
-.faq details[open] .fa{animation:faqIn .26s ease both}
-@keyframes faqIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-@media print{.rv{opacity:1!important;transform:none!important}}
-.faq .fa em{font-family:var(--serif);font-style:italic;color:var(--ink)}
-.faq-cta{margin-top:26px;color:var(--ink-faint);font-weight:600;font-size:1.02rem}
-.faq-cta a{color:var(--pink-deep);font-weight:800;text-decoration:underline}
-.price{padding:64px 0;background:transparent}
-.price .wrap{max-width:860px}
-.price-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px 34px;box-shadow:var(--shadow);text-align:center;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s}
-.price-card:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(31,42,24,.13)}
-.price-card .eyebrow{color:var(--pink-deep);justify-content:center}
-.price-card h2{font-size:clamp(1.7rem,4vw,2.5rem);margin-top:12px}
-.price-lead{margin:16px auto 0;max-width:58ch;color:var(--ink-soft);font-size:1.1rem;line-height:1.6}
-.price-lead em{font-family:var(--serif);font-style:italic;color:var(--ink)}
-.price-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:32px 0 8px;text-align:left}
-.price-steps .ps{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 18px}
-.price-steps .ps-n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.05rem;color:#fff !important;background:linear-gradient(135deg,var(--pink),var(--pink-deep))}
-.price-steps .ps b{display:block;font-size:1.06rem;color:var(--ink);margin:12px 0 5px}
-.price-steps .ps>span:last-child{color:var(--ink-faint);font-size:.95rem;line-height:1.45}
-.price-foot{margin-top:24px;color:var(--ink-soft);font-weight:600;font-size:1.05rem}
-.price-foot a{color:var(--pink-deep);font-weight:800;text-decoration:underline}
-@media(max-width:680px){.price-card{padding:30px 22px}.price-steps{grid-template-columns:1fr;gap:14px}}
-.rv{opacity:0;transform:translateY(26px) scale(.99);transition:opacity .85s cubic-bezier(.2,.8,.2,1),transform .85s cubic-bezier(.2,.8,.2,1)}
-.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
-@media (prefers-contrast:more){.hero-copy h1 em,.gardener .bio .dropcap{-webkit-text-fill-color:var(--pink-deep);background:none;color:var(--pink-deep)}:root{--line:rgba(35,44,27,.30);--ink-faint:#525c44}input::placeholder,textarea::placeholder{color:#4c573c;opacity:1}.chip,.tchip,input,textarea{border-color:rgba(35,44,27,.5)}}
-
-/* ===== FLOWER-TO-LETTER WORDMARK — each letter: seed drops -> stem grows -> a flower blooms -> it dissolves into drifting petals as the letter rises into its place. The "i" flower stays as its dot and gently lives. Final logo is the default state (shows with no JS). ===== */
-.logostage .wordmark{position:absolute;inset:0;width:100%;height:100%;display:block}
-.gl{font-family:var(--serif);font-weight:600;font-size:116px;letter-spacing:0;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 3px 5px rgba(168,18,90,.22));font-variation-settings:"SOFT" 50}
-.wm-sub{font-family:var(--sans);font-weight:700;font-size:21px;fill:#bf1568;letter-spacing:.02em}
-
-/* transform anchors (avoid translate-attribute vs CSS-transform conflicts by scaling inner cores) */
-.mound{transform-box:fill-box;transform-origin:center bottom}
-.stem{transform-box:fill-box;transform-origin:center bottom}
-.flwcore,.iflwcore{transform-box:fill-box;transform-origin:center}
-.soilband{transform-box:fill-box;transform-origin:center}
-.lsway{transform-box:fill-box;transform-origin:center bottom}
-
-/* ---- BASE = final resting logo (no JS, or reduced-motion) ---- */
-.soilband,.gl,.iflw,.lsprout,.wm-sub{opacity:1}
-.mound,.stem,.seed,.flw,.petal,.sheen{opacity:0}
-.iflwcore{animation:gxPulse 3.8s ease-in-out infinite}
-.lsway{animation:gxSway 4.8s ease-in-out infinite}
-.lsprout:last-of-type .lsway{animation-duration:5.5s;animation-delay:-1.3s}
-
-/* ---- INTRO (added once by playIntro) ---- */
-.wordmark.intro .soilband{animation:gxSoil .6s ease-out both}
-.wordmark.intro .seed{animation:gxSeed .9s calc(var(--i)*.24s) ease both}
-.wordmark.intro .mound{animation:gxMound 1.5s calc(.35s + var(--i)*.24s) ease both}
-.wordmark.intro .stem{animation:gxStem .6s calc(.55s + var(--i)*.24s) cubic-bezier(.2,.7,.3,1) both, gxStemOut .5s calc(1.75s + var(--i)*.24s) ease-out both}
-.wordmark.intro .flwcore{animation:gxBloomCore .65s calc(.9s + var(--i)*.24s) cubic-bezier(.2,.9,.3,1.2) both, gxDissolveCore .6s calc(1.55s + var(--i)*.24s) ease-out both}
-.wordmark.intro .flw{animation:gxFlwFade 2.3s calc(.9s + var(--i)*.24s) ease both}
-.wordmark.intro .iflwcore{animation:gxBloomCore .65s calc(.9s + var(--i)*.24s) cubic-bezier(.2,.9,.3,1.2) both, gxPulse 3.8s calc(2s + var(--i)*.24s) ease-in-out infinite}
-.wordmark.intro .iflw{animation:gxIn .5s calc(.9s + var(--i)*.24s) ease both}
-.wordmark.intro .petal{animation:gxPetal .9s calc(1.55s + var(--i)*.24s) ease-out both}
-.wordmark.intro .gl{animation:gxLetter .7s calc(1.7s + var(--i)*.24s) cubic-bezier(.2,.7,.3,1) both}
-.wordmark.intro .wm-sub{animation:gxSub .6s 3.4s ease-out both}
-.wordmark.intro .sheen{animation:gxSheen .9s 3.55s ease-out both}
-
-@keyframes gxSoil{from{opacity:0;transform:scaleX(.2)}to{opacity:1;transform:scaleX(1)}}
-@keyframes gxSeed{0%{transform:translateY(-150px);opacity:0}14%{opacity:1}45%{transform:translateY(0)}62%{opacity:1}85%{opacity:0}100%{opacity:0}}
-@keyframes gxMound{0%{opacity:0;transform:scaleY(0)}18%{opacity:1;transform:scaleY(1)}55%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(.1)}}
-@keyframes gxStem{0%{opacity:0;transform:scaleY(0)}30%{opacity:1}100%{opacity:1;transform:scaleY(1)}}
-@keyframes gxStemOut{from{opacity:1}to{opacity:0}}
-@keyframes gxBloomCore{0%{transform:scale(0) rotate(-30deg)}60%{transform:scale(1.15) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
-@keyframes gxDissolveCore{from{transform:scale(1)}to{transform:scale(1.6)}}
-@keyframes gxFlwFade{0%{opacity:0}10%{opacity:1}28%{opacity:1}40%{opacity:0}100%{opacity:0}}
-@keyframes gxIn{from{opacity:0}to{opacity:1}}
-@keyframes gxPetal{0%{opacity:0;transform:translate(0,0) rotate(0)}25%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--dr))}}
-@keyframes gxLetter{0%{opacity:0;transform:translateY(12px) scale(.92)}60%{opacity:1;transform:translateY(0) scale(1.02)}100%{opacity:1;transform:none}}
-@keyframes gxSub{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes gxSheen{0%{opacity:0;transform:translateX(-200px)}25%{opacity:.7}100%{opacity:0;transform:translateX(220px)}}
-@keyframes gxPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-@keyframes gxSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
-
-.scene-fallback{background:linear-gradient(180deg,#bcdcef 0%,#e9f3df 68%,#cfe0d2 100%)!important}
-
-/* The "Gibson" wordmark intro + living motion play even under prefers-reduced-motion
-   (owner wants the opening animation on their desktop, consistent with the scenes/aura).
-   The base rules above still render the correct static logo if JS is ever disabled. */
-</style>
-<link rel="preload" as="image" href="/gibson-hero.webp" type="image/webp" fetchpriority="high" />
 <style id="gcs-loader-css">
 .gcs-lock{overflow:hidden!important}
 
 #gcs-loader{
   position:fixed;inset:0;z-index:99999;overflow:hidden;
-  background:#fbf4f3;
+  background:
+    radial-gradient(58vw 58vw at 14% 6%, rgba(255,240,201,.62), rgba(255,240,201,0) 60%),
+    radial-gradient(56vw 56vw at 90% 8%, rgba(255,176,209,.58), rgba(255,176,209,0) 64%),
+    radial-gradient(50vw 50vw at 88% 95%, rgba(246,190,220,.52), rgba(246,190,220,0) 66%),
+    radial-gradient(44vw 44vw at 6% 96%, rgba(255,200,161,.48), rgba(255,200,161,0) 68%),
+    linear-gradient(180deg,#fdf6f3,#fbeef0 52%,#fdf4f1);
   opacity:1;transition:opacity .9s ease, filter .9s ease;
   font-family:Georgia,'Times New Roman',serif;-webkit-font-smoothing:antialiased;user-select:none;
 }
 #gcs-loader.gcs-done{opacity:0;filter:blur(5px);pointer-events:none}
 
-.gcs-env{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.gcs-env{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3.4vh,40px);padding:24px}
 
-.gcs-stage{
+.gcs-frame{
   position:relative;
-  width:min(86%, calc(80vh * 1.7768), 1480px);
+  width:min(80%, calc(72vh * 1.7768), 1120px);
   aspect-ratio:1672 / 941;
+  animation:gcs-stage-in 1.3s cubic-bezier(.2,.8,.2,1) both;
+}
+.gcs-pf{position:absolute;inset:0;border-radius:30px;z-index:0}
+.gcs-pf-a{transform:rotate(-3.4deg) translate(-17px,-14px);background:linear-gradient(150deg,#e6207e,#ff8a52);box-shadow:0 22px 54px rgba(230,32,126,.24)}
+.gcs-pf-b{transform:rotate(2.8deg) translate(18px,16px);background:linear-gradient(150deg,#7cc7f0,#b074d6)}
+.gcs-sprig{position:absolute;z-index:3;top:-30px;right:-16px;width:88px;filter:drop-shadow(0 5px 9px rgba(120,40,70,.2))}
+.gcs-tag{margin:0;font-family:"Fraunces",Georgia,serif;color:#7a5563;font-size:clamp(1rem,2.3vw,1.42rem);text-align:center;letter-spacing:.01em;text-shadow:0 1px 0 rgba(255,255,255,.5);opacity:0;animation:gcs-stage-in 1.1s cubic-bezier(.2,.8,.2,1) .55s both}
+.gcs-tag i{font-style:italic;color:#e6207e}
+.gcs-stage{
+  position:absolute;inset:0;z-index:2;
   background:#fbeaf1 url("/gibson-hero.webp") center / cover no-repeat;
-  overflow:hidden;
-  -webkit-mask-image:radial-gradient(116% 128% at 50% 48%, #000 46%, rgba(0,0,0,0) 100%);
-  mask-image:radial-gradient(116% 128% at 50% 48%, #000 46%, rgba(0,0,0,0) 100%);
-  animation:gcs-breathe 10s ease-in-out infinite, gcs-stage-in 1.3s cubic-bezier(.2,.8,.2,1) both;
-  will-change:transform,opacity;
-  transform:translate3d(0,0,0);
+  overflow:hidden;border-radius:24px;border:11px solid #fff;
+  box-shadow:0 30px 72px rgba(90,40,60,.32), inset 0 0 0 1px rgba(0,0,0,.05);
+  animation:gcs-breathe 10s ease-in-out infinite;
+  will-change:transform;
 }
 .gcs-scene{display:block;width:100%;height:100%}
 /* mobile: scale the landscape scene up to fill portrait; edge-fade mask hides the overflow */
-@media (max-aspect-ratio: 4/5){ .gcs-stage{ width:min(170%, calc(100vh * 0.95)); } }
+@media (max-aspect-ratio: 4/5){ .gcs-frame{ width:92%; } }
 @keyframes gcs-stage-in{ from{opacity:0;transform:translate3d(0,10px,0) scale(.985)} to{opacity:1} }
 
 /* ambient petals + light, viewport-wide */
@@ -489,8 +133,319 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
 
 /* loader animates fully for everyone (owner-directed: motion-on for this site) */
 </style>
-<style>.wm-cloak{opacity:0;transition:opacity .7s ease}</style>
-<noscript><style>#gcs-loader{display:none!important}</style></noscript>
+<style>
+  :root{
+    --bg:#fbf4f3; --ink:#241d1c; --ink-soft:#5f5251; --muted:#90817f; --line:rgba(190,70,115,.16);
+    --signal:#e6207e; --signal-bright:#ff3da0; --signal-deep:#bf1568;
+    --serif:"Fraunces",Georgia,serif; --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --ease-out:cubic-bezier(.16,1,.3,1); --ease-soft:cubic-bezier(.2,.8,.2,1);
+    --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;background:var(--bg)}
+  body{background:transparent;color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  /* ===== layered warm background (depth + focal, not flat) ===== */
+  .bg{position:fixed;inset:0;z-index:-3;overflow:hidden;pointer-events:none;background:
+    linear-gradient(180deg,#fdf6f3 0%, #fbeef0 50%, #fdf4f1 100%)}
+  .bg .sun{position:absolute;left:-12%;top:-18%;width:72vw;height:72vw;
+    background:radial-gradient(circle at 32% 32%, rgba(255,240,201,.92), rgba(255,223,176,.42) 34%, rgba(255,223,176,0) 66%)}
+  .bg .blob{position:absolute;border-radius:50%;filter:blur(58px);will-change:transform}
+  .blob.b1{width:50vw;height:50vw;right:-14vw;top:-10vw;opacity:.62;background:radial-gradient(circle,#ffb0d1,#ff86bb 42%,rgba(255,134,187,0) 70%);animation:drift1 27s ease-in-out infinite}
+  .blob.b2{width:42vw;height:42vw;left:-16vw;bottom:-12vw;opacity:.5;background:radial-gradient(circle,#ffc8a1,#ff9c77 46%,rgba(255,156,119,0) 72%);animation:drift2 33s ease-in-out infinite}
+  .blob.b3{width:32vw;height:32vw;right:4vw;bottom:-4vw;opacity:.46;background:radial-gradient(circle,#f6bedc,#e789bf 50%,rgba(231,137,191,0) 74%);animation:drift3 30s ease-in-out infinite}
+  .blob.b4{width:26vw;height:26vw;left:7vw;top:2vw;opacity:.36;background:radial-gradient(circle,#ffe0a6,#ffce77 50%,rgba(255,206,119,0) 75%);animation:drift1 29s ease-in-out infinite reverse}
+  .bg .vign{position:absolute;inset:0;background:radial-gradient(125% 100% at 50% 42%, rgba(253,246,243,0) 52%, rgba(120,48,70,.11) 100%)}
+  .bg .grain{position:absolute;inset:-50%;opacity:.5;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(-3vw,4vh)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(4vw,-3vh)}}
+  @keyframes drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(-2vw,-4vh)}}
+  @media(prefers-reduced-motion:reduce){.blob{animation:none!important}}
+
+  .bgpetals{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+  .bgpetal{position:absolute;top:-9%;will-change:transform,opacity}
+  .bgpetal svg{display:block;filter:drop-shadow(0 5px 8px rgba(190,70,115,.10))}
+  @keyframes fallA{0%{opacity:0;transform:translate(0,-9vh) rotate(0)}9%{opacity:var(--o,.7)}90%{opacity:var(--o,.7)}100%{opacity:0;transform:translate(6vw,116vh) rotate(300deg)}}
+  @keyframes fallB{0%{opacity:0;transform:translate(0,-9vh) rotate(10deg)}9%{opacity:var(--o,.7)}90%{opacity:var(--o,.7)}100%{opacity:0;transform:translate(-5vw,116vh) rotate(-260deg)}}
+  @media(prefers-reduced-motion:reduce){.bgpetal{animation-duration:160s!important}}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+  a[href^="tel:"],a[href^="sms:"]{white-space:nowrap}
+
+  /* ===== nav ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 30px;backdrop-filter:saturate(155%) blur(11px);background:linear-gradient(180deg,rgba(255,223,236,.95),rgba(255,232,242,.88));border-bottom:1px solid rgba(230,32,126,.13);box-shadow:0 6px 24px rgba(190,70,115,.08)}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:600;font-size:1.18rem;letter-spacing:-.01em;color:var(--signal)}
+  .brand b{color:var(--signal)}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .nav .loc{font-weight:600;font-size:.88rem;color:var(--ink-soft)}
+  .nav-cta{display:none}
+  @media(max-width:680px){.nav .loc{display:none}}
+  @media(min-width:721px){
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 19px;border-radius:12px;font-weight:800;font-size:.96rem;text-decoration:none;color:#fff;
+      background:var(--signal-deep);box-shadow:0 8px 20px rgba(230,32,126,.3);
+      opacity:0;transform:translateY(-7px);pointer-events:none;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
+    .nav-cta .ico{width:17px;height:17px}
+    body.scrolled .nav-cta{opacity:1;transform:none;pointer-events:auto}
+    .callbar{display:none!important}
+  }
+
+  /* ===== buttons (big tap targets, no magnetic) ===== */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:3.6rem;min-height:56px;padding:0 28px;border:0;border-radius:15px;
+    font-family:var(--sans);font-weight:800;font-size:1.18rem;text-decoration:none;cursor:pointer;color:#fff;
+    background:linear-gradient(135deg,var(--signal-bright),var(--signal) 52%,var(--signal-deep));
+    box-shadow:0 12px 28px rgba(230,32,126,.32),inset 0 1px 0 rgba(255,255,255,.32);transition:transform .2s var(--ease-soft),box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(230,32,126,.4),inset 0 1px 0 rgba(255,255,255,.32)}
+  .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:3.6rem;min-height:56px;padding:0 26px;border-radius:15px;
+    font-weight:800;font-size:1.18rem;text-decoration:none;color:var(--signal-deep);
+    background:rgba(255,255,255,.72);backdrop-filter:blur(10px) saturate(150%);border:2px solid rgba(230,32,126,.28);transition:transform .2s var(--ease-soft),border-color .2s}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--signal)}
+  .ico{width:20px;height:20px;flex:0 0 auto}
+
+  /* ===== hero ===== */
+  .hero{position:relative;z-index:2;min-height:min(100vh,980px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:clamp(116px,13vh,152px) 0 clamp(48px,6vh,80px);opacity:0;transition:opacity .9s var(--ease-out)}
+  .hero.revealed{opacity:1}
+  .hero .wrap{display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center;width:100%}
+  .hero::before{content:"";position:absolute;left:50%;top:50%;width:min(60vw,760px);height:min(60vh,620px);transform:translate(-58%,-46%);z-index:-1;
+    background:radial-gradient(circle, rgba(253,247,244,.86), rgba(253,247,244,.34) 46%, rgba(253,247,244,0) 72%);filter:blur(6px)}
+  @media(max-width:900px){.hero{padding-top:108px}.hero .wrap{grid-template-columns:1fr;gap:30px;text-align:center}}
+  .eyebrow{display:inline-flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;color:var(--signal-deep);margin-bottom:20px}
+  .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--signal),#ff9ec7)}
+  @media(max-width:900px){.eyebrow{justify-content:center}}
+  .headline{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,5.6vw,5rem);line-height:1.02;letter-spacing:-.022em;max-width:16ch}
+  @media(max-width:900px){.headline{max-width:none}}
+  .headline em{font-style:italic;font-weight:500;color:var(--signal)}
+  .sub{margin-top:22px;font-size:clamp(1.06rem,1.35vw,1.26rem);color:var(--ink-soft);max-width:50ch}
+  @media(max-width:900px){.sub{margin-inline:auto}}
+  .sub b{color:var(--ink);font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:30px}
+  @media(max-width:900px){.cta-row{justify-content:center}}
+  .trust{margin-top:24px;display:flex;flex-wrap:wrap;gap:9px 22px;color:var(--ink-soft);font-size:.98rem;font-weight:600}
+  @media(max-width:900px){.trust{justify-content:center}}
+  .trust span{display:inline-flex;align-items:center;gap:8px}.trust b{color:var(--signal)}
+
+  .portrait-stage{position:relative;width:100%;max-width:420px;justify-self:center;perspective:1100px}
+  .pframe{position:absolute;inset:0;border-radius:30px;z-index:0}
+  .pframe-a{transform:rotate(-4deg) translate(-13px,-11px);background:linear-gradient(150deg,var(--signal),#ff8a52);box-shadow:0 18px 46px rgba(230,32,126,.22)}
+  .pframe-b{transform:rotate(3deg) translate(14px,13px);background:linear-gradient(150deg,#7cc7f0,#b074d6)}
+  .portrait{position:relative;z-index:2;aspect-ratio:1;border-radius:26px;overflow:hidden;width:100%;border:7px solid #fff;box-shadow:0 24px 60px rgba(60,30,45,.26);transition:transform .25s var(--ease-soft);will-change:transform}
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .portrait .chip{position:absolute;left:14px;bottom:14px;z-index:3;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.92);color:var(--signal-deep);font-weight:700;font-size:.84rem;padding:7px 13px;border-radius:999px;box-shadow:0 6px 16px rgba(120,40,70,.18)}
+  .psprig{position:absolute;z-index:3;top:-18px;right:-8px;width:74px;filter:drop-shadow(0 4px 8px rgba(120,40,70,.18))}
+
+  /* ===== sections ===== */
+  section.beat{position:relative;z-index:2;padding:82px 0}
+  @media(max-width:760px){section.beat{padding:54px 0}}
+  .k{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.76rem;color:var(--signal-deep)}
+  .beat h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,3.2rem);line-height:1.06;letter-spacing:-.02em;margin:10px 0 0;max-width:22ch}
+  .beat h2 em{font-style:italic;color:var(--signal)}
+  .beat .lead{color:var(--ink-soft);font-size:1.14rem;max-width:60ch;margin-top:16px}
+
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+  /* promise strip */
+  .promise{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-18px}
+  @media(max-width:880px){.promise{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.promise{gap:12px;margin-top:0}}
+  .promise .p{background:rgba(255,255,255,.66);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);border-radius:18px;padding:18px 17px;box-shadow:0 14px 34px rgba(120,40,70,.07)}
+  @media(max-width:520px){.promise .p{padding:15px 15px}.promise .p h3{font-size:1.04rem}.promise .p p{font-size:.9rem}}
+  .promise .p .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:11px;background:linear-gradient(135deg,#ffe1ee,#ffc7df);color:var(--signal-deep)}
+  .promise .p h3{font-family:var(--serif);font-weight:600;font-size:1.12rem;margin-bottom:3px}
+  .promise .p p{color:var(--ink-soft);font-size:.96rem;line-height:1.45}
+
+  /* meet mariah */
+  .meet{display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:center}
+  @media(max-width:880px){.meet{grid-template-columns:1fr;gap:30px;text-align:center}}
+  .meet-photo{position:relative;width:100%;max-width:380px;justify-self:center}
+  .meet-photo img{width:100%;height:auto;aspect-ratio:680/768;object-fit:cover;border-radius:24px;display:block;border:6px solid #fff;box-shadow:0 22px 54px rgba(60,30,45,.22)}
+  .meet h2 .first{display:block}
+  .meet p.bio{color:var(--ink-soft);font-size:1.12rem;margin-top:14px}
+  .meet p.bio .dc{float:left;font-family:var(--serif);font-size:3.3rem;line-height:.82;font-weight:600;color:var(--signal);margin:6px 12px 0 0}
+  @media(max-width:880px){.meet p.bio .dc{float:none;display:inline;margin:0}}
+  .disclaimer{margin-top:16px;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:var(--ink-soft);font-size:1rem}
+  .meet-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  @media(max-width:880px){.meet-chips{justify-content:center}}
+  .meet-chips span{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:999px;padding:9px 15px;font-weight:600;font-size:.95rem;color:var(--ink)}
+  .meet-chips span svg{color:var(--signal)}
+  /* honest editorial placeholders (concept only — Mariah fills these) */
+  .slot{margin-top:18px;border:2px dashed rgba(230,32,126,.5);background:rgba(255,255,255,.45);border-radius:14px;padding:15px 18px;color:var(--signal-deep);font-size:.98rem;font-weight:600}
+  .slot b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;margin-bottom:3px}
+  .slot span{font-weight:500;color:var(--ink-soft)}
+
+  /* photo proof */
+  .proof{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center}
+  @media(max-width:880px){.proof{grid-template-columns:1fr;gap:28px;text-align:center}}
+  /* realistic iPhone + iMessage — bubble tail geometry from samuelkraft.com/blog/ios-chat-bubbles-css */
+  .iphone{justify-self:center;width:100%;max-width:296px;background:linear-gradient(165deg,#3a3a3c,#1b1b1d);border-radius:46px;padding:11px;
+    box-shadow:0 32px 70px rgba(40,20,30,.42),inset 0 0 0 2px rgba(255,255,255,.08)}
+  .iphone .screen{position:relative;background:#fff;border-radius:36px;overflow:hidden;font-family:-apple-system,"SF Pro Text","Segoe UI",var(--sans)}
+  .iphone .island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:80px;height:24px;background:#000;border-radius:14px;z-index:6}
+  .iphone .status{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 7px;font-size:.76rem;font-weight:700;color:#000}
+  .iphone .status .ic{display:inline-flex;gap:5px;align-items:center}
+  .imhead{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 10px 9px;background:rgba(249,249,249,.97);border-bottom:.5px solid #e3e3e6;position:relative}
+  .imhead .chev{position:absolute;left:15px;top:13px}
+  .imhead .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--signal-bright),var(--signal-deep));display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.02rem}
+  .imhead .nm{font-size:.76rem;font-weight:600;color:#000;display:flex;align-items:center;gap:3px}
+  .imbody{background:#fff;padding:13px 14px 9px;display:flex;flex-direction:column}
+  .imbody .time{text-align:center;font-size:.66rem;color:#8e8e93;margin:1px 0 11px}
+  .imbody .time b{color:#3c3c43;font-weight:600}
+  .imbody .att{align-self:flex-start;width:82%;border-radius:18px;overflow:hidden;margin-bottom:5px;box-shadow:0 1px 3px rgba(0,0,0,.14)}
+  .imbody .att img{width:100%;height:auto;aspect-ratio:1000/667;object-fit:cover;display:block}
+  .bbl{position:relative;max-width:74%;margin-bottom:12px;padding:9px 16px;font-size:.85rem;line-height:1.34;border-radius:20px;word-wrap:break-word}
+  .bbl:before,.bbl:after{content:'';position:absolute;bottom:0;height:25px}
+  .bbl:before{width:20px}
+  .bbl:after{width:26px;background:#fff}
+  .bbl.recv{align-self:flex-start;background:#e5e5ea;color:#000}
+  .bbl.recv:before{left:-7px;background:#e5e5ea;border-bottom-right-radius:16px 14px}
+  .bbl.recv:after{left:-26px;border-bottom-right-radius:10px}
+  .bbl.sent{align-self:flex-end;background:#0b93f6;color:#fff}
+  .bbl.sent:before{right:-7px;background:#0b93f6;border-bottom-left-radius:16px 14px}
+  .bbl.sent:after{right:-26px;border-bottom-left-radius:10px}
+  .iminput{display:flex;align-items:center;gap:9px;padding:7px 14px 10px;border-top:.5px solid #ededf0}
+  .iminput .field{flex:1;border:1px solid #d8d8dc;border-radius:16px;padding:6px 13px;color:#8e8e93;font-size:.78rem}
+  .iphone .home{height:5px;width:118px;background:#000;border-radius:3px;margin:6px auto 9px}
+  .proof .exnote{font-size:.86rem;color:var(--muted);margin-top:14px;font-style:italic;text-align:center}
+
+  /* how it works + pledge */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{background:rgba(255,255,255,.66);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);border-radius:20px;padding:28px 26px;box-shadow:0 16px 40px rgba(120,40,70,.07)}
+  .step .n{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:1.4rem;color:#fff;background:linear-gradient(135deg,var(--signal-bright),var(--signal-deep));margin-bottom:14px}
+  .step h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:6px}
+  .step p{color:var(--ink-soft);font-size:1.02rem}
+  .pledge{margin-top:26px;display:flex;gap:16px;align-items:flex-start;background:linear-gradient(135deg,#fff5fa,#ffeaf3);border:1px solid rgba(230,32,126,.22);border-radius:20px;padding:24px 26px;box-shadow:0 16px 40px rgba(120,40,70,.08)}
+  .pledge .sh{flex:0 0 auto;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#fff;color:var(--signal-deep);box-shadow:0 4px 12px rgba(120,40,70,.14)}
+  .pledge h3{font-family:var(--serif);font-weight:600;font-size:1.24rem;margin-bottom:4px}
+  .pledge p{color:var(--ink-soft);font-size:1.02rem}
+  .pledge a{color:var(--signal-deep);font-weight:700}
+
+  /* seasons explorer */
+  .seasons .topline{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:24px}
+  .season-tabs{display:inline-flex;gap:3px;padding:5px;border-radius:999px;background:rgba(255,255,255,.66);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);box-shadow:0 8px 22px rgba(120,40,70,.08)}
+  .season-tabs button{border:0;background:transparent;font-family:var(--sans);font-weight:700;font-size:.98rem;color:var(--ink-soft);padding:10px 20px;border-radius:999px;cursor:pointer;transition:color .25s,background .25s;min-height:44px}
+  .season-tabs button.on{background:linear-gradient(135deg,var(--signal-bright),var(--signal-deep));color:#fff;box-shadow:0 6px 16px rgba(230,32,126,.3)}
+  .season-stage{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:16/6.2;border:1px solid var(--line);box-shadow:0 26px 64px rgba(60,30,45,.2)}
+  @media(max-width:760px){.season-stage{aspect-ratio:16/11}}
+  .season-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .season-cap{position:absolute;left:26px;bottom:22px;z-index:2;color:#fff;text-shadow:0 2px 20px rgba(20,27,15,.72)}
+  .season-cap .nm{display:block;font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.1}
+  .season-cap .tg{font-weight:600;font-size:.94rem;opacity:.95}
+  .season-svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;transition:opacity .35s var(--ease-out)}
+  @media(max-width:760px){.season-svc{grid-template-columns:1fr}}
+  .svc{background:rgba(255,255,255,.66);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 14px 36px rgba(120,40,70,.07)}
+  .svc .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:linear-gradient(135deg,#ffe1ee,#ffc7df);color:var(--signal-deep)}
+  .svc h4{font-family:var(--serif);font-weight:600;font-size:1.22rem;margin-bottom:5px}
+  .svc p{color:var(--ink-soft);font-size:1rem;line-height:1.48}
+  @media(max-width:560px){
+    .seasons .topline{flex-direction:column;align-items:stretch;gap:14px}
+    .season-tabs{width:100%;justify-content:space-between;gap:2px}
+    .season-tabs button{flex:1;min-width:0;padding:11px 4px;font-size:.9rem;text-align:center}
+  }
+
+  /* faq accordion (native details) */
+  .faq{max-width:840px;margin:30px auto 0}
+  .faq details{background:rgba(255,255,255,.66);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);border-radius:16px;margin-bottom:13px;overflow:hidden}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-family:var(--serif);font-weight:600;font-size:1.18rem;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pl{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#ffe1ee;color:var(--signal-deep);display:grid;place-items:center;font-size:1.3rem;transition:transform .3s var(--ease-soft)}
+  .faq details[open] summary .pl{transform:rotate(45deg)}
+  .faq .ans{padding:0 24px 22px;color:var(--ink-soft);font-size:1.06rem}
+  .faq .ans a{color:var(--signal-deep);font-weight:700}
+
+  /* service area */
+  .area{text-align:center}
+  .towns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+  .towns span{background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:600;color:var(--ink)}
+  .towns span.you{background:linear-gradient(135deg,var(--signal-bright),var(--signal-deep));color:#fff;border-color:transparent}
+
+  /* ===== hero wordmark (flower-to-letter) ===== */
+  .hero-logo{width:100%;max-width:clamp(360px,48vw,620px);margin:0 auto clamp(26px,4.6vh,58px);display:block}
+  .hero-logo .wordmark{width:100%;height:auto;display:block;overflow:visible}
+  @media(max-width:900px){.hero-logo{max-width:min(90vw,440px);margin-bottom:clamp(14px,2.6vh,30px)}}
+  .gl{font-family:var(--serif);font-weight:600;font-size:116px;letter-spacing:0;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 3px 5px rgba(168,18,90,.22));font-variation-settings:"SOFT" 50}
+.wm-sub{font-family:var(--sans);font-weight:700;font-size:21px;fill:#bf1568;letter-spacing:.02em}
+
+/* transform anchors (avoid translate-attribute vs CSS-transform conflicts by scaling inner cores) */
+.mound{transform-box:fill-box;transform-origin:center bottom}
+.stem{transform-box:fill-box;transform-origin:center bottom}
+.flwcore,.iflwcore{transform-box:fill-box;transform-origin:center}
+.soilband{transform-box:fill-box;transform-origin:center}
+.lsway{transform-box:fill-box;transform-origin:center bottom}
+
+/* ---- BASE = final resting logo (no JS, or reduced-motion) ---- */
+.soilband,.gl,.iflw,.lsprout,.wm-sub{opacity:1}
+.mound,.stem,.seed,.flw,.petal,.sheen{opacity:0}
+.iflwcore{animation:gxPulse 3.8s ease-in-out infinite}
+.lsway{animation:gxSway 4.8s ease-in-out infinite}
+.lsprout:last-of-type .lsway{animation-duration:5.5s;animation-delay:-1.3s}
+
+/* ---- INTRO (added once by playIntro) ---- */
+.wordmark.intro .soilband{animation:gxSoil .6s ease-out both}
+.wordmark.intro .seed{animation:gxSeed .9s calc(var(--i)*.24s) ease both}
+.wordmark.intro .mound{animation:gxMound 1.5s calc(.35s + var(--i)*.24s) ease both}
+.wordmark.intro .stem{animation:gxStem .6s calc(.55s + var(--i)*.24s) cubic-bezier(.2,.7,.3,1) both, gxStemOut .5s calc(1.75s + var(--i)*.24s) ease-out both}
+.wordmark.intro .flwcore{animation:gxBloomCore .65s calc(.9s + var(--i)*.24s) cubic-bezier(.2,.9,.3,1.2) both, gxDissolveCore .6s calc(1.55s + var(--i)*.24s) ease-out both}
+.wordmark.intro .flw{animation:gxFlwFade 2.3s calc(.9s + var(--i)*.24s) ease both}
+.wordmark.intro .iflwcore{animation:gxBloomCore .65s calc(.9s + var(--i)*.24s) cubic-bezier(.2,.9,.3,1.2) both, gxPulse 3.8s calc(2s + var(--i)*.24s) ease-in-out infinite}
+.wordmark.intro .iflw{animation:gxIn .5s calc(.9s + var(--i)*.24s) ease both}
+.wordmark.intro .petal{animation:gxPetal .9s calc(1.55s + var(--i)*.24s) ease-out both}
+.wordmark.intro .gl{animation:gxLetter .7s calc(1.7s + var(--i)*.24s) cubic-bezier(.2,.7,.3,1) both}
+.wordmark.intro .wm-sub{animation:gxSub .6s 3.4s ease-out both}
+.wordmark.intro .sheen{animation:gxSheen .9s 3.55s ease-out both}
+
+@keyframes gxSoil{from{opacity:0;transform:scaleX(.2)}to{opacity:1;transform:scaleX(1)}}
+@keyframes gxSeed{0%{transform:translateY(-150px);opacity:0}14%{opacity:1}45%{transform:translateY(0)}62%{opacity:1}85%{opacity:0}100%{opacity:0}}
+@keyframes gxMound{0%{opacity:0;transform:scaleY(0)}18%{opacity:1;transform:scaleY(1)}55%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(.1)}}
+@keyframes gxStem{0%{opacity:0;transform:scaleY(0)}30%{opacity:1}100%{opacity:1;transform:scaleY(1)}}
+@keyframes gxStemOut{from{opacity:1}to{opacity:0}}
+@keyframes gxBloomCore{0%{transform:scale(0) rotate(-30deg)}60%{transform:scale(1.15) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes gxDissolveCore{from{transform:scale(1)}to{transform:scale(1.6)}}
+@keyframes gxFlwFade{0%{opacity:0}10%{opacity:1}28%{opacity:1}40%{opacity:0}100%{opacity:0}}
+@keyframes gxIn{from{opacity:0}to{opacity:1}}
+@keyframes gxPetal{0%{opacity:0;transform:translate(0,0) rotate(0)}25%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--dr))}}
+@keyframes gxLetter{0%{opacity:0;transform:translateY(12px) scale(.92)}60%{opacity:1;transform:translateY(0) scale(1.02)}100%{opacity:1;transform:none}}
+@keyframes gxSub{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes gxSheen{0%{opacity:0;transform:translateX(-200px)}25%{opacity:.7}100%{opacity:0;transform:translateX(220px)}}
+@keyframes gxPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes gxSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+
+  /* ===== reviews / kind words ===== */
+  .reviews{max-width:760px;margin:34px auto 0}
+  .review{position:relative;text-align:center;background:rgba(255,255,255,.66);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);border-radius:24px;padding:40px 42px 34px;box-shadow:0 18px 46px rgba(120,40,70,.08)}
+  .review .quote-mark{display:block;font-family:var(--serif);font-size:3.6rem;line-height:.5;color:var(--signal);opacity:.5;margin-bottom:10px}
+  .review blockquote{margin:0 0 14px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.32rem,2.7vw,1.78rem);line-height:1.3;color:var(--ink)}
+  .review figcaption{margin:0 auto;max-width:50ch;color:var(--ink-soft);font-size:1.04rem}
+  .review-empty{border:2px dashed rgba(230,32,126,.34);background:rgba(255,255,255,.42)}
+  .review-empty blockquote{color:var(--muted)}
+  .meet .aside{color:var(--ink-soft)}
+
+  /* footer */
+  footer{position:relative;z-index:2;background:#241b1a;color:#e9ddd9;padding:56px 30px 120px;margin-top:30px}
+  footer .fwrap{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+  @media(max-width:760px){footer .fwrap{grid-template-columns:1fr;text-align:center;gap:22px}}
+  footer .brand{color:#fff;margin-bottom:12px}
+  footer h4{font-family:var(--serif);font-weight:600;font-size:1.08rem;color:#fff;margin-bottom:10px}
+  footer a{color:#ffd0e6;text-decoration:none;font-weight:600}
+  footer a:hover{color:#fff}
+  footer .fline{color:#c8b4b0;font-size:1rem;margin:5px 0}
+  footer .safe{color:#a9938e;font-size:.9rem;margin-top:10px}
+  footer .fine{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);margin-top:14px;padding-top:16px;color:#a9938e;font-size:.86rem;text-align:center}
+
+  /* sticky call bar */
+  .callbar{position:fixed;left:0;right:0;bottom:0;z-index:36;display:flex;gap:10px;padding:9px 14px calc(9px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.93);backdrop-filter:blur(12px) saturate(150%);border-top:1px solid var(--line);
+    transform:translateY(135%);transition:transform .4s var(--ease-out);box-shadow:0 -8px 24px rgba(120,40,70,.1)}
+  .callbar.show{transform:none}
+  .callbar a{flex:1;height:56px;min-height:56px;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:1.18rem;text-decoration:none;box-shadow:none}
+  @media(min-width:721px){
+    .callbar{left:auto;right:22px;bottom:22px;width:auto;max-width:none;gap:10px;padding:10px;border-radius:18px;border:1px solid var(--line);
+      transform:translateY(220%);box-shadow:0 20px 46px rgba(120,40,70,.24)}
+    .callbar.show{transform:none}
+    .callbar a{flex:0 0 auto;height:50px;min-height:50px;padding:0 22px;font-size:1rem}
+  }
+</style>
 </head>
 <body data-season="summer">
 <div id="gcs-loader" role="progressbar" aria-label="Loading Gibson Caretaker Services" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
@@ -498,7 +453,11 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
   <div class="gcs-env">
     <div class="gcs-wash"></div>
 
-    <div class="gcs-stage">
+    <div class="gcs-frame">
+      <span class="gcs-pf gcs-pf-a" aria-hidden="true"></span>
+      <span class="gcs-pf gcs-pf-b" aria-hidden="true"></span>
+      <svg class="gcs-sprig" viewBox="0 0 90 90" aria-hidden="true"><path d="M46 86 C42 60 50 44 46 26" fill="none" stroke="#7ea567" stroke-width="2.6" stroke-linecap="round"/><g transform="translate(46,18)"><g fill="#f9bdd5"><ellipse cy="-9.6" rx="6.5" ry="10.9"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(72)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(144)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(216)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(288)"/></g><circle r="4.6" fill="#efb031"/><circle cx="-1.4" cy="-1.5" r="1.4" fill="#fff" opacity=".75"/></g></svg>
+      <div class="gcs-stage">
       <svg class="gcs-scene" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <defs>
           <linearGradient id="gcsWater" x1="0" y1="0" x2="0" y2="1">
@@ -603,7 +562,9 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
         <text x="814" y="836" text-anchor="middle" class="gcs-troughtext">Nurturing The Blooms</text>
         <text id="gcs-pct" x="1292" y="836" text-anchor="end" class="gcs-pcttext">0%</text>
       </svg>
+      </div>
     </div>
+    <p class="gcs-tag">Gentle care for your yard, garden &amp; home &mdash; <i>every&nbsp;season.</i></p>
 
     <div class="gcs-petals" aria-hidden="true"></div>
   </div>
@@ -642,8 +603,8 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
       var stage = L.querySelector('.gcs-stage');
 
       var start = Date.now();
-      var MIN = 2600;                     // always let the moment breathe and the water fill
-      var MAX = 4800;
+      var MIN = 2100;                     // let the water fill, but stay snappy
+      var MAX = 3600;
       var prog = 0, target = 8, done = false;
 
       html.classList.add('gcs-lock');
@@ -657,7 +618,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
       window.addEventListener('load', function () { bump(100); });
       // The loader is a branded moment, not a true progress meter — guarantee it reaches full
       // shortly after start so it never overstays on a heavy page. MIN still lets it breathe.
-      setTimeout(function () { bump(100); }, 1400);
+      setTimeout(function () { bump(100); }, 1000);
       if (document.readyState === 'complete') bump(100);
 
       // ambient petals
@@ -726,7 +687,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
       function tick() {
         var elapsed = Date.now() - start;
         var ceil = target >= 100 ? 100 : 99.4;
-        prog += (Math.min(target, ceil) - prog) * 0.045;
+        prog += (Math.min(target, ceil) - prog) * 0.06;
         if (prog > 99.4 && target < 100) prog = 99.4;
         render();
         if ((target >= 100 && elapsed >= MIN) || elapsed >= MAX) { complete(); return; }
@@ -754,304 +715,257 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
   };
 })();
 </script>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="rg" x1="0.2" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#fff7fb"/><stop offset=".5" stop-color="#ffe4f0"/><stop offset="1" stop-color="#fcd2e2"/></linearGradient><symbol id="petal" viewBox="0 0 100 128"><path d="M50 3 C72 14 96 40 90 78 C85 108 65 124 50 125 C35 124 15 108 10 78 C4 40 28 14 50 3 Z" fill="url(#rg)"/><path d="M50 16 C49 52 49 92 50 116" stroke="#fff" stroke-opacity=".32" stroke-width="2.6" fill="none" stroke-linecap="round"/><ellipse cx="37" cy="38" rx="13" ry="20" fill="#fff" opacity=".26"/></symbol><radialGradient id="ce" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff0c2"/><stop offset="1" stop-color="#efa718"/></radialGradient><radialGradient id="bp" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#ffdcea"/><stop offset=".5" stop-color="#f6a8c5"/><stop offset="1" stop-color="#e57aa6"/></radialGradient><symbol id="bloom" viewBox="-19 -19 38 38"><g fill="#f9bdd5"><ellipse cy="-9.6" rx="6.5" ry="10.9"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(60)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(120)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(180)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(240)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(300)"/></g><g fill="url(#bp)"><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(30)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(90)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(150)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(210)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(270)"/><ellipse cy="-8.2" rx="5.2" ry="9" transform="rotate(330)"/></g><circle r="5.4" fill="#d96e9c" opacity=".25"/><circle r="4.7" fill="url(#ce)"/><circle r="4.7" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width=".7"/><circle cx="-1.5" cy="-1.6" r="1.5" fill="#fff" opacity=".75"/></symbol><symbol id="leaf" viewBox="0 0 40 24"><path d="M2 12 C12 0 30 0 38 12 C30 24 12 24 2 12Z" fill="#cfe3c2" stroke="#7ea567" stroke-width="1.5"/><path d="M6 12 H34" stroke="#7ea567" stroke-width="1.2" fill="none"/></symbol></defs></svg>
-<div class="aura" aria-hidden="true"><span class="b a1"></span><span class="b a2"></span><span class="b a3"></span><span class="b a4"></span><span class="b a5"></span><span class="b a6"></span><span class="lift"></span><svg class="petal p1" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p2" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p3" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p4" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p5" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p6" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p7" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p8" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p9" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p10" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p11" viewBox="0 0 100 128"><use href="#petal"/></svg><svg class="petal p12" viewBox="0 0 100 128"><use href="#petal"/></svg><span class="grain"></span></div>
 
-<a class="skip" href="#book">Skip to booking</a>
+<div class="bg" aria-hidden="true"><span class="sun"></span><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span><span class="vign"></span><span class="grain"></span></div>
+<div class="bgpetals" aria-hidden="true"></div>
 
-<header class="top">
-  <div class="top-in">
-    <a class="brand" href="#top" aria-label="Gibson Caretaker Services, home">
-      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#ffffff"/><path d="M32 52V30" stroke="#5c9243" stroke-width="3.5" stroke-linecap="round"/><path d="M32 40c-8 0-12-5-12-11 7 0 12 5 12 11Z" fill="#6fae50"/><path d="M32 40c8 0 12-5 12-11-7 0-12 5-12 11Z" fill="#9cd07a"/><circle cx="24" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="40" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="28" cy="13" r="6.5" fill="#e6207e"/><circle cx="36" cy="13" r="6.5" fill="#e6207e"/><circle cx="32" cy="24" r="6.5" fill="#e6207e"/><circle cx="32" cy="18" r="4.6" fill="#f5b800"/></svg>
-      <span>Gibson <b>Caretaker Services</b></span>
-    </a>
-    <a class="btn btn-fill" href="#book">Request a visit</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="rg" x1=".2" y1="0" x2=".5" y2="1"><stop offset="0" stop-color="#fff7fb"/><stop offset=".5" stop-color="#ffe0ee"/><stop offset="1" stop-color="#f7a9c8"/></linearGradient>
+  <symbol id="petal" viewBox="0 0 100 128"><path d="M50 3 C72 14 96 40 90 78 C85 108 65 124 50 125 C35 124 15 108 10 78 C4 40 28 14 50 3 Z" fill="url(#rg)"/><path d="M50 16 C49 52 49 92 50 116" stroke="#fff" stroke-opacity=".35" stroke-width="2.6" fill="none" stroke-linecap="round"/></symbol>
+  <radialGradient id="ce" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff0c2"/><stop offset="1" stop-color="#efa718"/></radialGradient>
+  <radialGradient id="bp" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#ffdcea"/><stop offset=".5" stop-color="#f6a8c5"/><stop offset="1" stop-color="#e57aa6"/></radialGradient>
+  <symbol id="bloom" viewBox="-19 -19 38 38"><g fill="#f9bdd5"><ellipse cy="-9.6" rx="6.5" ry="10.9"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(72)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(144)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(216)"/><ellipse cy="-9.6" rx="6.5" ry="10.9" transform="rotate(288)"/></g><circle r="4.7" fill="url(#ce)"/><circle cx="-1.5" cy="-1.6" r="1.5" fill="#fff" opacity=".75"/></symbol>
+</defs></svg>
+
+<nav class="nav">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#fff"/><path d="M32 52V30" stroke="#5c9243" stroke-width="3.5" stroke-linecap="round"/><circle cx="24" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="40" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="28" cy="13" r="6.5" fill="#e6207e"/><circle cx="36" cy="13" r="6.5" fill="#e6207e"/><circle cx="32" cy="24" r="6.5" fill="#e6207e"/><circle cx="32" cy="18" r="4.6" fill="#f5b800"/></svg>
+    Gibson <b>Caretaker&nbsp;Services</b>
   </div>
-</header>
-
-<section class="hero" id="top">
-
-  <div class="logostage">
-<svg class="wordmark" viewBox="0 0 640 250" role="img" aria-labelledby="wm-ttl" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title id="wm-ttl">Gibson Caretaker Services</title><defs><linearGradient id="petalPink" x1="0" y1="70.28" x2="0" y2="152" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff6fb2"/><stop offset=".46" stop-color="#e6207e"/><stop offset="1" stop-color="#a8125a"/></linearGradient><linearGradient id="soilG" x1="0" y1="174" x2="0" y2="185" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7a5230"/><stop offset="1" stop-color="#3f2c1a"/></linearGradient><radialGradient id="moundG" cx=".5" cy="1" r="1"><stop offset="0" stop-color="#6f4d2e"/><stop offset="1" stop-color="#46321e"/></radialGradient><linearGradient id="stemG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb04a"/><stop offset="1" stop-color="#2f8f3a"/></linearGradient><radialGradient id="ceY" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff0c2"/><stop offset="1" stop-color="#efa718"/></radialGradient><linearGradient id="sheenG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="wordClip"><rect x="121.9" y="66.28" width="396.19" height="89.72"/></clipPath><g id="flw"><g fill="currentColor" opacity=".45"><ellipse cx="0" cy="-9" rx="7" ry="11"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(60)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(120)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(180)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(240)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(300)"/></g><g fill="currentColor"><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(30)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(90)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(150)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(210)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(270)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(330)"/></g><circle r="4.8" fill="url(#ceY)"/><circle cx="-1.4" cy="-1.4" r="1.5" fill="#fff" opacity=".7"/></g><g id="sprout"><path d="M0 0 L0 -11" stroke="#2f8f3a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M0 -5 C -5 -8 -7 -3 -2 -2 Z" fill="#3f9e3f"/><path d="M0 -7 C 5 -10 7 -4 2 -3 Z" fill="#2f8f3a"/></g></defs><path class="soilband" d="M 113.9 185 L 113.9 174 L 136.8 174.9 L 159.7 175.38 L 182.6 175.21 L 205.5 174.48 L 228.4 173.52 L 251.3 172.79 L 274.2 172.62 L 297.1 173.1 L 320 174 L 342.9 174.9 L 365.8 175.38 L 388.7 175.21 L 411.6 174.48 L 434.5 173.52 L 457.4 172.79 L 480.3 172.62 L 503.2 173.1 L 526.1 174 L 526.1 185 Z" fill="url(#soilG)" aria-hidden="true"/><g class="L" style="--i:0"><path class="mound" d="M 155.63 174 Q 169.63 161 183.63 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M169.63 174 C 165.63 144.5 173.63 137 169.63 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M169.63 150 C 151.63 142 147.63 156 164.63 156 Z" fill="#3f9e3f"/><path d="M169.63 132 C 187.63 124 191.63 138 174.63 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="169.63" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="123.26" y="150" fill="url(#petalPink)">G</text><g class="flw" transform="translate(169.63 107)" aria-hidden="true"><g class="flwcore" style="color:#ff7ab8"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#ff7ab8"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#ff7ab8"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#ff7ab8"/></g></g><g class="L" style="--i:1"><path class="mound" d="M 218.59 174 Q 232.59 161 246.59 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M232.59 174 C 228.59 126.09 236.59 100.17 232.59 78.17" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M232.59 150 C 214.59 142 210.59 156 227.59 156 Z" fill="#3f9e3f"/><path d="M232.59 132 C 250.59 124 254.59 138 237.59 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="232.59" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="214.67" y="150" fill="url(#petalPink)">ı</text><g class="iflw" transform="translate(232.59 68.81) scale(0.55)" aria-hidden="true"><g class="iflwcore" style="color:#e6207e"><use xlink:href="#flw" href="#flw"/></g></g></g><g class="L" style="--i:2"><path class="mound" d="M 269.05 174 Q 283.05 161 297.05 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M283.05 174 C 279.05 144.5 287.05 137 283.05 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M283.05 150 C 265.05 142 261.05 156 278.05 156 Z" fill="#3f9e3f"/><path d="M283.05 132 C 301.05 124 305.05 138 288.05 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="283.05" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="250.23" y="150" fill="url(#petalPink)">b</text><g class="flw" transform="translate(283.05 107)" aria-hidden="true"><g class="flwcore" style="color:#ff5ba3"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#ff5ba3"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#ff5ba3"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#ff5ba3"/></g></g><g class="L" style="--i:3"><path class="mound" d="M 332.71 174 Q 346.71 161 360.71 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M346.71 174 C 342.71 144.5 350.71 137 346.71 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M346.71 150 C 328.71 142 324.71 156 341.71 156 Z" fill="#3f9e3f"/><path d="M346.71 132 C 364.71 124 368.71 138 351.71 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="346.71" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="320.99" y="150" fill="url(#petalPink)">s</text><g class="flw" transform="translate(346.71 107)" aria-hidden="true"><g class="flwcore" style="color:#d11e74"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#d11e74"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#d11e74"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#d11e74"/></g></g><g class="L" style="--i:4"><path class="mound" d="M 392.62 174 Q 406.62 161 420.62 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M406.62 174 C 402.62 144.5 410.62 137 406.62 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M406.62 150 C 388.62 142 384.62 156 401.62 156 Z" fill="#3f9e3f"/><path d="M406.62 132 C 424.62 124 428.62 138 411.62 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="406.62" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="372.66" y="150" fill="url(#petalPink)">o</text><g class="flw" transform="translate(406.62 107)" aria-hidden="true"><g class="flwcore" style="color:#ff8fc6"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#ff8fc6"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#ff8fc6"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#ff8fc6"/></g></g><g class="L" style="--i:5"><path class="mound" d="M 463.47 174 Q 477.47 161 491.47 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M477.47 174 C 473.47 144.5 481.47 137 477.47 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M477.47 150 C 459.47 142 455.47 156 472.47 156 Z" fill="#3f9e3f"/><path d="M477.47 132 C 495.47 124 499.47 138 482.47 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="477.47" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="440.58" y="150" fill="url(#petalPink)">n</text><g class="flw" transform="translate(477.47 107)" aria-hidden="true"><g class="flwcore" style="color:#f53d92"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#f53d92"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#f53d92"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#f53d92"/></g></g><g class="living" aria-hidden="true"><g class="lsprout" transform="translate(121.9 174)"><g class="lsway"><use xlink:href="#sprout" href="#sprout"/></g></g><g class="lsprout" transform="translate(518.1 174)"><g class="lsway"><use xlink:href="#sprout" href="#sprout"/></g></g></g><text class="wm-sub" x="320" y="203" text-anchor="middle" textLength="353.46" lengthAdjust="spacing">CARETAKER SERVICES</text><g class="sheen" clip-path="url(#wordClip)" aria-hidden="true"><rect x="-60" y="66.28" width="120" height="89.72" fill="url(#sheenG)" transform="skewX(-12)"/></g></svg>
-    <p class="visually-hidden">Gibson Caretaker Services — gentle yard, garden, and home care in Darlington, Wisconsin.</p>
+  <div class="nav-right">
+    <span class="loc">Darlington, Wisconsin &amp; nearby</span>
+    <a class="nav-cta" href="sms:+16083417826?&body=Hi%20Mariah!%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>Text Mariah</a>
   </div>
+</nav>
 
-  <div class="scene-wrap">
-    <canvas id="scene" aria-hidden="true"></canvas>
-    <div class="scene-fade" aria-hidden="true"></div>
-    <div class="seasons" role="group" aria-label="Preview a season">
-      <button data-season="spring" aria-pressed="false">Spring</button>
-      <button data-season="summer" aria-pressed="true">Summer</button>
-      <button data-season="autumn" aria-pressed="false">Autumn</button>
-      <button data-season="winter" aria-pressed="false">Winter</button>
-    </div>
-  </div>
-
-  <div class="hero-copy">
-    <span class="eyebrow">Darlington, Wisconsin <span class="sp">&amp; nearby</span></span>
-    <h1>Caring for your yard &amp; garden, <em>every season.</em></h1>
-    <p class="lead">For years I cared for elders at Sienna Crest. Now I help older and busy neighbors with the weeding, watering, planting, raking, and snow — and just about anything else around the place.</p>
-    <div class="hero-cta">
-      <a class="btn btn-fill" href="tel:+16083417826"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> Call Mariah</a>
-      <a class="btn btn-fill" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text Mariah</a>
-      <a class="btn btn-line" href="#book">Request a visit</a>
-    </div>
-    <p class="hero-tip">A real neighbor, not an app &mdash;<br>call or text <a href="tel:+16083417826">(608)&nbsp;341-7826</a>.</p>
-  </div>
-</section>
-
-<section class="assure" aria-label="What to expect">
-  <div class="wrap assure-row">
-    <div class="assure-item"><span class="ai-ic" style="--c:var(--leaf-deep);--cs:var(--leaf-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><b>Local &amp; nearby</b><span>Darlington &amp; the towns around it</span></div>
-    <div class="assure-item"><span class="ai-ic" style="--c:var(--gold-deep);--cs:var(--gold-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8"/></svg></span><b>Clear price first</b><span>You hear the cost before any work</span></div>
-    <div class="assure-item"><span class="ai-ic" style="--c:var(--sky-deep);--cs:var(--sky-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3l1.6-2.4A1 1 0 0 1 9.4 4h5.2a1 1 0 0 1 .8.4L17 7h3a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="3.4"/></svg></span><b>A photo when done</b><span>See the finished work &mdash; so can your family</span></div>
-    <div class="assure-item"><span class="ai-ic" style="--c:var(--coral-deep);--cs:var(--coral-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/><line x1="10.5" y1="18.4" x2="13.5" y2="18.4"/></svg></span><b>No app, no sign-up</b><span>Just a call or a text</span></div>
-  </div>
-</section>
-
-<section class="how rv" aria-labelledby="how-h">
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-logo" aria-hidden="true"><svg class="wordmark" viewBox="0 0 640 250" role="img" aria-labelledby="wm-ttl" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title id="wm-ttl">Gibson Caretaker Services</title><defs><linearGradient id="petalPink" x1="0" y1="70.28" x2="0" y2="152" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff6fb2"/><stop offset=".46" stop-color="#e6207e"/><stop offset="1" stop-color="#a8125a"/></linearGradient><linearGradient id="soilG" x1="0" y1="174" x2="0" y2="185" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7a5230"/><stop offset="1" stop-color="#3f2c1a"/></linearGradient><radialGradient id="moundG" cx=".5" cy="1" r="1"><stop offset="0" stop-color="#6f4d2e"/><stop offset="1" stop-color="#46321e"/></radialGradient><linearGradient id="stemG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb04a"/><stop offset="1" stop-color="#2f8f3a"/></linearGradient><radialGradient id="ceY" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff0c2"/><stop offset="1" stop-color="#efa718"/></radialGradient><linearGradient id="sheenG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="wordClip"><rect x="121.9" y="66.28" width="396.19" height="89.72"/></clipPath><g id="flw"><g fill="currentColor" opacity=".45"><ellipse cx="0" cy="-9" rx="7" ry="11"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(60)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(120)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(180)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(240)"/><ellipse cx="0" cy="-9" rx="7" ry="11" transform="rotate(300)"/></g><g fill="currentColor"><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(30)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(90)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(150)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(210)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(270)"/><ellipse cx="0" cy="-6.5" rx="5.4" ry="8.6" transform="rotate(330)"/></g><circle r="4.8" fill="url(#ceY)"/><circle cx="-1.4" cy="-1.4" r="1.5" fill="#fff" opacity=".7"/></g><g id="sprout"><path d="M0 0 L0 -11" stroke="#2f8f3a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M0 -5 C -5 -8 -7 -3 -2 -2 Z" fill="#3f9e3f"/><path d="M0 -7 C 5 -10 7 -4 2 -3 Z" fill="#2f8f3a"/></g></defs><path class="soilband" d="M 113.9 185 L 113.9 174 L 136.8 174.9 L 159.7 175.38 L 182.6 175.21 L 205.5 174.48 L 228.4 173.52 L 251.3 172.79 L 274.2 172.62 L 297.1 173.1 L 320 174 L 342.9 174.9 L 365.8 175.38 L 388.7 175.21 L 411.6 174.48 L 434.5 173.52 L 457.4 172.79 L 480.3 172.62 L 503.2 173.1 L 526.1 174 L 526.1 185 Z" fill="url(#soilG)" aria-hidden="true"/><g class="L" style="--i:0"><path class="mound" d="M 155.63 174 Q 169.63 161 183.63 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M169.63 174 C 165.63 144.5 173.63 137 169.63 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M169.63 150 C 151.63 142 147.63 156 164.63 156 Z" fill="#3f9e3f"/><path d="M169.63 132 C 187.63 124 191.63 138 174.63 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="169.63" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="123.26" y="150" fill="url(#petalPink)">G</text><g class="flw" transform="translate(169.63 107)" aria-hidden="true"><g class="flwcore" style="color:#ff7ab8"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#ff7ab8"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#ff7ab8"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#ff7ab8"/></g></g><g class="L" style="--i:1"><path class="mound" d="M 218.59 174 Q 232.59 161 246.59 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M232.59 174 C 228.59 126.09 236.59 100.17 232.59 78.17" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M232.59 150 C 214.59 142 210.59 156 227.59 156 Z" fill="#3f9e3f"/><path d="M232.59 132 C 250.59 124 254.59 138 237.59 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="232.59" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="214.67" y="150" fill="url(#petalPink)">ı</text><g class="iflw" transform="translate(232.59 68.81) scale(0.55)" aria-hidden="true"><g class="iflwcore" style="color:#e6207e"><use xlink:href="#flw" href="#flw"/></g></g></g><g class="L" style="--i:2"><path class="mound" d="M 269.05 174 Q 283.05 161 297.05 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M283.05 174 C 279.05 144.5 287.05 137 283.05 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M283.05 150 C 265.05 142 261.05 156 278.05 156 Z" fill="#3f9e3f"/><path d="M283.05 132 C 301.05 124 305.05 138 288.05 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="283.05" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="250.23" y="150" fill="url(#petalPink)">b</text><g class="flw" transform="translate(283.05 107)" aria-hidden="true"><g class="flwcore" style="color:#ff5ba3"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#ff5ba3"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#ff5ba3"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#ff5ba3"/></g></g><g class="L" style="--i:3"><path class="mound" d="M 332.71 174 Q 346.71 161 360.71 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M346.71 174 C 342.71 144.5 350.71 137 346.71 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M346.71 150 C 328.71 142 324.71 156 341.71 156 Z" fill="#3f9e3f"/><path d="M346.71 132 C 364.71 124 368.71 138 351.71 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="346.71" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="320.99" y="150" fill="url(#petalPink)">s</text><g class="flw" transform="translate(346.71 107)" aria-hidden="true"><g class="flwcore" style="color:#d11e74"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#d11e74"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#d11e74"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#d11e74"/></g></g><g class="L" style="--i:4"><path class="mound" d="M 392.62 174 Q 406.62 161 420.62 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M406.62 174 C 402.62 144.5 410.62 137 406.62 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M406.62 150 C 388.62 142 384.62 156 401.62 156 Z" fill="#3f9e3f"/><path d="M406.62 132 C 424.62 124 428.62 138 411.62 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="406.62" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="372.66" y="150" fill="url(#petalPink)">o</text><g class="flw" transform="translate(406.62 107)" aria-hidden="true"><g class="flwcore" style="color:#ff8fc6"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#ff8fc6"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#ff8fc6"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#ff8fc6"/></g></g><g class="L" style="--i:5"><path class="mound" d="M 463.47 174 Q 477.47 161 491.47 174 Z" fill="url(#moundG)"/><g class="stem"><path d="M477.47 174 C 473.47 144.5 481.47 137 477.47 115" stroke="url(#stemG)" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M477.47 150 C 459.47 142 455.47 156 472.47 156 Z" fill="#3f9e3f"/><path d="M477.47 132 C 495.47 124 499.47 138 482.47 138 Z" fill="#2f8f3a"/></g><ellipse class="seed" cx="477.47" cy="171" rx="3.1" ry="4.3" fill="#5a3d22"/><text class="gl" x="440.58" y="150" fill="url(#petalPink)">n</text><g class="flw" transform="translate(477.47 107)" aria-hidden="true"><g class="flwcore" style="color:#f53d92"><use xlink:href="#flw" href="#flw"/></g><circle class="petal" style="--dx:-16px;--dy:-26px;--dr:90deg" cx="0" cy="0" r="1.7" fill="#f53d92"/><circle class="petal" style="--dx:0px;--dy:-36px;--dr:130deg" cx="0" cy="0" r="1.7" fill="#f53d92"/><circle class="petal" style="--dx:16px;--dy:-46px;--dr:170deg" cx="0" cy="0" r="1.7" fill="#f53d92"/></g></g><g class="living" aria-hidden="true"><g class="lsprout" transform="translate(121.9 174)"><g class="lsway"><use xlink:href="#sprout" href="#sprout"/></g></g><g class="lsprout" transform="translate(518.1 174)"><g class="lsway"><use xlink:href="#sprout" href="#sprout"/></g></g></g><text class="wm-sub" x="320" y="203" text-anchor="middle" textLength="353.46" lengthAdjust="spacing">CARETAKER SERVICES</text><g class="sheen" clip-path="url(#wordClip)" aria-hidden="true"><rect x="-60" y="66.28" width="120" height="89.72" fill="url(#sheenG)" transform="skewX(-12)"/></g></svg></div>
   <div class="wrap">
-    <span class="eyebrow">How it works</span>
-    <h2 id="how-h">Getting help is simple</h2>
-    <ol class="steps">
-      <li><span class="n">1</span><b>Reach out</b><span>Call, text, or send a request. Tell me what you need help with.</span></li>
-      <li><span class="n">2</span><b>I get back to you</b><span>I’ll confirm a time that suits you and give a clear price up front.</span></li>
-      <li><span class="n">3</span><b>I take care of it</b><span>I show up, do the work, and send a photo when it’s done.</span></li>
-    </ol>
-  </div>
-</section>
-
-<div class="acts" id="help">
-
-  <section class="act act-light rv" style="--act-accent:#9c4a67" aria-labelledby="spring-h">
-    <div class="wrap">
-      <div class="act-head">
-        <div><span class="eyebrow">Spring <span class="sp">· March – May</span></span><h2 id="spring-h">Waking the <em>garden</em> up</h2></div>
-        <p class="a-lede">After a long Wisconsin winter, the beds need clearing and the planting can begin. I get everything ready for the season ahead.</p>
-      </div>
-      <div class="act-grid">
-        <div class="items">
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg></span><div><b>Spring clean-up</b><span>Clearing winter debris, cutting back perennials, tidying every bed.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-3-7-6-7-10a7 7 0 0 1 14 0c0 4-3 7-7 10Z"/></svg></span><div><b>Planting annuals &amp; bulbs</b><span>The flowers you plant every year, put in with care.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 18h16M6 18c0-5 3-8 6-8s6 3 6 8"/></svg></span><div><b>Fresh mulch &amp; edging</b><span>A clean, finished look that also keeps the weeds down.</span></div></div>
-        </div>
-        <div class="season-card"><canvas data-card="spring" aria-hidden="true"></canvas><span class="mo">Mar · Apr · May</span><span class="tag">first green</span></div>
+    <div class="copy">
+      <span class="eyebrow">Darlington, Wisconsin &amp; nearby</span>
+      <h1 class="headline">Caring for your yard &amp; garden, <em>every season.</em></h1>
+      <div class="cta-row">
+        <a class="btn" href="sms:+16083417826?&body=Hi%20Mariah!%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>Text Mariah</a>
+        <a class="btn-ghost" href="tel:+16083417826"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Call (608)&nbsp;341&#8209;7826</a>
       </div>
     </div>
-  </section>
-
-  <svg class="seam" viewBox="0 0 1440 60" preserveAspectRatio="none" style="--seam-fill:var(--green-night)" aria-hidden="true"><path d="M0,38 C240,8 420,8 720,36 C1020,62 1200,62 1440,28 L1440,60 L0,60 Z"/></svg>
-
-  <section class="act act-dark rv" style="--act-accent:#e6b32e;--act-ic:#9a6a0f" aria-labelledby="summer-h">
-    <div class="wrap">
-      <div class="act-head">
-        <div><span class="eyebrow">Summer <span class="sp">· June – August</span></span><h2 id="summer-h">Keeping it <em>thriving</em></h2></div>
-        <p class="a-lede">The busy middle of the season — the bending, kneeling, hauling work that gets harder with the years. I keep it looking its best while you enjoy it.</p>
-      </div>
-      <div class="act-grid">
-        <div class="items">
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21c2-7 7-12 14-15M9 14c-3 1-5 4-5 7"/></svg></span><div><b>Weeding &amp; deadheading</b><span>Beds kept neat, blooms kept coming all summer long.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/></svg></span><div><b>Watering &amp; container care</b><span>Gardens, pots, and hanging baskets kept lush through the heat.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v12H3zM3 7l9 6 9-6"/></svg></span><div><b>While you’re away</b><span>Vacation or hospital watering — with a photo so your family knows all is well.</span></div></div>
-        </div>
-        <div class="season-card"><canvas data-card="summer" aria-hidden="true"></canvas><span class="mo">Jun · Jul · Aug</span><span class="tag">in full bloom</span></div>
-      </div>
-    </div>
-  </section>
-
-  <svg class="seam" viewBox="0 0 1440 60" preserveAspectRatio="none" style="--seam-fill:var(--blush)" aria-hidden="true"><path d="M0,28 C240,60 420,60 720,32 C1020,4 1200,4 1440,36 L1440,60 L0,60 Z"/></svg>
-
-  <section class="act act-light rv" style="--act-accent:#a8541b" aria-labelledby="autumn-h">
-    <div class="wrap">
-      <div class="act-head">
-        <div><span class="eyebrow">Autumn <span class="sp">· September – November</span></span><h2 id="autumn-h">Putting it <em>to bed</em></h2></div>
-        <p class="a-lede">The leaves come down and frost arrives early here. I get the yard cleared and the garden ready to rest — and set up for next spring.</p>
-      </div>
-      <div class="act-grid">
-        <div class="items">
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 4 10 0 14-4-4-4-10 0-14ZM12 17v4"/></svg></span><div><b>Leaf raking &amp; hauling</b><span>Raked, bagged, and taken away — you don’t lift a thing.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M7 19V9m5 10V5m5 14v-7"/></svg></span><div><b>Fall clean-up</b><span>Cutting back, clearing beds, and a last tidy before the cold.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="6"/><path d="M12 7V3"/></svg></span><div><b>Bulbs for spring</b><span>Planting now so your garden greets you in April.</span></div></div>
-        </div>
-        <div class="season-card"><canvas data-card="autumn" aria-hidden="true"></canvas><span class="mo">Sep · Oct · Nov</span><span class="tag">gold &amp; rest</span></div>
-      </div>
-    </div>
-  </section>
-
-  <svg class="seam" viewBox="0 0 1440 60" preserveAspectRatio="none" style="--seam-fill:var(--green-night)" aria-hidden="true"><path d="M0,38 C240,8 420,8 720,36 C1020,62 1200,62 1440,28 L1440,60 L0,60 Z"/></svg>
-
-  <section class="act act-dark rv" style="--act-accent:#6f9bb0;--act-ic:#527e96" aria-labelledby="winter-h">
-    <div class="wrap">
-      <div class="act-head">
-        <div><span class="eyebrow">Winter <span class="sp">· December – February</span></span><h2 id="winter-h">Safe, warm, and <em>cared for</em></h2></div>
-        <p class="a-lede">When the snow comes, the garden sleeps — but the help doesn't stop. I keep your walk clear and check in, so you’re never stranded.</p>
-      </div>
-      <div class="act-grid">
-        <div class="items">
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></span><div><b>Snow shoveling &amp; salt</b><span>Walks and steps cleared and safe — no more risky falls.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M5 12a2 2 0 1 1 4 0m6 0a2 2 0 1 1 4 0M9 12v5m6-5v5"/></svg></span><div><b>Holiday lights</b><span>Put up and taken down, so you never climb a ladder.</span></div></div>
-          <div class="item"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V6l8-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm8-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg></span><div><b>Houseplant care &amp; planning</b><span>Indoor green tended, and next year’s garden planned together.</span></div></div>
-        </div>
-        <div class="season-card"><canvas data-card="winter" aria-hidden="true"></canvas><span class="mo">Dec · Jan · Feb</span><span class="tag">quiet &amp; cared for</span></div>
-      </div>
-    </div>
-  </section>
-
-  <svg class="seam" viewBox="0 0 1440 60" preserveAspectRatio="none" style="--seam-fill:var(--blush)" aria-hidden="true"><path d="M0,28 C240,60 420,60 720,32 C1020,4 1200,4 1440,36 L1440,60 L0,60 Z"/></svg>
-</div>
-
-<section class="gardener rv" id="about" aria-labelledby="about-h">
-  <div class="wrap">
     <div class="portrait-stage">
       <span class="pframe pframe-a" aria-hidden="true"></span>
       <span class="pframe pframe-b" aria-hidden="true"></span>
-      <svg class="psprig" viewBox="0 0 96 96" aria-hidden="true"><g fill="none" stroke="#3f9e4d" stroke-width="3" stroke-linecap="round"><path d="M50 92 C 46 72 54 60 48 40"/><path d="M49 66 C 33 62 27 53 24 44"/><path d="M51 56 C 66 54 73 46 76 37"/></g><path d="M49 66 C 35 63 29 55 26 47 C 38 47 46 54 49 66 Z" fill="#3f9e4d"/><path d="M51 56 C 65 54 72 47 75 39 C 63 39 55 46 51 56 Z" fill="#2c7a38"/><g transform="translate(48 30) scale(1.0)"><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#e6207e" transform="rotate(0)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#e6207e" transform="rotate(72)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#e6207e" transform="rotate(144)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#e6207e" transform="rotate(216)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#e6207e" transform="rotate(288)"/><circle r="2.5" fill="#f2b431"/></g><g transform="translate(24 42) scale(0.78)"><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#b074d6" transform="rotate(0)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#b074d6" transform="rotate(72)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#b074d6" transform="rotate(144)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#b074d6" transform="rotate(216)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#b074d6" transform="rotate(288)"/><circle r="2.5" fill="#efe1f7"/></g><g transform="translate(75 31) scale(0.72)"><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#ff7a59" transform="rotate(0)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#ff7a59" transform="rotate(72)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#ff7a59" transform="rotate(144)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#ff7a59" transform="rotate(216)"/><ellipse cx="0" cy="-4.4" rx="2.7" ry="4.2" fill="#ff7a59" transform="rotate(288)"/><circle r="2.5" fill="#f2b431"/></g></svg>
+      <svg class="psprig" viewBox="0 0 90 90" aria-hidden="true"><path d="M46 86 C42 60 50 44 46 26" fill="none" stroke="#7ea567" stroke-width="2.4" stroke-linecap="round"/><use href="#bloom" x="28" y="6" width="36" height="36"/></svg>
       <div class="portrait">
-      <img src="/mariah.webp" width="720" height="720" alt="Mariah Gibson, smiling and holding a bright bouquet of flowers" loading="lazy" decoding="async">
-      <span class="pname">Mariah Gibson</span>
-      </div>
-    </div>
-    <div>
-      <span class="eyebrow" style="color:var(--pink-deep)">Meet Mariah</span>
-      <h2 id="about-h" style="margin-top:12px">Hi, I’m Mariah.</h2>
-      <p class="bio"><span class="dropcap">F</span>or years I cared for the elderly at Sienna Crest, and I’m carrying that same patient, attentive care into this next chapter — looking after your garden, flowers, yard, and honestly just about anything you can think of. <em>If what you need isn’t on the list, please reach out anyway</em> — I’ll always be honest about what I can and can’t do. (I’m a friendly helping hand — not a licensed contractor or a personal-care provider — but I’ll gladly point you toward the right person for those.) I’d be so glad to help.</p>
-      <div class="pills">
-        <span class="pill">Reliable, same friendly face</span>
-        <span class="pill">Clear, honest pricing</span>
-        <span class="pill">A photo after every visit</span>
-        <span class="pill">References available</span>
-      </div>
-      <div class="about-cta">
-        <a class="btn btn-fill" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text Mariah</a>
-        <a class="btn btn-line" href="tel:+16083417826">Call (608) 341-7826</a>
+        <img src="/mariah.webp" width="720" height="720" alt="Mariah Gibson, smiling, holding a bouquet of bright flowers" />
+        <span class="chip">📍 Darlington, WI</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="price rv" id="pricing" aria-labelledby="price-h">
+<!-- PROMISE STRIP -->
+<section class="beat" style="padding-top:0">
   <div class="wrap">
-    <div class="price-card">
-      <span class="eyebrow">Simple, honest pricing</span>
-      <h2 id="price-h">A fair price, agreed together</h2>
-      <p class="price-lead">No two yards are the same — one neighbor has a small flower bed, another has a big garden and a long driveway. So instead of one-size-fits-all pricing, I look at what you actually need, talk it through with you, and agree on a price that feels fair <em>before any work begins.</em></p>
-      <div class="price-steps">
-        <div class="ps"><span class="ps-n">1</span><b>Tell me what you need</b><span>Big or small, I’ll look at the whole picture with you.</span></div>
-        <div class="ps"><span class="ps-n">2</span><b>A clear, fair price</b><span>I tell you up front — no pressure, no surprises.</span></div>
-        <div class="ps"><span class="ps-n">3</span><b>The price is the price</b><span>What I tell you is what you pay. That’s it.</span></div>
-      </div>
-      <p class="price-foot">It’s always free to ask. <a href="#book">Tell me about your yard</a> and I’ll give you a clear price.</p>
-      <p class="price-foot" style="font-size:.86rem;opacity:.82;margin-top:16px">For peace of mind: I’ll never ask for payment by gift card or wire transfer, or before you’ve agreed to the work and the price. If anyone claiming to be me does, please call <a href="tel:+16083417826">(608)&nbsp;341-7826</a> to check.</p>
+    <div class="promise">
+      <div class="p rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></div><h3>Local &amp; nearby</h3><p>Darlington and the towns right around it.</p></div>
+      <div class="p rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8"/></svg></div><h3>Clear price first</h3><p>You hear the cost before any work begins.</p></div>
+      <div class="p rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3l1.6-2.4A1 1 0 0 1 9.4 4h5.2a1 1 0 0 1 .8.4L17 7h3a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="3.4"/></svg></div><h3>A photo when it&rsquo;s done</h3><p>See the finished work &mdash; so can your family.</p></div>
+      <div class="p rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><h3>No app, no sign-up</h3><p>Just a call or a text. That&rsquo;s it.</p></div>
     </div>
   </div>
 </section>
 
-<svg class="seam" viewBox="0 0 1440 60" preserveAspectRatio="none" style="--seam-fill:var(--green-night)" aria-hidden="true"><path d="M0,38 C240,8 420,8 720,36 C1020,62 1200,62 1440,28 L1440,60 L0,60 Z"/></svg>
-
-<section class="book" id="book" aria-labelledby="book-h"><svg class="book-rose tl" viewBox="0 0 120 175" aria-hidden="true"><path d="M60 172 C55 134 66 100 60 68" fill="none" stroke="#7ea567" stroke-width="2.4" stroke-linecap="round"/><use href="#leaf" x="16" y="120" width="44" height="26" transform="rotate(-20 38 133)"/><use href="#leaf" x="60" y="100" width="44" height="26" transform="rotate(164 82 113)"/><use href="#bloom" x="40" y="36" width="40" height="40"/></svg><svg class="book-rose br" viewBox="0 0 130 130" aria-hidden="true"><path d="M66 126 C62 100 68 84 64 66" fill="none" stroke="#7ea567" stroke-width="2.4" stroke-linecap="round"/><use href="#leaf" x="64" y="84" width="40" height="24" transform="rotate(155 84 96)"/><use href="#bloom" x="40" y="30" width="34" height="34"/><use href="#bloom" x="70" y="46" width="24" height="24"/><use href="#bloom" x="50" y="56" width="20" height="20"/></svg>
-  <div class="wrap">
-    <div class="head">
-      <span class="eyebrow">Request a visit</span>
-      <h2 id="book-h">Let’s pick a day</h2>
-      <p>Choose a day and time that suits you, tell me a little about what you need, and I’ll get back to you to confirm. No payment now — just a friendly request.</p>
+<!-- MEET MARIAH -->
+<section class="beat">
+  <div class="wrap meet">
+    <div class="meet-photo rv"><img src="/mariah-text.webp" width="680" height="768" alt="Mariah Gibson" /></div>
+    <div class="rv">
+      <p class="k">Meet Mariah</p>
+      <h2><span class="first">Hi, I&rsquo;m Mariah.</span></h2>
+      <p class="bio"><span class="dc">F</span>or years I cared for the elderly at Sienna Crest, and I&rsquo;m carrying that same patient, attentive care into this next chapter &mdash; looking after your garden, flowers, yard, and honestly just about anything you can think of. If what you need isn&rsquo;t on the list, please reach out anyway &mdash; I&rsquo;ll always be honest about what I can and can&rsquo;t do. <span class="aside">(I&rsquo;m a friendly helping hand &mdash; not a licensed contractor or a personal-care provider &mdash; but I&rsquo;ll gladly point you toward the right person for those.)</span> I&rsquo;d be so glad to help.</p>
+      <div class="meet-chips">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Same friendly face every visit</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Clear, honest pricing</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> References available &mdash; just ask</span>
+      </div>
     </div>
-
-    <form class="card" id="bookForm" novalidate>
-      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <div class="step">
-        <span class="fl">1 · Pick a day</span>
-        <div class="daypick" id="daypick" role="group" aria-label="Pick a day"></div>
-        <input type="hidden" name="date" id="date" />
-      </div>
-      <div class="step">
-        <span class="fl">2 · Time of day</span>
-        <div class="times" id="times" role="group" aria-label="Pick a time of day">
-          <button type="button" class="tchip" data-time="09:00" aria-pressed="false">Morning</button>
-          <button type="button" class="tchip" data-time="12:00" aria-pressed="false">Midday</button>
-          <button type="button" class="tchip" data-time="15:00" aria-pressed="false">Afternoon</button>
-          <button type="button" class="tchip" data-time="" aria-pressed="false">I’m flexible</button>
-        </div>
-        <input type="hidden" name="time" id="time" />
-      </div>
-      <div class="step">
-        <span class="fl">3 · Your details</span>
-        <div class="two">
-          <div class="f"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
-          <div class="f"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required /></div>
-        </div>
-        <div class="two">
-          <div class="f"><label for="town">Town</label><input id="town" name="town" type="text" placeholder="Darlington, Gratiot, Argyle…" /></div>
-          <div class="f"><label for="email">Email <span class="opt">(optional)</span></label><input id="email" name="email" type="email" autocomplete="email" /></div>
-        </div>
-        <div class="f"><label for="needs">What do you need help with?</label><textarea id="needs" name="needs" placeholder="e.g. weeding the flower beds and raking the front yard"></textarea></div>
-      </div>
-      <div id="ts-slot" class="ts-slot"></div>
-      <button class="btn btn-fill" type="submit" id="send" style="width:100%">Send my request</button>
-      <p class="book-foot">Prefer to talk? <a href="tel:+16083417826">Call</a> or <a href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">text</a> (608)&nbsp;341&#8209;7826 anytime.</p>
-      <p class="book-foot" style="font-size:.84rem;opacity:.8;margin-top:8px">Your details come only to me, so I can get back to you — never sold or shared. <a href="/privacy">More on your information</a>.</p>
-      <div class="status" id="status" role="status" aria-live="polite"></div>
-    </form>
   </div>
 </section>
 
-<svg class="seam" viewBox="0 0 1440 60" preserveAspectRatio="none" style="--seam-fill:var(--blush)" aria-hidden="true"><path d="M0,28 C240,60 420,60 720,32 C1020,4 1200,4 1440,36 L1440,60 L0,60 Z"/></svg>
-
-<section class="faq rv" id="faq" aria-labelledby="faq-h">
-  <div class="wrap">
-    <span class="eyebrow">Good to know</span>
-    <h2 id="faq-h">Questions folks often ask</h2>
-    <div class="faq-grid">
-      <div class="faq-list">
-      <details><summary>Can I arrange help for my mom, dad, or someone else?</summary><div class="fa">Of course — a lot of my calls come from sons and daughters arranging help for a parent. Just reach out with their name and what they need, and I’ll keep you in the loop every step of the way.</div></details>
-      <details><summary>How much does it cost?</summary><div class="fa">Every yard and task is a little different, so I’ll always give you a clear price before any work begins. Asking is completely free, and there’s never any obligation.</div></details>
-      <details><summary>Which towns do you serve?</summary><div class="fa">Darlington and the nearby towns — Gratiot, Wiota, Argyle, Calamine, Belmont, Shullsburg and around. Not sure if you’re in range? Just ask, and if I can’t help I’ll try to point you to someone who can.</div></details>
-      <details><summary>What kinds of things can you help with?</summary><div class="fa">Weeding, watering, planting, mowing, raking, snow, and plenty of small tasks around the home. <em>If what you need isn’t on the list, ask anyway</em> — I’ll always be honest about what I can and can’t do.</div></details>
-      <details><summary>Do I need to be home while you work?</summary><div class="fa">Whatever’s most comfortable for you. Some folks like to be there and chat, others leave a note and a key. I’ll figure out what works best with you. If you’d rather not be home, that’s fine — I never keep a key any longer than the visit.</div></details>
-      <details><summary>How do I get started?</summary><div class="fa">Call or text me, or send a quick request from this page. I’ll get back to you to confirm a day and a fair price — and that’s it. No apps, no accounts, no fuss.</div></details>
+<!-- PHOTO PROOF -->
+<section class="beat">
+  <div class="wrap proof">
+    <div class="rv">
+      <p class="k">For the family</p>
+      <h2>You&rsquo;ll see every finished job &mdash; <em>so will your family.</em></h2>
+      <p class="lead">After every visit, I text a photo of the finished work. If you&rsquo;re arranging this for your mom or dad from out of town, that picture is how you&rsquo;ll know it&rsquo;s done &mdash; without ever having to drive by or check up on anyone.</p>
+      <div class="cta-row">
+        <a class="btn" href="sms:+16083417826?&body=Hi%20Mariah!%20I&#39;m%20arranging%20yard%20help%20for%20a%20family%20member.%20Can%20you%20tell%20me%20more%3F">Text Mariah</a>
       </div>
-      <aside class="faq-aside">
-        <img class="faq-mariah" src="/mariah-text.webp" width="680" height="768" alt="Mariah, smiling with her arms crossed, beside a speech bubble that reads: if you have other questions, shoot me a text!" loading="lazy" decoding="async" />
-        <div class="faq-aside-cta">
-          <a class="btn btn-fill" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20">Text Mariah</a>
-          <a class="btn btn-line" href="tel:+16083417826">Call (608)&nbsp;341-7826</a>
-        </div>
-      </aside>
     </div>
+    <div class="rv">
+      <div class="iphone">
+        <div class="screen">
+          <span class="island"></span>
+          <div class="status">
+            <span>9:41</span>
+            <span class="ic">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="5" y="4.5" width="3" height="6.5" rx="1"/><rect x="10" y="2" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 12" fill="#000" aria-hidden="true"><path d="M8 2.6c2.1 0 4 .85 5.4 2.2l1.3-1.4A9.2 9.2 0 0 0 8 .8 9.2 9.2 0 0 0 1.3 3.4l1.3 1.4A7.6 7.6 0 0 1 8 2.6Zm0 3.6c1.1 0 2.1.45 2.8 1.2l1.3-1.4A5.7 5.7 0 0 0 8 4.4a5.7 5.7 0 0 0-4.1 1.6l1.3 1.4A4 4 0 0 1 8 6.2Zm0 3.6 1.9-2a2.6 2.6 0 0 0-3.8 0l1.9 2Z"/></svg>
+              <svg width="26" height="12" viewBox="0 0 26 12" aria-hidden="true"><rect x="1" y="1" width="21" height="10" rx="3" fill="none" stroke="#000" stroke-opacity=".35"/><rect x="2.5" y="2.5" width="17" height="7" rx="1.5" fill="#000"/><rect x="23.4" y="4" width="1.6" height="4" rx=".8" fill="#000" fill-opacity=".35"/></svg>
+            </span>
+          </div>
+          <div class="imhead">
+            <span class="chev"><svg width="10" height="17" viewBox="0 0 11 18" fill="none" stroke="#0b93f6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 1 2 9l7 8"/></svg></span>
+            <span class="av">M</span>
+            <span class="nm">Mariah Gibson <svg width="7" height="7" viewBox="0 0 12 12" fill="#8e8e93" aria-hidden="true"><path d="M3 1l6 5-6 5z"/></svg></span>
+          </div>
+          <div class="imbody">
+            <div class="time"><b>Today</b> 2:14 PM</div>
+            <div class="att"><img src="/gcs-after.webp" width="1000" height="667" alt="Freshly watered hydrangeas in a tidy garden bed" /></div>
+            <div class="bbl recv">All done for today &mdash; your mom&rsquo;s hydrangeas are watered and the beds are tidy 🌸</div>
+            <div class="bbl sent">Oh wonderful, thank you Mariah! 💗</div>
+          </div>
+          <div class="iminput">
+            <span aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.5"><circle cx="12" cy="12" r="11"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg></span>
+            <span class="field">iMessage</span>
+          </div>
+          <span class="home"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS + PLEDGE -->
+<section class="beat">
+  <div class="wrap">
+    <p class="k">How it works</p>
+    <h2>Getting help is <em>simple.</em></h2>
+    <div class="steps">
+      <div class="step rv"><div class="n">1</div><h3>Tell me what you need</h3><p>Call, text, or send me a quick message. It&rsquo;s always free to ask &mdash; no obligation at all.</p></div>
+      <div class="step rv"><div class="n">2</div><h3>I agree a clear price</h3><p>I look at the work and we settle on a fair price <b>before anything begins</b>. That price is final &mdash; no surprises.</p></div>
+      <div class="step rv"><div class="n">3</div><h3>I do it &amp; send a photo</h3><p>I take care of the work and text you a photo when it&rsquo;s done, so you and your family can see it.</p></div>
+    </div>
+    <div class="pledge rv">
+      <span class="sh"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/><path d="M9 12l2 2 4-4"/></svg></span>
+      <div><h3>My promise on payment</h3><p>I&rsquo;ll never ask for payment by gift card or wire transfer, or before you&rsquo;ve agreed to the work and the price. If anyone claiming to be me ever does, please call <a href="tel:+16083417826">(608)&nbsp;341&#8209;7826</a> to check it&rsquo;s really me.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEASONS EXPLORER -->
+<section class="beat seasons">
+  <div class="wrap">
+    <div class="topline">
+      <div>
+        <p class="k">What I help with, every season</p>
+        <h2>The same hands, <em>all year round.</em></h2>
+      </div>
+      <div class="season-tabs" role="tablist">
+        <button data-s="spring" class="on">Spring</button>
+        <button data-s="summer">Summer</button>
+        <button data-s="autumn">Autumn</button>
+        <button data-s="winter">Winter</button>
+      </div>
+    </div>
+    <div class="season-stage">
+      <canvas id="seasonScene" aria-hidden="true"></canvas>
+      <div class="season-cap"><span class="nm" id="seaName">Waking the garden up</span><span class="tg" id="seaMonths">Spring &middot; March&ndash;May</span></div>
+    </div>
+    <div class="season-svc" id="seaSvc"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="beat">
+  <div class="wrap">
+    <p class="k" style="text-align:center">Good to know</p>
+    <h2 style="text-align:center;margin-inline:auto">Questions families <em>often ask.</em></h2>
+    <div class="faq">
+      <details open><summary>Can I arrange and pay for this from out of state?<span class="pl">+</span></summary><div class="ans">Yes, and many people do. You text or call me, I send <b>you</b> the price and the after-photos. Your mom or dad never has to handle scheduling or money &mdash; you stay in the loop from wherever you are.</div></details>
+      <details><summary>How do I pay you?<span class="pl">+</span></summary><div class="ans">However&rsquo;s easiest for you, like a check. I never take gift cards or wire transfers, and I never ask for payment before you&rsquo;ve agreed to the price.</div></details>
+      <details><summary>Do I need to be home? Do you keep a key?<span class="pl">+</span></summary><div class="ans">Whatever&rsquo;s comfortable for you &mdash; you don&rsquo;t need to be home for outdoor work. I never keep a key any longer than the visit itself.</div></details>
+      <details><summary>Which towns do you cover?<span class="pl">+</span></summary><div class="ans">Darlington and the towns right around it. Not sure if I reach you? Just <a href="tel:+16083417826">give me a call</a> &mdash; if I can&rsquo;t help, I&rsquo;ll try to point you to someone who can.</div></details>
+      <details><summary>How do I get started?<span class="pl">+</span></summary><div class="ans">Just call or text <a href="tel:+16083417826">(608)&nbsp;341&#8209;7826</a>. No apps, no accounts, no forms &mdash; a real conversation with a real neighbor.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS / KIND WORDS -->
+<section class="beat">
+  <div class="wrap">
+    <p class="k" style="text-align:center">Kind words</p>
+    <h2 style="text-align:center;margin-inline:auto">What the neighbors <em>are saying.</em></h2>
+    <div class="reviews">
+      <figure class="review review-empty rv">
+        <span class="quote-mark" aria-hidden="true">&#10077;</span>
+        <blockquote>A neighbor&rsquo;s words will go here.</blockquote>
+        <figcaption>I&rsquo;d rather leave this empty than make up a review. As soon as a customer gives me a kind word &mdash; and the OK to share it &mdash; it goes right here.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="beat">
+  <div class="wrap area">
+    <p class="k">Where I work</p>
+    <h2 style="margin-inline:auto">Serving Darlington &amp; <em>the towns around it.</em></h2>
+    <div class="towns">
+      <span class="you">Darlington</span><span>Gratiot</span><span>Wiota</span><span>Argyle</span><span>Calamine</span><span>Belmont</span><span>Shullsburg</span><span>&amp; nearby</span>
+    </div>
+    <p class="lead" style="margin:18px auto 0;text-align:center">Not sure if I reach your town? Just ask &mdash; <a href="tel:+16083417826" style="color:var(--signal-deep);font-weight:700">call or text (608)&nbsp;341&#8209;7826</a>.</p>
   </div>
 </section>
 
 <footer>
-  <div class="brand">
-    <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#ffffff"/><path d="M32 52V30" stroke="#5c9243" stroke-width="3.5" stroke-linecap="round"/><path d="M32 40c-8 0-12-5-12-11 7 0 12 5 12 11Z" fill="#6fae50"/><path d="M32 40c8 0 12-5 12-11-7 0-12 5-12 11Z" fill="#9cd07a"/><circle cx="24" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="40" cy="20" r="6.5" fill="#ff5fa2"/><circle cx="28" cy="13" r="6.5" fill="#e6207e"/><circle cx="36" cy="13" r="6.5" fill="#e6207e"/><circle cx="32" cy="24" r="6.5" fill="#e6207e"/><circle cx="32" cy="18" r="4.6" fill="#f5b800"/></svg>
-    <span style="color:#fff">Gibson <b>Caretaker Services</b></span>
+  <div class="fwrap">
+    <div>
+      <div class="brand"><svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#fff"/><circle cx="28" cy="13" r="6.5" fill="#e6207e"/><circle cx="36" cy="13" r="6.5" fill="#e6207e"/><circle cx="32" cy="24" r="6.5" fill="#e6207e"/><circle cx="32" cy="18" r="4.6" fill="#f5b800"/><path d="M32 52V30" stroke="#5c9243" stroke-width="3.5" stroke-linecap="round"/></svg> <span style="color:#fff">Gibson Caretaker Services</span></div>
+      <p class="fline">Gentle care for your yard, garden &amp; home, every season.</p>
+      <p class="safe">A reminder: I&rsquo;ll never ask for payment by gift card or wire transfer. If someone claiming to be me does, please call to check.</p>
+    </div>
+    <div>
+      <h4>Reach me</h4>
+      <p class="fline"><a href="tel:+16083417826">(608)&nbsp;341&#8209;7826</a></p>
+      <p class="fline"><a href="sms:+16083417826?&body=Hi%20Mariah!%20">Send a text</a></p>
+      <p class="fline"><a href="mailto:gibsoncaretakerservices@gmail.com">Email me</a></p>
+    </div>
+    <div>
+      <h4>Where</h4>
+      <p class="fline">Darlington, Wisconsin</p>
+      <p class="fline">&amp; the towns nearby</p>
+    </div>
+    <p class="fine">&copy; 2026 Gibson Caretaker Services &middot; Darlington, Wisconsin &middot; A real neighbor, not an app.</p>
   </div>
-  <p class="foot-tag">Gentle care for your yard, garden &amp; home, every season.</p>
-  <p class="foot-contact"><a href="tel:+16083417826">(608)&nbsp;341&#8209;7826</a><span class="dot" aria-hidden="true">&middot;</span><a class="email" href="mailto:gibsoncaretakerservices@gmail.com">gibsoncaretakerservices@gmail.com</a></p>
-  <div class="social"><a class="fb-link" href="https://www.facebook.com/share/1BK9yQCd9E/" target="_blank" rel="noopener noreferrer" aria-label="Find Mariah on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg> Find me on Facebook</a></div>
-  <p class="area">Serving Darlington, Gratiot, Wiota, Argyle, Calamine, Belmont, Shullsburg &amp; nearby.</p>
-  <div class="dots" aria-hidden="true"><i style="background:#e6207e"></i><i style="background:#2f6fd6"></i><i style="background:#f5b800"></i><i style="background:#4d9a3f"></i></div>
-  <p class="fine">© 2026 Gibson Caretaker Services · Darlington, Wisconsin · <a href="/privacy">Your information</a></p>
 </footer>
 
-<nav class="callbar" id="callbar" aria-label="Contact Mariah">
-  <a class="c-call" href="tel:+16083417826"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> Call</a>
-  <a class="c-text" href="sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg> Text</a>
-</nav>
+<!-- sticky call + text bar -->
+<div class="callbar" id="callbar">
+  <a class="btn" href="sms:+16083417826?&body=Hi%20Mariah!%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>Text Mariah</a>
+  <a class="btn-ghost" href="tel:+16083417826"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Call Mariah</a>
+</div>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://gibsoncaretakerservices.com/#business","name":"Gibson Caretaker Services","description":"Gentle, dependable yard, garden, flower, and home care for older and busy neighbors around Darlington, Wisconsin, every season.","slogan":"A real neighbor, not an app.","telephone":"+1-608-341-7826","email":"gibsoncaretakerservices@gmail.com","url":"https://gibsoncaretakerservices.com/","image":"https://gibsoncaretakerservices.com/og.jpg","sameAs":["https://www.facebook.com/share/1BK9yQCd9E/"],"priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Darlington","addressRegion":"WI","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":42.6786,"longitude":-90.1174},"areaServed":[{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":42.6786,"longitude":-90.1174},"geoRadius":"48000"},"Darlington, WI","Gratiot, WI","Wiota, WI","Argyle, WI","Calamine, WI","Belmont, WI","Shullsburg, WI","Monroe, WI","Lafayette County, WI"],"knowsAbout":["Yard work","Gardening","Weeding","Planting","Mulching","Lawn mowing","Leaf raking","Snow shoveling","Seasonal yard cleanup","Senior home help"],"founder":{"@type":"Person","name":"Mariah Gibson"}}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I arrange help for my mom, dad, or someone else?","acceptedAnswer":{"@type":"Answer","text":"Of course — a lot of my calls come from sons and daughters arranging help for a parent. Just reach out with their name and what they need, and I’ll keep you in the loop every step of the way."}},{"@type":"Question","name":"How much does it cost?","acceptedAnswer":{"@type":"Answer","text":"Every yard and task is a little different, so I’ll always give you a clear price before any work begins. Asking is completely free, and there’s never any obligation."}},{"@type":"Question","name":"Which towns do you serve?","acceptedAnswer":{"@type":"Answer","text":"Darlington and the nearby towns — Gratiot, Wiota, Argyle, Calamine, Belmont, Shullsburg and around. Not sure if you’re in range? Just ask, and if I can’t help I’ll try to point you to someone who can."}},{"@type":"Question","name":"What kinds of things can you help with?","acceptedAnswer":{"@type":"Answer","text":"Weeding, watering, planting, mowing, raking, snow, and plenty of small tasks around the home. If what you need isn’t on the list, ask anyway — I’ll always be honest about what I can and can’t do."}},{"@type":"Question","name":"Do I need to be home while you work?","acceptedAnswer":{"@type":"Answer","text":"Whatever’s most comfortable for you. Some folks like to be there and chat, others leave a note and a key. I’ll figure out what works best with you. If you’d rather not be home, that’s fine — I never keep a key any longer than the visit."}},{"@type":"Question","name":"How do I get started?","acceptedAnswer":{"@type":"Answer","text":"Call or text me, or send a quick request from this page. I’ll get back to you to confirm a day and a fair price — and that’s it. No apps, no accounts, no fuss."}}]}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gibson Caretaker Services","description":"Gentle, dependable yard, garden and home help in Darlington, Wisconsin. Clear price first, a photo after every visit.","telephone":"+1-608-341-7826","areaServed":["Darlington WI","Gratiot WI","Wiota WI","Argyle WI","Calamine WI","Belmont WI","Shullsburg WI"],"address":{"@type":"PostalAddress","addressLocality":"Darlington","addressRegion":"WI","addressCountry":"US"},"priceRange":"$$"}
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
 <script>
-(function(){
-  "use strict";
-  var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var FINE = window.matchMedia && matchMedia("(pointer: fine)").matches;
-  var $=function(s,r){return (r||document).querySelector(s);};
-  var $all=function(s,r){return [].slice.call((r||document).querySelectorAll(s));};
+var RMOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+/* drifting petals — biased to edges, away from the reading column */
+(function(){var box=document.querySelector('.bgpetals');if(!box)return;for(var i=0;i<12;i++){var d=document.createElement('div');d.className='bgpetal';var sz=16+Math.random()*26;
+  var edge=Math.random();var left=edge<0.5?(Math.random()*26):(74+Math.random()*26); /* keep off center */
+  d.style.left=left+'%';d.style.setProperty('--o',(0.4+Math.random()*0.35).toFixed(2));
+  d.style.animation=(Math.random()<0.5?'fallA':'fallB')+' '+(16+Math.random()*16).toFixed(1)+'s linear '+(-Math.random()*22).toFixed(1)+'s infinite';
+  if(Math.random()<0.4)d.style.filter='blur(.7px)';
+  d.innerHTML='<svg width="'+sz.toFixed(0)+'" viewBox="0 0 100 128"><use href="#petal"/></svg>';box.appendChild(d);}})();
+
+/* ===== SEASONAL CANVAS ENGINE (proven, from the live site) ===== */
+var FINE = !!(window.matchMedia && window.matchMedia('(pointer: fine)').matches);
+var RM = RMOTION;
   function lerp(a,b,t){return a+(b-a)*t;}
   function hex(h){h=(''+h).replace('#','');if(h.length===3)h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
 
@@ -1111,7 +1025,7 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
     function stepPart(p,t,dt){if(cur.part==='pollen'){p.x+=Math.sin(t*p.sw+p.ph)*.5;p.y-=.15+p.vy*.2;if(p.y<-6){p.y=H+6;p.x=Math.random()*W;}}else{p.y+=p.vy*(dt/16);p.x+=p.vx+Math.sin(t*p.sw+p.ph)*.5;p.a+=p.va;if(p.y>H+8){p.y=-8;p.x=Math.random()*W;}}if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;}
     function drawPart(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);var k=cur.part;if(k==='petal'){ctx.fillStyle=withA(cur.pcol,.85);ctx.beginPath();ctx.ellipse(0,0,p.r*1.6,p.r*.8,0,0,7);ctx.fill();}else if(k==='leaf'){ctx.fillStyle=withA(cur.pcol,.9);ctx.beginPath();ctx.ellipse(0,0,p.r*1.8,p.r*.9,0,0,7);ctx.fill();ctx.strokeStyle='rgba(80,50,20,.4)';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(-p.r*1.6,0);ctx.lineTo(p.r*1.6,0);ctx.stroke();}else if(k==='snow'){ctx.fillStyle='rgba(255,255,255,.92)';ctx.beginPath();ctx.arc(0,0,p.r*.9,0,7);ctx.fill();}else{var fl=.5+.5*Math.sin(nowMs/300+p.ph);ctx.fillStyle=withA(cur.pcol,.5+fl*.4);ctx.beginPath();ctx.arc(0,0,p.r*.8,0,7);ctx.fill();}ctx.restore();}
     function grade(){ctx.save();ctx.globalCompositeOperation='soft-light';ctx.globalAlpha=.5;ctx.fillStyle=cur.grade;ctx.fillRect(0,0,W,H);ctx.restore();var vg=ctx.createRadialGradient(W/2,H*.48,Math.min(W,H)*.2,W/2,H*.55,Math.max(W,H)*.78);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(20,24,16,.17)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);}
-    function draw(now){var dt=Math.min(40,now-(draw._l||now));draw._l=now;nowMs=now;var t=now/1000;sunX=W*.74;sunY=H*cur.sunY;if(dense&&FINE&&!RM){px+=(tpx-px)*.06;py+=(tpy-py)*.06;}sky();sunDraw();L(.4,.25,function(){for(var c=0;c<clouds.length;c++){clouds[c].x+=clouds[c].v*(dt/16);if(clouds[c].x>W+90)clouds[c].x=-90;cloud(clouds[c]);}});L(.3,.18,function(){for(var b=0;b<birds.length;b++){birds[b].x+=birds[b].v*(dt/16);if(birds[b].x>W+14)birds[b].x=-14;bird(birds[b],t);}});hazeBand();L(.5,.3,function(){hill(.50,16,180,.4,cur.hillFar);});L(.8,.42,function(){hill(.60,22,150,1.6,cur.hillMid);});L(1.1,.55,function(){hill(.70,26,210,2.6,cur.hillNear);});if(dense)L(1.2,.6,water);L(1.3,.62,function(){for(var ti=0;ti<trees.length;ti++)tree(trees[ti]);});L(1.5,.7,function(){var st=H*.80;ctx.beginPath();ctx.moveTo(-24,H+24);ctx.lineTo(-24,st);for(var x=-24;x<=W+24;x+=10){ctx.lineTo(x,st+Math.sin(x/130)*6);}ctx.lineTo(W+24,H+24);ctx.closePath();var g=ctx.createLinearGradient(0,st,0,H);g.addColorStop(0,cur.soil);g.addColorStop(1,darken(cur.soil,.25));ctx.fillStyle=g;ctx.fill();if(dense)pathDraw();});L(1.7,.78,function(){for(var f=0;f<flora.length;f++)if(flora[f].depth>.5)plant(flora[f],t);for(var f2=0;f2<flora.length;f2++)if(flora[f2].depth<=.5)plant(flora[f2],t);});if(dense&&(cur.part==='petal'||cur.part==='pollen')){for(var k=0;k<bflies.length;k++){var bf=bflies[k];bf.x+=Math.cos(bf.dir)*bf.v;bf.dir+=Math.sin(t*1.1+bf.ph)*.05;if(bf.x<W*.2)bf.dir=0;if(bf.x>W*.9)bf.dir=Math.PI;butterfly(bf,t);}}for(var i=0;i<parts.length;i++){stepPart(parts[i],t,dt);drawPart(parts[i]);}grade();}
+    function draw(now){var dt=Math.min(40,now-(draw._l||now));draw._l=now;nowMs=now;var t=now/1000;sunX=W*.74;sunY=H*cur.sunY;if(dense&&FINE&&!RM){px+=(tpx-px)*.06;py+=(tpy-py)*.06;}sky();sunDraw();L(.4,.25,function(){for(var c=0;c<clouds.length;c++){clouds[c].x+=clouds[c].v*(dt/16);if(clouds[c].x>W+90)clouds[c].x=-90;cloud(clouds[c]);}});L(.3,.18,function(){for(var b=0;b<birds.length;b++){birds[b].x+=birds[b].v*(dt/16);if(birds[b].x>W+14)birds[b].x=-14;bird(birds[b],t);}});hazeBand();L(.5,.3,function(){hill(.50,16,180,.4,cur.hillFar);});L(.8,.42,function(){hill(.60,22,150,1.6,cur.hillMid);});L(1.1,.55,function(){hill(.70,26,210,2.6,cur.hillNear);});if(dense)L(1.2,.6,water);L(1.3,.62,function(){for(var ti=0;ti<trees.length;ti++)tree(trees[ti]);});L(1.5,.7,function(){var st=H*.80;ctx.beginPath();ctx.moveTo(-24,H+24);ctx.lineTo(-24,st);for(var x=-24;x<=W+24;x+=10){ctx.lineTo(x,st+Math.sin(x/130)*6);}ctx.lineTo(W+24,H+24);ctx.closePath();var g=ctx.createLinearGradient(0,st,0,H);g.addColorStop(0,cur.soil);g.addColorStop(.55,cur.soil);g.addColorStop(1,darken(cur.soil,.12));ctx.fillStyle=g;ctx.fill();});L(1.7,.78,function(){for(var f=0;f<flora.length;f++)if(flora[f].depth>.5)plant(flora[f],t);for(var f2=0;f2<flora.length;f2++)if(flora[f2].depth<=.5)plant(flora[f2],t);});if(dense&&(cur.part==='petal'||cur.part==='pollen')){for(var k=0;k<bflies.length;k++){var bf=bflies[k];bf.x+=Math.cos(bf.dir)*bf.v;bf.dir+=Math.sin(t*1.1+bf.ph)*.05;if(bf.x<W*.2)bf.dir=0;if(bf.x>W*.9)bf.dir=Math.PI;butterfly(bf,t);}}for(var i=0;i<parts.length;i++){stepPart(parts[i],t,dt);drawPart(parts[i]);}grade();}
     function frame(now){if(cur.skyTop!==tgt.skyTop||cur.part!==tgt.part)lerpPal(.06);draw(now);if(running&&visible)raf=requestAnimationFrame(frame);else running=false;}
     function start(){if(!running){running=true;raf=requestAnimationFrame(frame);}}
     function stop(){running=false;if(raf)cancelAnimationFrame(raf);}
@@ -1121,87 +1035,75 @@ footer .fine{color:#9fac86;font-size:.85rem;margin-top:16px}
     this.resize=resize;resize();start();
   }
 
-  /* ===== INIT ===== */
-  var heroSeason=nowSeason();setAccent(heroSeason);
-  // The SVG wordmark needs no JS: CSS reads body[data-season]. JS only drives the canvas scene.
-  var hero=null;
-  try{hero=new Scene($('#scene'),{season:heroSeason,dense:true});}
-  catch(err){var sw=$('.scene-wrap');if(sw)sw.classList.add('scene-fallback');}
-  if(hero)hero.setVisible(false);  // keep the heavy hero canvas idle behind the loader
-  $all('.seasons button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-season')===heroSeason?'true':'false');b.addEventListener('click',function(){var s=b.getAttribute('data-season');$all('.seasons button').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');setAccent(s);if(hero)hero.to(s);});});
-  // Loader handoff: cloak the wordmark, then play its intro AS the loader dissolves (no snap-back).
-  (function(){
-    var WM=$('.wordmark');
-    function reveal(){ if(!WM) return; WM.classList.remove('wm-cloak'); playIntro(); }
-    function arm(){
-      if(WM) WM.classList.add('wm-cloak');
-      var fired=false; function go(){ if(fired)return; fired=true; reveal(); }
-      window.addEventListener('gcs:fading', function(){ setTimeout(go,280); }, {once:true});
-      window.addEventListener('gcs:revealed', go, {once:true});
-      setTimeout(go, 11000);
-    }
-    if(document.getElementById('gcs-loader')) arm(); else playIntro();
-    window.addEventListener('pageshow', function(e){
-      if(!e.persisted) return;
-      if(window.__gcsReplay){ arm(); window.__gcsReplay(); } else playIntro();
-    });
-  })();
-  var heroWoke=false;
-  function wakeHero(){
-    if(heroWoke||!hero)return; heroWoke=true;
-    hero.setVisible(true);
-    if('IntersectionObserver' in window){new IntersectionObserver(function(e){hero.setVisible(e[0].isIntersecting);},{threshold:.02}).observe($('#scene'));}
-    document.addEventListener('visibilitychange',function(){hero.setVisible(!document.hidden);});
+/* ===== seasons explorer wiring ===== */
+(function(){
+  var SVC={
+    spring:{nm:'Waking the garden up',mo:'Spring · March–May',items:[
+      {t:'Spring clean-up',d:'Clearing winter debris, cutting back perennials, tidying every bed.'},
+      {t:'Planting annuals & bulbs',d:'The flowers you plant every year, put in with care.'},
+      {t:'Fresh mulch & edging',d:'A clean, finished look that also keeps the weeds down.'}]},
+    summer:{nm:'Keeping it thriving',mo:'Summer · June–August',items:[
+      {t:'Weeding & deadheading',d:'Beds kept neat, blooms kept coming all summer long.'},
+      {t:'Watering & container care',d:'Gardens, pots and hanging baskets kept lush through the heat.'},
+      {t:'While you’re away',d:'Vacation or hospital watering — with a photo so your family knows all is well.'}]},
+    autumn:{nm:'Putting it to bed',mo:'Autumn · September–November',items:[
+      {t:'Leaf raking & hauling',d:'Raked, bagged and taken away — you don’t lift a thing.'},
+      {t:'Fall clean-up',d:'Cutting back, clearing beds and a last tidy before the cold.'},
+      {t:'Bulbs for spring',d:'Planting now so your garden greets you in April.'}]},
+    winter:{nm:'Safe, warm & cared for',mo:'Winter · December–February',items:[
+      {t:'Snow shoveling & salt',d:'Walks and steps cleared and safe — no more risky falls.'},
+      {t:'Holiday lights',d:'Put up and taken down, so you never climb a ladder.'},
+      {t:'Houseplant care & planning',d:'Indoor green tended, and next year’s garden planned together.'}]}
+  };
+  var leaf='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-7-6-7-10a7 7 0 0 1 14 0c0 4-3 7-7 10Z"/><path d="M12 21V8"/></svg>';
+  var box=document.getElementById('seaSvc'), nameEl=document.getElementById('seaName'), moEl=document.getElementById('seaMonths');
+  function render(s){var v=SVC[s];nameEl.textContent=v.nm;moEl.innerHTML=v.mo;box.style.opacity=0;
+    setTimeout(function(){box.innerHTML=v.items.map(function(it){return '<div class="svc"><div class="ic">'+leaf+'</div><h4>'+it.t+'</h4><p>'+it.d+'</p></div>';}).join('');box.style.opacity=1;},300);}
+  var canvas=document.getElementById('seasonScene'), scene=null, cur='spring';
+  function ensure(){ if(!scene && canvas.getBoundingClientRect().width>0){ try{ scene=new Scene(canvas,{season:cur,dense:true}); }catch(e){} } }
+  var tabs=[].slice.call(document.querySelectorAll('.season-tabs button'));
+  var auto=null, touched=false;
+  function go(s){ cur=s; tabs.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-s')===s);}); if(scene)scene.to(s); render(s); }
+  tabs.forEach(function(b){b.addEventListener('click',function(){touched=true;if(auto){clearInterval(auto);auto=null;}go(b.getAttribute('data-s'));});});
+  function startWhenVisible(){
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ ensure(); if(scene)scene.setVisible(true);
+        if(!auto && !touched && !RMOTION){ var order=['spring','summer','autumn','winter'],i=0; auto=setInterval(function(){ if(touched){clearInterval(auto);auto=null;return;} i=(i+1)%4; go(order[i]); },5200); }
+      } else if(scene){ scene.setVisible(false); } });},{threshold:.25}).observe(document.querySelector('.season-stage'));
+    } else { ensure(); }
   }
-  if(document.getElementById('gcs-loader')){window.addEventListener('gcs:revealed',wakeHero,{once:true});setTimeout(wakeHero,4000);}else wakeHero();
+  render('spring');
+  window.addEventListener('load', function(){ ensure(); startWhenVisible(); window.addEventListener('resize',function(){ if(scene)scene.resize(); }); });
+})();
 
-  var cards=[];
-  $all('canvas[data-card]').forEach(function(cv){try{var sc=new Scene(cv,{season:cv.getAttribute('data-card'),dense:false});cards.push(sc);if('IntersectionObserver' in window){sc.setVisible(false);new IntersectionObserver(function(e){sc.setVisible(e[0].isIntersecting);},{threshold:.05}).observe(cv);}}catch(err){var card=cv.parentNode;if(card)card.classList.add('scene-fallback');}});
+/* ===== reveals, hero reveal, tilt, sticky bar ===== */
+(function(){
+  var hero=document.getElementById('hero'), fired=false;
+  function playIntro(){ var wm=document.querySelector('.wordmark'); if(!wm)return; wm.classList.remove('intro'); wm.getBoundingClientRect(); wm.classList.add('intro'); }
+  function reveal(){ if(fired)return; fired=true; hero.classList.add('revealed'); playIntro();
+    if(!RMOTION && window.gsap && window.SplitText){ gsap.registerPlugin(SplitText);
+      var go=function(){ SplitText.create('.headline',{type:'lines,words',mask:'lines',onSplit:function(self){return gsap.from(self.lines,{duration:1.0,yPercent:115,opacity:0,stagger:0.13,ease:'power3.out'});}}); };
+      (document.fonts&&document.fonts.ready)?document.fonts.ready.then(go):go(); } }
+  if(document.getElementById('gcs-loader')){ window.addEventListener('gcs:fading',function(){setTimeout(reveal,260);},{once:true}); window.addEventListener('gcs:revealed',reveal,{once:true}); setTimeout(reveal,9000); }
+  else { window.addEventListener('load', reveal); if(document.readyState==='complete')reveal(); }
 
-  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(hero)hero.resize();cards.forEach(function(c){c.resize();});},180);});
+  /* scroll reveals for EVERY .rv */
+  var rvs=[].slice.call(document.querySelectorAll('.rv'));
+  if(!RMOTION && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(el){io.observe(el);});
+    setTimeout(function(){rvs.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('in');});},400);
+  } else { rvs.forEach(function(el){el.classList.add('in');}); }
 
-  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});$all('.rv').forEach(function(el){io.observe(el);});}else{$all('.rv').forEach(function(el){el.classList.add('in');});}
+  /* portrait 3D tilt */
+  var ps=document.querySelector('.portrait-stage'), pt=ps&&ps.querySelector('.portrait');
+  if(ps&&pt&&!RMOTION&&window.matchMedia('(pointer:fine)').matches){ ps.addEventListener('mousemove',function(e){var b=ps.getBoundingClientRect();var x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;pt.style.transform='rotateY('+(x*9).toFixed(2)+'deg) rotateX('+(-y*9).toFixed(2)+'deg)';}); ps.addEventListener('mouseleave',function(){pt.style.transform='';}); }
 
-  var callbar=$('#callbar');
-  if(callbar&&'IntersectionObserver' in window){new IntersectionObserver(function(e){callbar.classList.toggle('hide',e[0].isIntersecting);},{threshold:.18}).observe($('#book'));}
-
-  // Mariah's portrait: gentle 3D tilt + light sheen toward the cursor (desktop only)
-  (function(){var ps=$('.portrait-stage');if(!ps||!FINE)return;var pt=$('.portrait',ps);if(!pt)return;
-    ps.addEventListener('mousemove',function(e){var r=ps.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;pt.style.transform='rotateY('+(x*9).toFixed(2)+'deg) rotateX('+(-y*9).toFixed(2)+'deg)';pt.style.setProperty('--sx',(x*100+50).toFixed(1)+'%');pt.style.setProperty('--sy',(y*100+50).toFixed(1)+'%');});
-    ps.addEventListener('mouseleave',function(){pt.style.transform='';});})();
-
-  var dp=$('#daypick'),dateInput=$('#date'),DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],DOWF=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],MONF=['January','February','March','April','May','June','July','August','September','October','November','December'],today=new Date();
-  for(var i=0;i<14;i++){(function(i){var d=new Date(today.getFullYear(),today.getMonth(),today.getDate()+i);var btn=document.createElement('button');btn.type='button';btn.className='chip';btn.setAttribute('aria-pressed','false');var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');var lab=i===0?'Today':DOW[d.getDay()];btn.innerHTML='<span class="d">'+d.getDate()+'</span><span class="m">'+lab+'</span>';btn.setAttribute('aria-label',(i===0?'Today, ':'')+DOWF[d.getDay()]+', '+MONF[d.getMonth()]+' '+d.getDate());btn.addEventListener('click',function(){$all('.chip',dp).forEach(function(c){c.setAttribute('aria-pressed','false');});btn.setAttribute('aria-pressed','true');dateInput.value=iso;});dp.appendChild(btn);})(i);}
-  var timeInput=$('#time');
-  $all('.tchip').forEach(function(b){b.addEventListener('click',function(){$all('.tchip').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');timeInput.value=b.getAttribute('data-time');});});
-
-  // ---- Spam shield: paste your Cloudflare Turnstile SITE key to switch it on ----
-  var TURNSTILE_SITEKEY='';
-  (function(){
-    if(!TURNSTILE_SITEKEY)return;
-    var slot=$('#ts-slot');if(!slot)return;
-    var w=document.createElement('div');w.className='cf-turnstile';
-    w.setAttribute('data-sitekey',TURNSTILE_SITEKEY);w.setAttribute('data-theme','light');
-    slot.appendChild(w);
-    var sc=document.createElement('script');
-    sc.src='https://challenges.cloudflare.com/turnstile/v0/api.js';sc.async=true;sc.defer=true;
-    document.head.appendChild(sc);
-  })();
-
-  var form=$('#bookForm'),stt=$('#status'),send=$('#send');
-  form.addEventListener('submit',function(e){
-    e.preventDefault();stt.className='status';
-    var fd=new FormData(form);
-    var name=(fd.get('name')||'').toString().trim(),phone=(fd.get('phone')||'').toString().trim();
-    var nameEl=$('#name'),phoneEl=$('#phone');nameEl.removeAttribute('aria-invalid');phoneEl.removeAttribute('aria-invalid');
-    if(!name||!phone){var miss=!name?nameEl:phoneEl;miss.setAttribute('aria-invalid','true');stt.textContent=(!name&&!phone)?'Please add your name and a phone number so Mariah can reach you.':(!name?'Please add your name so Mariah knows who to ask for.':'Please add a phone number so Mariah can reach you.');stt.className='status err';miss.focus();return;}
-    send.disabled=true;send.textContent='Sending\u2026';
-    fetch('/api/contact',{method:'POST',body:fd})
-      .then(function(r){return r.json().then(function(d){return {ok:r.ok&&d.ok};},function(){return {ok:r.ok};});})
-      .then(function(res){if(res.ok){stt.textContent='Thank you \u2014 your request is on its way to Mariah. She\u2019ll reach out soon to confirm. \uD83C\uDF31';stt.className='status ok';form.reset();$all('.chip,.tchip').forEach(function(c){c.setAttribute('aria-pressed','false');});}else throw new Error();})
-      .catch(function(){stt.innerHTML='Sorry, that didn\u2019t send \u2014 but don\u2019t worry. <a href="tel:+16083417826">Call</a> or <a href=\"sms:+16083417826?&body=Hi%20Mariah%21%20I%20saw%20your%20website%20and%20would%20love%20some%20help%20with%20\">text Mariah</a> and she\u2019ll take care of you.';stt.className='status err';})
-      .then(function(){send.disabled=false;send.textContent='Send my request';});
-  });
+  /* persistent CTA after the hero scrolls past: mobile = bottom bar, desktop = header button */
+  var bar=document.getElementById('callbar');
+  function onScroll(){ var trigger=Math.max(360, window.innerHeight*0.62), on=window.scrollY>trigger;
+    bar.classList.toggle('show',on); document.body.classList.toggle('scrolled',on); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 })();
 </script>
 </body>
