@@ -170,7 +170,7 @@
   @media(prefers-reduced-motion:reduce){.bgpetal{animation-duration:160s!important}}
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
-  a[href^="tel:"],a[href^="sms:"]{white-space:nowrap}
+  a[href^="tel:"],a[href^="sms:"]{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
 
   /* ===== nav ===== */
   .nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;
@@ -196,6 +196,8 @@
     background:linear-gradient(135deg,var(--signal-bright),var(--signal) 52%,var(--signal-deep));
     box-shadow:0 12px 28px rgba(230,32,126,.32),inset 0 1px 0 rgba(255,255,255,.32);transition:transform .2s var(--ease-soft),box-shadow .2s}
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(230,32,126,.4),inset 0 1px 0 rgba(255,255,255,.32)}
+  .btn:active{transform:translateY(0);box-shadow:0 8px 20px rgba(230,32,126,.3),inset 0 1px 2px rgba(230,32,126,.2)}
+  .btn:focus-visible{outline:3px solid rgba(230,32,126,.6);outline-offset:2px}
   .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:3.6rem;min-height:56px;padding:0 26px;border-radius:15px;
     font-weight:800;font-size:1.18rem;text-decoration:none;color:var(--signal-deep);
     background:rgba(255,255,255,.72);backdrop-filter:blur(10px) saturate(150%);border:2px solid rgba(230,32,126,.28);transition:transform .2s var(--ease-soft),border-color .2s}
@@ -325,6 +327,8 @@
   .seasons .topline{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:24px}
   .season-tabs{display:inline-flex;gap:3px;padding:5px;border-radius:999px;background:rgba(255,255,255,.66);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);box-shadow:0 8px 22px rgba(120,40,70,.08)}
   .season-tabs button{border:0;background:transparent;font-family:var(--sans);font-weight:700;font-size:.98rem;color:var(--ink-soft);padding:10px 20px;border-radius:999px;cursor:pointer;transition:color .25s,background .25s;min-height:44px}
+  .season-tabs button:hover:not(.on){background:rgba(230,32,126,.08)}
+  .season-tabs button:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
   .season-tabs button.on{background:linear-gradient(135deg,var(--signal-bright),var(--signal-deep));color:#fff;box-shadow:0 6px 16px rgba(230,32,126,.3)}
   .season-stage{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:16/6.2;border:1px solid var(--line);box-shadow:0 26px 64px rgba(60,30,45,.2)}
   @media(max-width:760px){.season-stage{aspect-ratio:16/11}}
