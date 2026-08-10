@@ -205,24 +205,24 @@
   .ico{width:20px;height:20px;flex:0 0 auto}
 
   /* ===== hero ===== */
-  .hero{position:relative;z-index:2;min-height:min(100vh,980px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:clamp(112px,12.2vh,148px) 0 clamp(60px,6.4vh,86px);opacity:0;transition:opacity .9s var(--ease-out)}
+  .hero{position:relative;z-index:2;min-height:min(100vh,980px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:clamp(106px,11.6vh,140px) 0 clamp(56px,6.0vh,80px);opacity:0;transition:opacity .9s var(--ease-out)}
   .hero.revealed{opacity:1}
-  .hero .wrap{display:grid;grid-template-columns:1fr minmax(360px,448px);gap:clamp(52px,5.2vw,76px);align-items:center;width:100%}
+  .hero .wrap{display:grid;grid-template-columns:1fr minmax(360px,456px);gap:clamp(48px,4.8vw,70px);align-items:center;width:100%}
   .hero::before{content:"";position:absolute;left:50%;top:50%;width:min(60vw,760px);height:min(60vh,620px);transform:translate(-58%,-46%);z-index:-1;
     background:radial-gradient(circle, rgba(253,247,244,.86), rgba(253,247,244,.34) 46%, rgba(253,247,244,0) 72%);filter:blur(6px)}
   @media(max-width:900px){.hero{padding-top:108px}.hero .wrap{grid-template-columns:1fr;gap:30px;text-align:center}}
-  .copy{max-width:600px}
-  @media(min-width:901px){.copy{padding-left:4px}.portrait-stage{transform:translateY(8px)}}
+  .copy{max-width:610px}
+  @media(min-width:901px){.copy{padding-left:2px}.portrait-stage{transform:translateY(6px)}}
   .eyebrow{display:inline-flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;color:var(--signal-deep);margin-bottom:20px}
   .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--signal),#ff9ec7)}
   @media(max-width:900px){.eyebrow{justify-content:center}}
   .headline{font-family:var(--serif);font-weight:500;font-size:clamp(2.5rem,5.6vw,5rem);line-height:1.12;letter-spacing:-.022em;max-width:16ch;text-wrap:balance}
   @media(max-width:900px){.headline{max-width:none}}
   .headline em{font-style:italic;font-weight:500;color:var(--signal);white-space:nowrap}
-  .sub{margin-top:20px;font-size:clamp(1.06rem,1.35vw,1.26rem);color:var(--ink-soft);max-width:48ch}
+  .sub{margin-top:18px;font-size:clamp(1.06rem,1.35vw,1.26rem);color:var(--ink-soft);max-width:48ch}
   @media(max-width:900px){.sub{margin-inline:auto}}
   .sub b{color:var(--ink);font-weight:600}
-  .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:30px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:28px}
   @media(max-width:900px){.cta-row{justify-content:center}}
   .trust{margin-top:24px;display:flex;flex-wrap:wrap;gap:9px 22px;color:var(--ink-soft);font-size:.98rem;font-weight:600}
   @media(max-width:900px){.trust{justify-content:center}}
@@ -232,8 +232,8 @@
   .pframe{position:absolute;inset:0;border-radius:30px;z-index:0}
   .pframe-a{transform:rotate(-4deg) translate(-13px,-11px);background:linear-gradient(150deg,var(--signal),#ff8a52);box-shadow:0 18px 46px rgba(230,32,126,.22)}
   .pframe-b{transform:rotate(3deg) translate(14px,13px);background:linear-gradient(150deg,#7cc7f0,#b074d6)}
-  .portrait{position:relative;z-index:2;aspect-ratio:1;border-radius:26px;overflow:hidden;width:100%;border:6px solid #ff4d98;box-shadow:0 24px 60px rgba(60,30,45,.26),0 0 0 1px rgba(255,255,255,.55) inset;transition:transform .25s var(--ease-soft);will-change:transform}
-  .portrait::after{content:"";position:absolute;left:10px;right:10px;bottom:-14px;height:18px;background:radial-gradient(closest-side, rgba(120,40,70,.24), rgba(120,40,70,0));filter:blur(10px);pointer-events:none}
+  .portrait{position:relative;z-index:2;aspect-ratio:1;border-radius:26px;overflow:hidden;width:100%;border:6px solid #ff4d98;box-shadow:0 24px 60px rgba(60,30,45,.26),0 0 0 1px rgba(255,255,255,.55) inset,0 16px 28px rgba(120,40,70,.12);transition:transform .25s var(--ease-soft);will-change:transform}
+  .portrait::after{content:"";position:absolute;left:8px;right:8px;bottom:-16px;height:22px;background:radial-gradient(closest-side, rgba(120,40,70,.26), rgba(120,40,70,0));filter:blur(12px);pointer-events:none}
   .portrait img{width:100%;height:100%;object-fit:cover;display:block}
   .portrait .chip{position:absolute;left:14px;bottom:14px;z-index:3;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.92);color:var(--signal-deep);font-weight:700;font-size:.84rem;padding:7px 13px;border-radius:999px;box-shadow:0 6px 16px rgba(120,40,70,.18)}
   .psprig{position:absolute;z-index:3;top:-18px;right:-8px;width:74px;filter:drop-shadow(0 4px 8px rgba(120,40,70,.18))}
@@ -368,11 +368,11 @@
   .towns span.you{background:linear-gradient(135deg,var(--signal-bright),var(--signal-deep));color:#fff;border-color:transparent}
 
   /* ===== hero wordmark (flower-to-letter) ===== */
-  .hero-logo{width:100%;max-width:clamp(380px,52vw,680px);margin:0 auto clamp(22px,3.8vh,46px);display:block}
+  .hero-logo{width:100%;max-width:clamp(390px,54vw,700px);margin:0 auto clamp(20px,3.4vh,40px);display:block}
   .hero-logo .wordmark{width:100%;height:auto;display:block;overflow:visible}
-  @media(max-width:900px){.hero-logo{max-width:min(92vw,490px);margin-bottom:clamp(14px,2.4vh,30px)}}
-  .gl{font-family:var(--serif);font-weight:600;font-size:112px;letter-spacing:0;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 3px 5px rgba(168,18,90,.22));font-variation-settings:"SOFT" 50}
-.wm-sub{font-family:var(--sans);font-weight:700;font-size:19px;fill:#bf1568;letter-spacing:.04em}
+  @media(max-width:900px){.hero-logo{max-width:min(92vw,500px);margin-bottom:clamp(14px,2.2vh,26px)}}
+  .gl{font-family:var(--serif);font-weight:600;font-size:110px;letter-spacing:0;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 3px 5px rgba(168,18,90,.22));font-variation-settings:"SOFT" 50}
+.wm-sub{font-family:var(--sans);font-weight:700;font-size:18px;fill:#bf1568;letter-spacing:.045em}
 
 /* transform anchors (avoid translate-attribute vs CSS-transform conflicts by scaling inner cores) */
 .mound{transform-box:fill-box;transform-origin:center bottom}
