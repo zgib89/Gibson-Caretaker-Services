@@ -395,6 +395,12 @@
 .wordmark.intro .wm-sub{animation:gxSub .6s 3.4s ease-out both}
 .wordmark.intro .sheen{animation:gxSheen .9s 3.55s ease-out both}
 
+@media(prefers-reduced-motion:reduce){
+  .wordmark.intro .soilband,.wordmark.intro .seed,.wordmark.intro .mound,.wordmark.intro .stem,
+  .wordmark.intro .flwcore,.wordmark.intro .flw,.wordmark.intro .iflwcore,.wordmark.intro .iflw,
+  .wordmark.intro .petal,.wordmark.intro .gl,.wordmark.intro .wm-sub,.wordmark.intro .sheen{animation:none!important}
+}
+
 @keyframes gxSoil{from{opacity:0;transform:scaleX(.2)}to{opacity:1;transform:scaleX(1)}}
 @keyframes gxSeed{0%{transform:translateY(-150px);opacity:0}14%{opacity:1}45%{transform:translateY(0)}62%{opacity:1}85%{opacity:0}100%{opacity:0}}
 @keyframes gxMound{0%{opacity:0;transform:scaleY(0)}18%{opacity:1;transform:scaleY(1)}55%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(.1)}}
@@ -982,12 +988,12 @@
 var RMOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
 /* drifting petals — biased to edges, away from the reading column */
-(function(){var box=document.querySelector('.bgpetals');if(!box)return;for(var i=0;i<12;i++){var d=document.createElement('div');d.className='bgpetal';var sz=16+Math.random()*26;
+if(!RMOTION){(function(){var box=document.querySelector('.bgpetals');if(!box)return;for(var i=0;i<12;i++){var d=document.createElement('div');d.className='bgpetal';var sz=16+Math.random()*26;
   var edge=Math.random();var left=edge<0.5?(Math.random()*26):(74+Math.random()*26); /* keep off center */
   d.style.left=left+'%';d.style.setProperty('--o',(0.4+Math.random()*0.35).toFixed(2));
   d.style.animation=(Math.random()<0.5?'fallA':'fallB')+' '+(16+Math.random()*16).toFixed(1)+'s linear '+(-Math.random()*22).toFixed(1)+'s infinite';
   if(Math.random()<0.4)d.style.filter='blur(.7px)';
-  d.innerHTML='<svg width="'+sz.toFixed(0)+'" viewBox="0 0 100 128"><use href="#petal"/></svg>';box.appendChild(d);}})();
+  d.innerHTML='<svg width="'+sz.toFixed(0)+'" viewBox="0 0 100 128"><use href="#petal"/></svg>';box.appendChild(d);}})();}
 
 /* ===== SEASONAL CANVAS ENGINE (proven, from the live site) ===== */
 var FINE = !!(window.matchMedia && window.matchMedia('(pointer: fine)').matches);
@@ -1014,6 +1020,7 @@ var RM = RMOTION;
     var raf=null,running=false,visible=true,nowMs=0;
     var px=0,py=0,tpx=0,tpy=0;
     var dense=!!opts.dense, sunX=0,sunY=0;
+    var fpsFrames=[],fpsCheckTime=0;
     var FCOL=['#e6207e','#ff5fa2','#f5b800','#2f6fd6','#ffffff','#ff7a4d','#b06fd6'];
     function clone(o){var n={};for(var k in o)n[k]=o[k];return n;}
     function toRGB(v){if((''+v)[0]==='#')return hex(v);var m=(''+v).match(/\d+/g);return [+m[0],+m[1],+m[2]];}
@@ -1052,7 +1059,7 @@ var RM = RMOTION;
     function drawPart(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);var k=cur.part;if(k==='petal'){ctx.fillStyle=withA(cur.pcol,.85);ctx.beginPath();ctx.ellipse(0,0,p.r*1.6,p.r*.8,0,0,7);ctx.fill();}else if(k==='leaf'){ctx.fillStyle=withA(cur.pcol,.9);ctx.beginPath();ctx.ellipse(0,0,p.r*1.8,p.r*.9,0,0,7);ctx.fill();ctx.strokeStyle='rgba(80,50,20,.4)';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(-p.r*1.6,0);ctx.lineTo(p.r*1.6,0);ctx.stroke();}else if(k==='snow'){ctx.fillStyle='rgba(255,255,255,.92)';ctx.beginPath();ctx.arc(0,0,p.r*.9,0,7);ctx.fill();}else{var fl=.5+.5*Math.sin(nowMs/300+p.ph);ctx.fillStyle=withA(cur.pcol,.5+fl*.4);ctx.beginPath();ctx.arc(0,0,p.r*.8,0,7);ctx.fill();}ctx.restore();}
     function grade(){ctx.save();ctx.globalCompositeOperation='soft-light';ctx.globalAlpha=.5;ctx.fillStyle=cur.grade;ctx.fillRect(0,0,W,H);ctx.restore();var vg=ctx.createRadialGradient(W/2,H*.48,Math.min(W,H)*.2,W/2,H*.55,Math.max(W,H)*.78);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(20,24,16,.17)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);}
     function draw(now){var dt=Math.min(40,now-(draw._l||now));draw._l=now;nowMs=now;var t=now/1000;sunX=W*.74;sunY=H*cur.sunY;if(dense&&FINE&&!RM){px+=(tpx-px)*.06;py+=(tpy-py)*.06;}sky();sunDraw();L(.4,.25,function(){for(var c=0;c<clouds.length;c++){clouds[c].x+=clouds[c].v*(dt/16);if(clouds[c].x>W+90)clouds[c].x=-90;cloud(clouds[c]);}});L(.3,.18,function(){for(var b=0;b<birds.length;b++){birds[b].x+=birds[b].v*(dt/16);if(birds[b].x>W+14)birds[b].x=-14;bird(birds[b],t);}});hazeBand();L(.5,.3,function(){hill(.50,16,180,.4,cur.hillFar);});L(.8,.42,function(){hill(.60,22,150,1.6,cur.hillMid);});L(1.1,.55,function(){hill(.70,26,210,2.6,cur.hillNear);});if(dense)L(1.2,.6,water);L(1.3,.62,function(){for(var ti=0;ti<trees.length;ti++)tree(trees[ti]);});L(1.5,.7,function(){var st=H*.80;ctx.beginPath();ctx.moveTo(-24,H+24);ctx.lineTo(-24,st);for(var x=-24;x<=W+24;x+=10){ctx.lineTo(x,st+Math.sin(x/130)*6);}ctx.lineTo(W+24,H+24);ctx.closePath();var g=ctx.createLinearGradient(0,st,0,H);g.addColorStop(0,cur.soil);g.addColorStop(.55,cur.soil);g.addColorStop(1,darken(cur.soil,.12));ctx.fillStyle=g;ctx.fill();});L(1.7,.78,function(){for(var f=0;f<flora.length;f++)if(flora[f].depth>.5)plant(flora[f],t);for(var f2=0;f2<flora.length;f2++)if(flora[f2].depth<=.5)plant(flora[f2],t);});if(dense&&(cur.part==='petal'||cur.part==='pollen')){for(var k=0;k<bflies.length;k++){var bf=bflies[k];bf.x+=Math.cos(bf.dir)*bf.v;bf.dir+=Math.sin(t*1.1+bf.ph)*.05;if(bf.x<W*.2)bf.dir=0;if(bf.x>W*.9)bf.dir=Math.PI;butterfly(bf,t);}}for(var i=0;i<parts.length;i++){stepPart(parts[i],t,dt);drawPart(parts[i]);}grade();}
-    function frame(now){if(cur.skyTop!==tgt.skyTop||cur.part!==tgt.part)lerpPal(.06);draw(now);if(running&&visible)raf=requestAnimationFrame(frame);else running=false;}
+    function frame(now){if(cur.skyTop!==tgt.skyTop||cur.part!==tgt.part)lerpPal(.06);draw(now);fpsFrames.push(now);if(now-fpsCheckTime>2000){var fps=Math.round(fpsFrames.length/(now-fpsCheckTime)*1000);if(fps<50&&dense){parts=[];var pn=Math.min(26,Math.round(W*H/20000));for(var i=0;i<pn;i++)parts.push(mkPart());dense=false;}fpsFrames=[];fpsCheckTime=now;}if(running&&visible)raf=requestAnimationFrame(frame);else running=false;}
     function start(){if(!running){running=true;raf=requestAnimationFrame(frame);}}
     function stop(){running=false;if(raf)cancelAnimationFrame(raf);}
     if(dense&&FINE&&!RM){window.addEventListener('mousemove',function(e){var r=canvas.getBoundingClientRect();tpx=((e.clientX-r.left)/r.width-.5)*-10;tpy=((e.clientY-r.top)/r.height-.5)*-6;});}
