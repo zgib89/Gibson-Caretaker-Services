@@ -22,7 +22,7 @@
   "requiredAssets": [
     {
       "path": "public\\index.html",
-      "sha256": "3291e3f65c15d34eaf71610a1de49ff2ffacbe59c2e58ab480ffa9c4ed3b7ddc"
+            "sha256": "965113f003b402234919879be4ede43140c09748b2c2a51aa967fa346e454f91"
     },
     {
       "path": "public\\ba-garden.png",
