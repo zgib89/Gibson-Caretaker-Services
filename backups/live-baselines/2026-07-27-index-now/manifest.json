@@ -1,0 +1,70 @@
+{
+  "profileId": "gcs-live-baseline-2026-07-27-index-now",
+  "description": "Canonical recovered production variant with barnwood frame, request form flow, iMessage proof preview, and three neighbor proof photos.",
+  "sourceSnapshotPath": "backups/live-baselines/2026-07-27-index-now/index.html",
+  "requiredMarkers": [
+    "id=\"rq-form\"",
+    "Request a visit",
+    "What the neighbors <em>are saying.</em>",
+    "ba-garden.png",
+    "ba-container.png",
+    "ba-chairs.png",
+    "iMessage",
+    "portrait-stage",
+    "barnwood"
+  ],
+  "prohibitedMarkers": [
+    "id=\"contact-form\"",
+    "3rd-neighbor-proof.png",
+    "0eda75b9-acba-4228-8f07-386352842b12-ChatGPT Image Jul 1, 2026, 01_22_15 AM.png",
+    "e39f8b37-93c3-418c-868d-2d084574f0c8-ChatGPT Image Jul 1, 2026, 01_14_26 AM.png"
+  ],
+  "requiredAssets": [
+    {
+      "path": "public\\index.html",
+      "sha256": "3291e3f65c15d34eaf71610a1de49ff2ffacbe59c2e58ab480ffa9c4ed3b7ddc"
+    },
+    {
+      "path": "public\\ba-garden.png",
+      "sha256": "92903d8c3f7022c1f7e6081fee16950c5d4a348affa4401461bed7ab2a59a82b"
+    },
+    {
+      "path": "public\\ba-container.png",
+      "sha256": "2ced4908c7f8e15653ddf695758bc18685737f6bff83703c64dc6ecfe7fc1476"
+    },
+    {
+      "path": "public\\ba-chairs.png",
+      "sha256": "b68492f65acb359fa24c5785ea5e22ebb75ccbbead0b090bd1d0179a5872b45b"
+    },
+    {
+      "path": "public\\mariah-framed.webp",
+      "sha256": "a6f1f3fa162785e377eae3822476bc7bc9e4f6c2b6ff6cc59e65831b97853b55"
+    },
+    {
+      "path": "public\\gibson-hero.webp",
+      "sha256": "aea7ccce179774c91781cffa8d15bde864c632e9979d6348249765b7af890146"
+    },
+    {
+      "path": "public\\gcs-after.webp",
+      "sha256": "0f70ae1daded7ab4c07e29bbfc9bc2a215a6e8dc314e714fb38d035e5d0500df"
+    },
+    {
+      "path": "public\\mariah-text.webp",
+      "sha256": "b4416fd745b6647eebf362268424e2ec30c6d44476ee1ad0ee64b9eab58b771d"
+    }
+  ],
+  "productionUrls": {
+    "workers": "https://gibson-caretaker-services.zacgibson89.workers.dev",
+    "customDomain": "https://gibsoncaretakerservices.com"
+  },
+  "ownership": {
+    "state": "blocked",
+    "reason": "Custom domains are currently bound to Worker service 'gibson-caretaker-web' while repository deploys target service 'gibson-caretaker-services'. Marker parity alone is not sufficient release safety.",
+    "expectedDeployService": "gibson-caretaker-services",
+    "expectedCustomDomainService": "gibson-caretaker-web",
+    "customDomainRollbackVersionId": "7dea095b-df71-40e0-853a-e12e6328a973",
+    "migrationPlan": "docs/runbooks/OWNERSHIP-MIGRATION.md",
+    "evidenceLog": "docs/runbooks/OWNERSHIP-EVIDENCE-2026-08-10.md",
+    "bypassEnvVar": "RELEASE_GUARD_ALLOW_BLOCKED_OWNERSHIP"
+  }
+}
