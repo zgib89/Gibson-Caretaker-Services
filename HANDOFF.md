@@ -9,6 +9,27 @@ Nothing here costs money beyond the domain (~$10/yr) and the existing $5/mo Clou
 
 ---
 
+## Release safety rule (mandatory)
+
+Use guarded deploy commands only:
+
+```bash
+npm run verify:preflight
+npm run deploy:safe
+```
+
+Do not deploy from ambiguous local variants. Canonical profile and manifest:
+
+- `backups/live-baselines/2026-07-27-index-now/manifest.json`
+- `scripts/release/verify-release-profile.mjs`
+
+Ownership migration is currently **blocked** until custom-domain binding is unified with canonical service:
+
+- `docs/runbooks/OWNERSHIP-MIGRATION.md`
+- Emergency-only bypass env: `RELEASE_GUARD_ALLOW_BLOCKED_OWNERSHIP=1`
+
+---
+
 ## 0. What you're deploying
 
 A single Cloudflare Worker that:
@@ -81,7 +102,7 @@ git push -u origin main
 **`[CODE]`**
 ```bash
 npx wrangler login      # opens the browser once to authorize
-npx wrangler deploy
+npm run deploy:safe
 ```
 This publishes to a temporary `https://gibson-caretaker-services.<subdomain>.workers.dev` URL. Open it — the site should load fully. (The form won't email yet until step 6; that's expected.)
 
@@ -171,7 +192,7 @@ Then the list lives at `https://gibsoncaretakerservices.com/api/leads?key=YOUR_A
 
 **`[CODE]`**
 ```bash
-npx wrangler deploy
+npm run deploy:safe
 ```
 
 ---

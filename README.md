@@ -4,6 +4,27 @@ The website + contact form for **Gibson Caretaker Services** — gentle yard, ga
 
 Live site: **https://gibsoncaretakerservices.com**
 
+## Release safety (required)
+
+Use the guarded deployment path so the wrong local variant cannot be deployed:
+
+```bash
+npm run deploy:safe
+```
+
+This runs preflight validation, deploys, then verifies workers.dev/custom-domain parity.
+
+- Guard script: `scripts/release/verify-release-profile.mjs`
+- Canonical profile: `backups/live-baselines/2026-07-27-index-now/manifest.json`
+- Runbooks: `docs/runbooks/DEPLOY.md`, `docs/runbooks/ROLLBACK.md`, `docs/runbooks/RECOVERY.md`
+
+### Ownership migration status
+
+Release guard currently marks domain ownership migration as **blocked** until custom domains and canonical Worker service ownership are resolved:
+
+- Runbook: `docs/runbooks/OWNERSHIP-MIGRATION.md`
+- Temporary bypass for emergency commands only: `RELEASE_GUARD_ALLOW_BLOCKED_OWNERSHIP=1`
+
 ## What this is
 
 A single Cloudflare Worker that:
@@ -37,7 +58,7 @@ A single Cloudflare Worker that:
 ```bash
 npm install
 npx wrangler login          # opens the browser, logs into your Cloudflare account
-npx wrangler deploy         # publishes the Worker
+npm run deploy:safe         # guarded deploy + post-deploy parity verification
 ```
 
 Then in the Cloudflare dashboard, add **gibsoncaretakerservices.com** as a Custom Domain on the Worker.
@@ -47,5 +68,5 @@ The contact form needs **Email Routing** turned on for the domain, with
 
 ## Edit the site
 
-Everything visible is in `public/index.html`. Change it, then run `npx wrangler deploy`
-again (or, if you connect this repo to Cloudflare, just `git push`).
+Everything visible is in `public/index.html`. Change it, then run `npm run deploy:safe`
+again (or, if you connect this repo to Cloudflare, deploy from verified CI).

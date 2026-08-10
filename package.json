@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
+    "deploy:safe": "npm run verify:preflight && wrangler deploy && npm run verify:postdeploy",
+    "verify:preflight": "node scripts/release/verify-release-profile.mjs preflight",
+    "verify:postdeploy": "node scripts/release/verify-release-profile.mjs postdeploy",
     "set-phone": "node scripts/set-phone.mjs",
     "db:init": "wrangler d1 execute gibson-leads --remote --file=migrations/0001_init.sql"
   },
